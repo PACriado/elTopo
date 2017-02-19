@@ -5,12 +5,6 @@ import scrapy
 class QuotesSpider(scrapy.Spider):
     name = "spyder"
 
-    start_urls = [
-        'http://quotes.toscrape.com/tag/humor/',
-    ]
-
-
-
     def parse(self, response):
         for headElement in response.css('head'):
             yield {
