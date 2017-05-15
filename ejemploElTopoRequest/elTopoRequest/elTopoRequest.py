@@ -12,6 +12,7 @@ class elTopoRequest:
       r = requests.get( url, self.header, timeout=(5,15), proxies=self.pro)
       return r
     except:
+        #AQUI DEBERIAMOS LANZAR UNA EXCEPCION
       print(url+" error. Cant getRequestTor")
 
 
@@ -20,6 +21,7 @@ class elTopoRequest:
       r = requests.get( url, self.header, timeout=(5,15))
       return r
     except:
+        #AQUI DEBERIAMOS LANZAR UNA EXCEPCION
       print(url+" error. Cant getRequestNoTor")
 
   def getRequestAuto(self,url):
