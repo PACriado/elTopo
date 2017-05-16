@@ -1,5 +1,5 @@
 import requests
-import ejemploElTopoRequest.utils.utils as utils
+import utils.utils as utils
 from fake_useragent import UserAgent
 
 class elTopoRequest:

@@ -1,4 +1,3 @@
-import bs4
 from lxml import html
 
 

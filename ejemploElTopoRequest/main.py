@@ -1,5 +1,5 @@
-import ejemploElTopoRequest.elTopoRequest.elTopoRequest as etr
-import ejemploElTopoRequest.filtroInformacion.filtroInformacion as fi
+import elTopoRequest.elTopoRequest as etr
+import filtroInformacion.filtroInformacion as fi
 
 
 conexion = etr.elTopoRequest()
