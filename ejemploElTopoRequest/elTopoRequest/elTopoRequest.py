@@ -1,6 +1,7 @@
 import requests
 import utils.utils as utils
 from fake_useragent import UserAgent
+from elTopoRequest.ElTopoRequestException import ElTopoRequestException
 
 class elTopoRequest:
   ua = UserAgent()
@@ -14,6 +15,7 @@ class elTopoRequest:
     except:
         #AQUI DEBERIAMOS LANZAR UNA EXCEPCION
       print(url+" error. Cant getRequestTor")
+      raise ElTopoRequestException(url+" EXCEPTION. Cant getRequestTor")
 
 
   def getRequestNoTor(self,url):
@@ -23,6 +25,7 @@ class elTopoRequest:
     except:
         #AQUI DEBERIAMOS LANZAR UNA EXCEPCION
       print(url+" error. Cant getRequestNoTor")
+      raise ElTopoRequestException(url+" EXCEPTION. Cant getRequestNoTor")
 
   def getRequestAuto(self,url):
       if utils.utils.isOnionURL(url):
