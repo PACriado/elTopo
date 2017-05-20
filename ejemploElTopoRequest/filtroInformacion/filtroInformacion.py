@@ -1,6 +1,8 @@
 from lxml import html
 from filtroInformacion.HttpCode import HttpCode
 from filtroInformacion.HttpCodeException import HttpCodeException
+from Entidades.webPageInfo import webPageInfo
+import json
 
 class filtroInformacion:
 
@@ -30,3 +32,9 @@ class filtroInformacion:
     def getLinksText(self):
         linksText = self.tree.xpath('//a/text()')
         return linksText
+
+    def getAllDataObject(self):
+        return webPageInfo(url=self.getUrl(),title=self.getTitle())
+
+    def getAllDataJson(self):
+        return json.dumps(self.getAllDataObject().__dict__)
