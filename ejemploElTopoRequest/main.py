@@ -13,6 +13,7 @@ urlTor="http://3g2upl4pq6kufc4m.onion/"
 url="https://thehiddenwiki.org/"
 try:
   filtroTor = fi.filtroInformacion(conexion,urlTor)
+  print(filtroTor.getUrl())
   print(filtroTor.getTitle())
   print(filtroTor.getLinksHref())
   print(filtroTor.getLinksText())
@@ -26,6 +27,7 @@ except:
 
 try:
   filtro = fi.filtroInformacion(conexion,url)
+  print(filtro.getUrl())
   print(filtro.getTitle())
   print(filtro.getLinksHref())
   print(filtro.getLinksText())

@@ -15,15 +15,18 @@ class filtroInformacion:
           raise  HttpCodeException("NO HA SALTADO UN 200!")
 
 
+    def getUrl(self):
+        currentUrl = self.url
+        return currentUrl
 
     def getTitle(self):
         title = self.tree.xpath('//title/text()')
         return title
 
     def getLinksHref(self):
-        title = self.tree.xpath('//a/@href')
-        return title
+        linksHref = self.tree.xpath('//a/@href')
+        return linksHref;
 
     def getLinksText(self):
-        title = self.tree.xpath('//a/text()')
-        return title
+        linksText = self.tree.xpath('//a/text()')
+        return linksText
