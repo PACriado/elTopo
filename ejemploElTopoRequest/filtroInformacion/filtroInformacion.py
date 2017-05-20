@@ -19,3 +19,11 @@ class filtroInformacion:
     def getTitle(self):
         title = self.tree.xpath('//title/text()')
         return title
+
+    def getLinksHref(self):
+        title = self.tree.xpath('//a/@href')
+        return title
+
+    def getLinksText(self):
+        title = self.tree.xpath('//a/text()')
+        return title

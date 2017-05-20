@@ -9,10 +9,13 @@ from filtroInformacion.HttpCodeException import HttpCodeException
 conexion = etr.elTopoRequest()
 
 urlTor="http://3g2upl4pq6kufc4m.onion/"
-url="http://www.google.es"
+#url="http://www.google.es"
+url="https://thehiddenwiki.org/"
 try:
   filtroTor = fi.filtroInformacion(conexion,urlTor)
   print(filtroTor.getTitle())
+  print(filtroTor.getLinksHref())
+  print(filtroTor.getLinksText())
 except ElTopoRequestException as e:
   print(e.valor)
 except HttpCodeException as e:
@@ -24,6 +27,8 @@ except:
 try:
   filtro = fi.filtroInformacion(conexion,url)
   print(filtro.getTitle())
+  print(filtro.getLinksHref())
+  print(filtro.getLinksText())
 except ElTopoRequestException as e:
   print(e.valor)
 except HttpCodeException as e:
