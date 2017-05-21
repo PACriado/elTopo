@@ -17,7 +17,7 @@ try:
   print(filtroTor.getTitle())
   print(filtroTor.getLinksHref())
   print(filtroTor.getLinksText())
-  print(filtroTor.getAllDataJson())
+  print(filtroTor.getAllDataRecursiveJson())
 except ElTopoRequestException as e:
   print(e.valor)
 except HttpCodeException as e:
@@ -32,7 +32,7 @@ try:
   print(filtro.getTitle())
   print(filtro.getLinksHref())
   print(filtro.getLinksText())
-  print(filtro.getAllDataJson())
+  print(filtro.getAllDataRecursiveJson())
 except ElTopoRequestException as e:
   print(e.valor)
 except HttpCodeException as e:
