@@ -70,10 +70,9 @@ class filtroInformacion:
         self.depth = self.depth + 1
         if self.depth <= self.maxDepth:
             for currentChildren in allChildren:
-                currentURL = currentChildren
                 try:
-                    newFilter = filtroInformacion(self.conexion, currentURL, depth=self.depth, maxDepth=self.maxDepth)
-                    newChildren = webPageInfo(url=currentURL, isOnline=newFilter.isOnline)
+                    newFilter = filtroInformacion(self.conexion, currentChildren, depth=self.depth, maxDepth=self.maxDepth)
+                    newChildren = webPageInfo(url=currentChildren, isOnline=newFilter.isOnline)
                     if newFilter.isOnline:
                         newChildren.setTitle(newFilter.getTitle())
 
@@ -81,7 +80,7 @@ class filtroInformacion:
                         allChildrenList.append(newChildren)
 
                 except HttpCodeException:
-                    newChildren = webPageInfo(url=currentURL, isOnline=False)
+                    newChildren = webPageInfo(url=currentChildren, isOnline=False)
                 currentWeb.getChildren().append(newChildren)
 
         return currentWeb
