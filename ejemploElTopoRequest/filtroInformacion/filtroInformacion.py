@@ -7,10 +7,12 @@ from Entidades.webPageInfo import webPageInfo
 
 class filtroInformacion:
 
-    def __init__(self, conexion, url):
+    def __init__(self, conexion, url, depth=0, maxDepth=1):
        self.conexion = conexion
        self.url = url
        self.isOnline = True
+       self.depth = depth
+       self.maxDepth = maxDepth
        print("Filtrando {}".format(self.url))
        try:
          self.page = self.conexion.getRequestAuto(self.url)
@@ -61,12 +63,6 @@ class filtroInformacion:
         linksText = self.tree.xpath('//a/text()')
         return linksText
 
-    def getAllDataObject(self):
-        return webPageInfo(url=self.getUrl(),title=self.getTitle())
-
-    def getAllDataJson(self):
-        return json.dumps(self.getAllDataObject().__dict__,indent=4)
-
     def getAllDataRecursiveObject(self):
         currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
 
@@ -76,7 +72,7 @@ class filtroInformacion:
         for currentChildren in allChildren:
             currentURL = currentChildren
             try:
-              newFilter = filtroInformacion(self.conexion,currentURL)
+              newFilter = filtroInformacion(self.conexion,currentURL,depth=(self.depth+1),maxDepth=self.maxDepth)
               newChildren = webPageInfo(url=currentURL, isOnline=newFilter.isOnline)
               if newFilter.isOnline:
                 newChildren.setTitle(newFilter.getTitle())
