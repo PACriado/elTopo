@@ -3,7 +3,7 @@ from filtroInformacion.HttpCode import HttpCode
 from filtroInformacion.HttpCodeException import HttpCodeException
 from elTopoRequest.elTopoRequest import ElTopoRequestException
 from Entidades.webPageInfo import webPageInfo
-import json
+
 
 class filtroInformacion:
 
@@ -68,7 +68,7 @@ class filtroInformacion:
         return json.dumps(self.getAllDataObject().__dict__,indent=4)
 
     def getAllDataRecursiveObject(self):
-        currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle(),children=[])
+        currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
 
         #CODIGO QUE FALTA POR PULIR PARA QUE FUNCIONE LA BUSQUEDA RECURSIVA
         allChildren = self.getLinksHref()
@@ -83,10 +83,12 @@ class filtroInformacion:
                 allChildrenList.append(newChildren)
             except HttpCodeException:
               newChildren = webPageInfo(url=currentURL, isOnline=False)
-        #currentWeb.setChildren(allChildrenList)
+            currentWeb.getChildren().append(newChildren)
 
         return currentWeb
 
     def getAllDataRecursiveJson(self):
         #AQUI HAY QUE MIRAR PORQUE NO SERIALIZA A JSON UN OBJETO CON UNA LISTA RELLENA DE OBJETOS
-        return json.dumps(self.getAllDataRecursiveObject().__dict__,sort_keys=True,indent=4)
+        obj_temp= self.getAllDataRecursiveObject()
+        temp = obj_temp.toJSON()
+        return temp

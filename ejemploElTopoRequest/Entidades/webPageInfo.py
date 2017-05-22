@@ -1,11 +1,11 @@
-
+import json
 
 class webPageInfo:
 
-    def __init__(self, url='', title='' , isOnline=True, children=[]):
+    def __init__(self, url='', title='' , isOnline=True):
         self.url = url
         self.title = title
-        self.children = children
+        self.children = []
         self.isOnline = isOnline
 
     def setUrl(self,url):
@@ -30,4 +30,7 @@ class webPageInfo:
         self.children = children
 
     def getChildren(self):
-        return self.title
+        return self.children
+
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
