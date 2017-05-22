@@ -69,17 +69,22 @@ class filtroInformacion:
         #CODIGO QUE FALTA POR PULIR PARA QUE FUNCIONE LA BUSQUEDA RECURSIVA
         allChildren = self.getLinksHref()
         allChildrenList = []
-        for currentChildren in allChildren:
-            currentURL = currentChildren
-            try:
-              newFilter = filtroInformacion(self.conexion,currentURL,depth=(self.depth+1),maxDepth=self.maxDepth)
-              newChildren = webPageInfo(url=currentURL, isOnline=newFilter.isOnline)
-              if newFilter.isOnline:
-                newChildren.setTitle(newFilter.getTitle())
-                allChildrenList.append(newChildren)
-            except HttpCodeException:
-              newChildren = webPageInfo(url=currentURL, isOnline=False)
-            currentWeb.getChildren().append(newChildren)
+        depth = self.depth+1
+        if depth < self.maxDepth:
+          for currentChildren in allChildren:
+              currentURL = currentChildren
+              try:
+                newFilter = filtroInformacion(self.conexion,currentURL,depth=depth,maxDepth=self.maxDepth)
+                newChildren = webPageInfo(url=currentURL, isOnline=newFilter.isOnline)
+                if newFilter.isOnline:
+                  newChildren.setTitle(newFilter.getTitle())
+
+                  newChildren.getChildren().append(newFilter.getAllDataRecursiveObject())
+                  allChildrenList.append(newChildren)
+
+              except HttpCodeException:
+                newChildren = webPageInfo(url=currentURL, isOnline=False)
+              currentWeb.getChildren().append(newChildren)
 
         return currentWeb
 
