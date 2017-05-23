@@ -29,7 +29,7 @@ except:
 '''
 
 try:
-  filtro = fi.filtroInformacion(conexion,url,maxDepth=2)
+  filtro = fi.filtroInformacion(conexion,url,maxDepth=1)
   print(filtro.getUrl())
   print(filtro.getTitle())
   print(filtro.getLinksHref())

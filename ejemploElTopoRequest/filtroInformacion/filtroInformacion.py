@@ -62,28 +62,21 @@ class filtroInformacion:
         return linksText
 
     def getAllDataRecursiveObject(self):
-        currentWeb = webPageInfo(url=self.getUrl(), title=self.getTitle())
-
-        # CODIGO QUE FALTA POR PULIR PARA QUE FUNCIONE LA BUSQUEDA RECURSIVA
-        allChildren = self.getLinksHref()
-        allChildrenList = []
-        self.depth = self.depth + 1
-        if self.depth <= self.maxDepth:
+        currentWeb = ''
+        if self.depth == self.maxDepth:
+            currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
+        else:
+            allChildren = self.getLinksHref()
+            currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
             for currentChildren in allChildren:
                 try:
-                    newFilter = filtroInformacion(self.conexion, currentChildren, depth=self.depth, maxDepth=self.maxDepth)
-                    newChildren = webPageInfo(url=currentChildren, isOnline=newFilter.isOnline)
-                    if newFilter.isOnline:
-                        newChildren.setTitle(newFilter.getTitle())
-
-                        newChildren.getChildren().append(newFilter.getAllDataRecursiveObject())
-                        allChildrenList.append(newChildren)
-
-                except HttpCodeException:
-                    newChildren = webPageInfo(url=currentChildren, isOnline=False)
-                currentWeb.getChildren().append(newChildren)
+                  newFilter = filtroInformacion(self.conexion, currentChildren, depth=(self.depth+1), maxDepth=self.maxDepth)
+                  currentWeb.getChildren().append(newFilter.getAllDataRecursiveObject())
+                except:
+                  currentWeb.setIsOnline(False)
 
         return currentWeb
+
 
     def getAllDataRecursiveJson(self):
         # AQUI HAY QUE MIRAR PORQUE NO SERIALIZA A JSON UN OBJETO CON UNA LISTA RELLENA DE OBJETOS
