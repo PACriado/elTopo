@@ -75,6 +75,14 @@ class filtroInformacion:
         linksText = self.tree.xpath('//a/text()')
         return linksText
 
+    def getParrafo(self):
+        parrafo = self.tree.xpath('//p/text()')
+        return parrafo
+
+    def getSpan(self):
+        span = self.tree.xpath('//span//text()')
+        return span
+
     def getAllDataRecursiveObject(self):
         currentWeb = ''
         if self.depth == self.maxDepth:
@@ -82,7 +90,8 @@ class filtroInformacion:
             #aqui meter todos los filtros
             currentWeb.setHeader(self.getHeader())
             currentWeb.setMetadata(self.getMetadata())
-
+            currentWeb.setParrafo(self.getParrafo())
+            currentWeb.setSpan(self.getSpan())
         else:
             allChildren = self.getLinksHref()
             currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())

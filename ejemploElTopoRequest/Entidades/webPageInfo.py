@@ -9,6 +9,8 @@ class webPageInfo:
         self.isOnline = isOnline
         self.headers = []
         self.metadata = []
+        self.parrafo = []
+        self.span =[]
 
     def setUrl(self,url):
         self.url = url
@@ -45,6 +47,15 @@ class webPageInfo:
 
     def getMetadata(self):
         return self.metadata
+
+    def setParrafo(self, parrafo):
+        self.parrafo = parrafo
+
+    def getParrafo(self):
+        return self.parrafo
+
+    def setSpan(self,span):
+            self.span = span
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
