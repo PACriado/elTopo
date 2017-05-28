@@ -63,6 +63,14 @@ class filtroInformacion:
         # EJEMPLO SI VIENE EL SELF.URL HTTP://PATATA.COM/ NO LE PODEMOS CONCATENAR /COMOMEGUSTANLASPATATAS PORQUE TENDRIAMOS HTTP://PATATA.COM//COMOMEGUSTANLASPATATAS
         return listaLinks
 
+    def getHeader(self):
+        headers= self.tree.xpath('/html/body/*[self::h1 or self::h2 or self::h3]/text()')
+        return headers
+
+    def getMetadata(self):
+        metadata = self.tree.xpath('//meta[@name="description"]/@content')
+        return metadata
+
     def getLinksText(self):
         linksText = self.tree.xpath('//a/text()')
         return linksText
@@ -71,6 +79,10 @@ class filtroInformacion:
         currentWeb = ''
         if self.depth == self.maxDepth:
             currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
+            #aqui meter todos los filtros
+            currentWeb.setHeader(self.getHeader())
+            currentWeb.setMetadata(self.getMetadata())
+
         else:
             allChildren = self.getLinksHref()
             currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
