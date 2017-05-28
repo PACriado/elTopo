@@ -3,10 +3,12 @@ import filtroInformacion.filtroInformacion as fi
 import sys
 from elTopoRequest.elTopoRequest import ElTopoRequestException
 from filtroInformacion.HttpCodeException import HttpCodeException
+from AlmacenamientoDatos.jsonUtils import jsonUtil
 
 
 
 conexion = etr.elTopoRequest()
+utilidadesJson = jsonUtil('/home/usertfm/SalidaJSON/')
 
 urlTor="http://3g2upl4pq6kufc4m.onion/"
 #url="http://www.google.es"
@@ -34,7 +36,9 @@ try:
   print(filtro.getTitle())
   print(filtro.getLinksHref())
   print(filtro.getLinksText())
-  print(filtro.getAllDataRecursiveJson())
+  contenido= filtro.getAllDataRecursiveJson()
+  print(contenido)
+  utilidadesJson.escribirJson(contenido,"salida",".json")
 except ElTopoRequestException as e:
   print(e.valor)
 except HttpCodeException as e:
