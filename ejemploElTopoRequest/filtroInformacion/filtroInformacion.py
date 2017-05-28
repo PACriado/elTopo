@@ -3,6 +3,7 @@ from filtroInformacion.HttpCode import HttpCode
 from filtroInformacion.HttpCodeException import HttpCodeException
 from elTopoRequest.elTopoRequest import ElTopoRequestException
 from Entidades.webPageInfo import webPageInfo
+from utils.utils import utils
 
 
 class filtroInformacion:
@@ -44,8 +45,13 @@ class filtroInformacion:
         listaLinks = []
         linksHref = self.tree.xpath('//a/@href')
         for currentLink in linksHref:
+            #Las anclas no nos interesan
             if not currentLink.startswith("#"):
-                listaLinks.append(currentLink)
+                if utils.is_absolute(currentLink):
+                    listaLinks.append(currentLink)
+                else:
+                    absoluteCurrentLink = utils.get_absolute_url(self.url,currentLink)
+                    listaLinks.append(absoluteCurrentLink)
 
         # AQUI HAY QUE AÑADIR UNA COMPROBAR SI LOS LINKS SON RELATIVOS O ABSOLUTOS.
         # CASO 1
