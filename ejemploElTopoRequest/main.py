@@ -7,8 +7,6 @@ from AlmacenamientoDatos.jsonOutputWebInfoUtils import jsonOutputWebInfoUtils
 from AlmacenamientoDatos.lecturaFicheroUrlOnion import lecturaFicheroUrlOnion
 
 
-
-
 RutaSalida="/home/usertfm/SalidaJSON/"
 RutaEntradaUrls="./configElTopo/config.json"
 
