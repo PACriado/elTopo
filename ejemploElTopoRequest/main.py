@@ -12,7 +12,7 @@ RutaEntradaUrlsJSON = "./configElTopo/config.json"
 RutaEntradaUrlsDICCIONARIO = "./configElTopo/diccionario.txt"
 
 utilidadesJson = jsonOutputWebInfoUtils(RutaSalida)
-#urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionJSON(RutaEntradaUrlsJSON)
+# urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionJSON(RutaEntradaUrlsJSON)
 urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionDiccionario(RutaEntradaUrlsDICCIONARIO)
 print("Las URLS son {0}".format(urlsFicheros))
 conexion = etr.elTopoRequest()
