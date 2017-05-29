@@ -38,7 +38,7 @@ try:
   print(filtro.getLinksText())
   contenido= filtro.getAllDataRecursiveJson()
   print(contenido)
-  utilidadesJson.escribirJson(contenido,"salida",".json")
+  utilidadesJson.escribirJson(contenido,url,".json")
 except ElTopoRequestException as e:
   print(e.valor)
 except HttpCodeException as e:
