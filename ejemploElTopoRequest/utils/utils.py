@@ -1,5 +1,6 @@
-from urllib.parse import urlparse
 from urllib.parse import urljoin
+from urllib.parse import urlparse
+
 
 class utils:
     def isOnionURL(url):
@@ -7,6 +8,7 @@ class utils:
             return True
         else:
             return False
+
     def is_absolute(url):
         return bool(urlparse(url).netloc)
 

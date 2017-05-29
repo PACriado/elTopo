@@ -1,8 +1,9 @@
 from lxml import html
+
+from Entidades.webPageInfo import webPageInfo
+from elTopoRequest.elTopoRequest import ElTopoRequestException
 from filtroInformacion.HttpCode import HttpCode
 from filtroInformacion.HttpCodeException import HttpCodeException
-from elTopoRequest.elTopoRequest import ElTopoRequestException
-from Entidades.webPageInfo import webPageInfo
 from utils.utils import utils
 
 
@@ -45,12 +46,12 @@ class filtroInformacion:
         listaLinks = []
         linksHref = self.tree.xpath('//a/@href')
         for currentLink in linksHref:
-            #Las anclas no nos interesan
+            # Las anclas no nos interesan
             if not currentLink.startswith("#"):
                 if utils.is_absolute(currentLink):
                     listaLinks.append(currentLink)
                 else:
-                    absoluteCurrentLink = utils.get_absolute_url(self.url,currentLink)
+                    absoluteCurrentLink = utils.get_absolute_url(self.url, currentLink)
                     listaLinks.append(absoluteCurrentLink)
 
         # AQUI HAY QUE AÑADIR UNA COMPROBAR SI LOS LINKS SON RELATIVOS O ABSOLUTOS.
@@ -64,7 +65,7 @@ class filtroInformacion:
         return listaLinks
 
     def getHeader(self):
-        headers= self.tree.xpath('/html/body/*[self::h1 or self::h2 or self::h3]/text()')
+        headers = self.tree.xpath('/html/body/*[self::h1 or self::h2 or self::h3]/text()')
         return headers
 
     def getMetadata(self):
@@ -86,24 +87,24 @@ class filtroInformacion:
     def getAllDataRecursiveObject(self):
         currentWeb = ''
         if self.depth == self.maxDepth:
-            currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
-            #aqui meter todos los filtros
+            currentWeb = webPageInfo(url=self.getUrl(), title=self.getTitle())
+            # aqui meter todos los filtros
             currentWeb.setHeader(self.getHeader())
             currentWeb.setMetadata(self.getMetadata())
             currentWeb.setParrafo(self.getParrafo())
             currentWeb.setSpan(self.getSpan())
         else:
             allChildren = self.getLinksHref()
-            currentWeb = webPageInfo(url=self.getUrl(),title=self.getTitle())
+            currentWeb = webPageInfo(url=self.getUrl(), title=self.getTitle())
             for currentChildren in allChildren:
                 try:
-                  newFilter = filtroInformacion(self.conexion, currentChildren, depth=(self.depth+1), maxDepth=self.maxDepth)
-                  currentWeb.getChildren().append(newFilter.getAllDataRecursiveObject())
+                    newFilter = filtroInformacion(self.conexion, currentChildren, depth=(self.depth + 1),
+                                                  maxDepth=self.maxDepth)
+                    currentWeb.getChildren().append(newFilter.getAllDataRecursiveObject())
                 except:
-                  currentWeb.setIsOnline(False)
+                    currentWeb.setIsOnline(False)
 
         return currentWeb
-
 
     def getAllDataRecursiveJson(self):
         # AQUI HAY QUE MIRAR PORQUE NO SERIALIZA A JSON UN OBJETO CON UNA LISTA RELLENA DE OBJETOS
