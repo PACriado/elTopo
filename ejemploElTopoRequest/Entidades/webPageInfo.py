@@ -1,8 +1,8 @@
 import json
 
-class webPageInfo:
 
-    def __init__(self, url='', title='' , isOnline=True):
+class webPageInfo:
+    def __init__(self, url='', title='', isOnline=True):
         self.url = url
         self.title = title
         self.children = []
@@ -10,33 +10,33 @@ class webPageInfo:
         self.headers = []
         self.metadata = []
         self.parrafo = []
-        self.span =[]
+        self.span = []
 
-    def setUrl(self,url):
+    def setUrl(self, url):
         self.url = url
 
     def getUrl(self):
         return self.url
 
-    def setTitle(self,title):
+    def setTitle(self, title):
         self.title = title
 
     def getTitle(self):
         return self.title
 
-    def setIsOnline(self,isOnline):
+    def setIsOnline(self, isOnline):
         self.isOnline = isOnline
 
     def getIsOnline(self):
         return self.isOnline
 
-    def setChildren(self,children):
+    def setChildren(self, children):
         self.children = children
 
     def getChildren(self):
         return self.children
 
-    def setHeader(self,headers):
+    def setHeader(self, headers):
         self.headers = headers
 
     def getHeader(self):
@@ -54,9 +54,8 @@ class webPageInfo:
     def getParrafo(self):
         return self.parrafo
 
-    def setSpan(self,span):
-            self.span = span
+    def setSpan(self, span):
+        self.span = span
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
-
