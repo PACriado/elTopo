@@ -3,49 +3,33 @@ import filtroInformacion.filtroInformacion as fi
 import sys
 from elTopoRequest.elTopoRequest import ElTopoRequestException
 from filtroInformacion.HttpCodeException import HttpCodeException
-from AlmacenamientoDatos.jsonUtils import jsonUtil
+from AlmacenamientoDatos.jsonOutputWebInfoUtils import jsonOutputWebInfoUtils
+from AlmacenamientoDatos.lecturaFicheroUrlOnion import lecturaFicheroUrlOnion
 
 
 
+
+RutaSalida="/home/usertfm/SalidaJSON/"
+RutaEntradaUrls="./configElTopo/config.json"
+
+utilidadesJson = jsonOutputWebInfoUtils(RutaSalida)
+urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnion(RutaEntradaUrls)
+print("Las URLS son {0}".format(urlsFicheros))
 conexion = etr.elTopoRequest()
-utilidadesJson = jsonUtil('/home/usertfm/SalidaJSON/')
 
-urlTor="http://3g2upl4pq6kufc4m.onion/"
-#url="http://www.google.es"
-#url="https://thehiddenwiki.org/"
-url="http://info.cern.ch/"
-'''
-try:
-  filtroTor = fi.filtroInformacion(conexion,urlTor,maxDepth=1)
-  print(filtroTor.getUrl())
-  print(filtroTor.getTitle())
-  print(filtroTor.getLinksHref())
-  print(filtroTor.getLinksText())
-  print(filtroTor.getAllDataRecursiveJson())
-except ElTopoRequestException as e:
-  print(e.valor)
-except HttpCodeException as e:
-  print(e.valor)
-except:
-  print("Error no contemplado:", sys.exc_traceback)
-'''
-
-try:
-  filtro = fi.filtroInformacion(conexion,url,maxDepth=1)
-  print(filtro.getUrl())
-  print(filtro.getTitle())
-  print(filtro.getLinksHref())
-  print(filtro.getLinksText())
-  contenido= filtro.getAllDataRecursiveJson()
-  print(contenido)
-  utilidadesJson.escribirJson(contenido,url,".json")
-except ElTopoRequestException as e:
-  print(e.valor)
-except HttpCodeException as e:
-  print(e.valor)
-except:
-  print("Error no contemplado:", sys.exc_traceback)
-
+for currentURL in urlsFicheros:
+    try:
+      filtro = fi.filtroInformacion(conexion,currentURL,maxDepth=1)
+      print("Analizada la URL {0} ".format(filtro.getUrl()))
+      contenido= filtro.getAllDataRecursiveJson()
+      utilidadesJson.escribirJsonContenidoWeb(contenido,currentURL,".json")
+    except ElTopoRequestException as e:
+      print(e.valor)
+    except HttpCodeException as e:
+      print(e.valor)
+    except:
+      print("Error no contemplado: {0}".format(sys.exc_traceback))
+print("Los ficheros con los datos de las URLs analizadas estan en {0}".format(utilidadesJson.baseDirectory))
 
 
 
