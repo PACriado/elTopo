@@ -3,23 +3,23 @@ import sys
 import elTopoRequest.elTopoRequest as etr
 import filtroInformacion.filtroInformacion as fi
 from AlmacenamientoDatos.jsonOutputWebInfoUtils import jsonOutputWebInfoUtils
-from AlmacenamientoDatos.lecturaFicheroUrlOnion import lecturaFicheroUrlOnion
+from AlmacenamientoDatos.lecturaFicheroConfig import lecturaFicheroConfig
 from elTopoRequest.elTopoRequest import ElTopoRequestException
 from filtroInformacion.HttpCodeException import HttpCodeException
+from AlmacenamientoDatos.lecturaFicherosURL import lecturaFicherosURL
 
 RutaConfig = "./configElTopo/config.json"
 
-
-RutaSalida = lecturaFicheroUrlOnion.leerRutaSalida(RutaConfig)
-RutaEntradaUrlsDICCIONARIO = lecturaFicheroUrlOnion.leerRutaDiccionario(RutaConfig)
-maxDepth = lecturaFicheroUrlOnion.leerMaxDepth(RutaConfig)
-UtilizarDiccionario = lecturaFicheroUrlOnion.leerUsarDiccionario(RutaConfig)
+RutaSalida = lecturaFicheroConfig.leerRutaSalida(RutaConfig)
+RutaEntradaUrlsDICCIONARIO = lecturaFicheroConfig.leerRutaDiccionario(RutaConfig)
+maxDepth = lecturaFicheroConfig.leerMaxDepth(RutaConfig)
+UtilizarDiccionario = lecturaFicheroConfig.leerUsarDiccionario(RutaConfig)
 
 utilidadesJson = jsonOutputWebInfoUtils(RutaSalida)
 if UtilizarDiccionario:
-    urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionDiccionario(RutaEntradaUrlsDICCIONARIO)
+    urlsFicheros = lecturaFicherosURL.leerDireccionesDiccionario(RutaEntradaUrlsDICCIONARIO)
 else:
-    urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionJSON(RutaConfig)
+    urlsFicheros = lecturaFicherosURL.leerDireccionesJSON(RutaConfig)
 
 print("Las URLS son {0}".format(urlsFicheros))
 conexion = etr.elTopoRequest()
