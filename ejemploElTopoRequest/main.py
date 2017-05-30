@@ -8,6 +8,12 @@ from elTopoRequest.elTopoRequest import ElTopoRequestException
 from filtroInformacion.HttpCodeException import HttpCodeException
 from AlmacenamientoDatos.lecturaFicherosURL import lecturaFicherosURL
 
+from googleSearch.googleSearch import googleSearch
+
+#searcher = googleSearch();
+#searcher.search("elladodelmal")
+
+
 RutaConfig = "./configElTopo/config.json"
 
 RutaSalida = lecturaFicheroConfig.leerRutaSalida(RutaConfig)

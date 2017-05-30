@@ -2,7 +2,7 @@
   "RutaSalida": "/home/usertfm/SalidaJSON/",
   "RutaDiccionario": "./configElTopo/diccionario.txt",
   "MaxDepth": 1,
-  "UsarDiccionario": true,
+  "UsarDiccionario": false,
   "url": [
     "http://www.google.es",
     "http://info.cern.ch/"
