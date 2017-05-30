@@ -7,19 +7,26 @@ from AlmacenamientoDatos.lecturaFicheroUrlOnion import lecturaFicheroUrlOnion
 from elTopoRequest.elTopoRequest import ElTopoRequestException
 from filtroInformacion.HttpCodeException import HttpCodeException
 
-RutaSalida = "/home/usertfm/SalidaJSON/"
-RutaEntradaUrlsJSON = "./configElTopo/config.json"
-RutaEntradaUrlsDICCIONARIO = "./configElTopo/diccionario.txt"
+RutaConfig = "./configElTopo/config.json"
+
+
+RutaSalida = lecturaFicheroUrlOnion.leerRutaSalida(RutaConfig)
+RutaEntradaUrlsDICCIONARIO = lecturaFicheroUrlOnion.leerRutaDiccionario(RutaConfig)
+maxDepth = lecturaFicheroUrlOnion.leerMaxDepth(RutaConfig)
+UtilizarDiccionario = lecturaFicheroUrlOnion.leerUsarDiccionario(RutaConfig)
 
 utilidadesJson = jsonOutputWebInfoUtils(RutaSalida)
-# urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionJSON(RutaEntradaUrlsJSON)
-urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionDiccionario(RutaEntradaUrlsDICCIONARIO)
+if UtilizarDiccionario:
+    urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionDiccionario(RutaEntradaUrlsDICCIONARIO)
+else:
+    urlsFicheros = lecturaFicheroUrlOnion.leerDireccionesOnionJSON(RutaConfig)
+
 print("Las URLS son {0}".format(urlsFicheros))
 conexion = etr.elTopoRequest()
 
 for currentURL in urlsFicheros:
     try:
-        filtro = fi.filtroInformacion(conexion, currentURL, maxDepth=1)
+        filtro = fi.filtroInformacion(conexion, currentURL, maxDepth=maxDepth)
         print("Analizada la URL {0} ".format(filtro.getUrl()))
         contenido = filtro.getAllDataRecursiveJson()
         utilidadesJson.escribirJsonContenidoWeb(contenido, currentURL, ".json")

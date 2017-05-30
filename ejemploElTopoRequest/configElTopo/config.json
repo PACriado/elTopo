@@ -1,8 +1,10 @@
 {
+  "RutaSalida": "/home/usertfm/SalidaJSON/",
+  "RutaDiccionario": "./configElTopo/diccionario.txt",
+  "MaxDepth": 1,
+  "UsarDiccionario": false,
   "url": [
     "http://www.google.es",
-    "https://thehiddenwiki.org/",
-    "http://info.cern.ch/",
-    "http://3g2upl4pq6kufc4m.onion/"
+    "http://info.cern.ch/"
   ]
 }
