@@ -106,8 +106,7 @@ class filtroInformacion:
 
         return currentWeb
 
-    def getAllDataRecursiveJson(self):
+    def getAllDataRecursiveJson(self,data):
         # AQUI HAY QUE MIRAR PORQUE NO SERIALIZA A JSON UN OBJETO CON UNA LISTA RELLENA DE OBJETOS
-        obj_temp = self.getAllDataRecursiveObject()
-        temp = obj_temp.toJSON()
+        temp = data.toJSON()
         return temp
