@@ -84,6 +84,17 @@ class filtroInformacion:
         span = self.tree.xpath('//span//text()')
         return span
 
+    def getImages(self):
+        images = self.tree.xpath('count(//*[(substring(@src, string-length(@src) - string-length("png") +1) = "png") '
+                                 'or (substring(@src, string-length(@src) - string-length("jpeg") +1) = "jpeg" )])')
+        return images
+
+    def getVideos(self):
+        videos = self.tree.xpath('count(//*[(substring(@src, string-length(@src) - string-length("mp4") +1) = "mp4") '
+                                 'or (substring(@src, string-length(@src) - string-length("mpeg") +1) = "mpeg" )])')
+        return videos
+
+
     def getAllDataRecursiveObject(self):
         currentWeb = ''
         if self.depth == self.maxDepth:
@@ -93,6 +104,8 @@ class filtroInformacion:
             currentWeb.setMetadata(self.getMetadata())
             currentWeb.setParrafo(self.getParrafo())
             currentWeb.setSpan(self.getSpan())
+            currentWeb.setImages(self.getImages())
+            currentWeb.setVideos(self.getVideos())
         else:
             allChildren = self.getLinksHref()
             currentWeb = webPageInfo(url=self.getUrl(), title=self.getTitle())

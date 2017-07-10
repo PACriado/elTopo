@@ -11,6 +11,8 @@ class webPageInfo:
         self.metadata = []
         self.parrafo = []
         self.span = []
+        self.images = 0
+        self.videos = 0
 
     def setUrl(self, url):
         self.url = url
@@ -56,6 +58,21 @@ class webPageInfo:
 
     def setSpan(self, span):
         self.span = span
+
+    def getSpan(self):
+        return self.span
+
+    def setImages(self, images):
+        self.images = images
+
+    def getImages(self):
+        return self.images
+
+    def setVideos(self, videos):
+        self.videos = videos
+
+    def getVideos(self):
+        return self.videos
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
