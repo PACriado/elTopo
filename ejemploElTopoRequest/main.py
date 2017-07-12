@@ -20,6 +20,9 @@ RutaSalida = lecturaFicheroConfig.leerRutaSalida(RutaConfig)
 RutaEntradaUrlsDICCIONARIO = lecturaFicheroConfig.leerRutaDiccionario(RutaConfig)
 maxDepth = lecturaFicheroConfig.leerMaxDepth(RutaConfig)
 UtilizarDiccionario = lecturaFicheroConfig.leerUsarDiccionario(RutaConfig)
+UtilizarSiempreTor = lecturaFicheroConfig.leerSiempreTor(RutaConfig)
+RenovarSiempreCircuitoTor= lecturaFicheroConfig.leerRenovarSiempreCircuitoTor(RutaConfig)
+DelayIntentoRenovacionCircuitoTor = lecturaFicheroConfig.leerDelayIntentoRenovacionCircuitoTor(RutaConfig)
 
 utilidadesJson = jsonOutputWebInfoUtils(RutaSalida)
 if UtilizarDiccionario:
@@ -28,7 +31,7 @@ else:
     urlsFicheros = lecturaFicherosURL.leerDireccionesJSON(RutaConfig)
 
 print("Las URLS son {0}".format(urlsFicheros))
-conexion = etr.elTopoRequest()
+conexion = etr.elTopoRequest(UtilizarSiempreTor, RenovarSiempreCircuitoTor,DelayIntentoRenovacionCircuitoTor)
 
 for currentURL in urlsFicheros:
     try:

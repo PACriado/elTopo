@@ -17,3 +17,18 @@ class lecturaFicheroConfig:
     def leerUsarDiccionario(ruta):
         fichero = json.loads(open(ruta).read())
         return fichero['UsarDiccionario']
+
+    def leerSiempreTor(ruta):
+        fichero = json.loads(open(ruta).read())
+        return fichero['UsarSiempreTor']
+
+    def leerRenovarSiempreCircuitoTor(ruta):
+        fichero = json.loads(open(ruta).read())
+        return fichero['RenovarSiempreCircuitoTor']
+
+    def leerDelayIntentoRenovacionCircuitoTor(ruta):
+        fichero = json.loads(open(ruta).read())
+        return fichero['DelayIntentoRenovacionCircuitoTor']
+
+
+
