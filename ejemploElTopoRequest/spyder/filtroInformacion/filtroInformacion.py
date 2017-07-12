@@ -4,7 +4,7 @@ from lxml import html
 from Entidades.webPageInfo import webPageInfo
 from spyder.elTopoRequest.elTopoRequest import ElTopoRequestException
 from spyder.filtroInformacion.HttpCode import HttpCode
-from spyder.utils import utils
+from spyder.utils.utils import utils
 
 
 class filtroInformacion:
