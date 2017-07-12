@@ -1,12 +1,13 @@
 import sys
 
-import elTopoRequest.elTopoRequest as etr
-import filtroInformacion.filtroInformacion as fi
-from AlmacenamientoDatos.jsonOutputWebInfoUtils import jsonOutputWebInfoUtils
-from AlmacenamientoDatos.lecturaFicheroConfig import lecturaFicheroConfig
-from elTopoRequest.elTopoRequest import ElTopoRequestException
-from filtroInformacion.HttpCodeException import HttpCodeException
-from AlmacenamientoDatos.lecturaFicherosURL import lecturaFicherosURL
+from spyder.filtroInformacion.HttpCodeException import HttpCodeException
+
+from configElTopo.lecturaFicheroConfig import lecturaFicheroConfig
+from configElTopo.lecturaFicherosURL import lecturaFicherosURL
+from spyder.AlmacenamientoDatos.jsonOutputWebInfoUtils import jsonOutputWebInfoUtils
+from spyder.elTopoRequest import elTopoRequest as etr
+from spyder.elTopoRequest.elTopoRequest import ElTopoRequestException
+from spyder.filtroInformacion import filtroInformacion as fi
 
 #from googleSearch.googleSearch import googleSearch
 

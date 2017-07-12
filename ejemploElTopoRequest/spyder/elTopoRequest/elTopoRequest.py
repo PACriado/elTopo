@@ -1,14 +1,12 @@
-import requests
-from fake_useragent import UserAgent
-
-import utils.utils as utils
-from elTopoRequest.ElTopoRequestException import ElTopoRequestException
-
 import time
 
-
+import requests
+from fake_useragent import UserAgent
 from stem import Signal
 from stem.control import Controller
+
+from spyder.utils import utils as utils
+from spyder.elTopoRequest.ElTopoRequestException import ElTopoRequestException
 
 
 class elTopoRequest:

@@ -1,10 +1,10 @@
+from spyder.filtroInformacion.HttpCodeException import HttpCodeException
 from lxml import html
 
 from Entidades.webPageInfo import webPageInfo
-from elTopoRequest.elTopoRequest import ElTopoRequestException
-from filtroInformacion.HttpCode import HttpCode
-from filtroInformacion.HttpCodeException import HttpCodeException
-from utils.utils import utils
+from spyder.elTopoRequest.elTopoRequest import ElTopoRequestException
+from spyder.filtroInformacion.HttpCode import HttpCode
+from spyder.utils import utils
 
 
 class filtroInformacion:
