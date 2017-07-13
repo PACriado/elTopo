@@ -1,15 +1,22 @@
-from textblob.classifiers import NaiveBayesClassifier
-import pickle
-import json
-import sys
-import json
-from pprint import pprint
-import jSONtoWebPageInfo as jsonConverter
+#from textblob.classifiers import NaiveBayesClassifier
 
 
-webPageInformation = jsonConverter(url='/home/usertfm/SalidaJSON/1499718909639/onLine/1499718910438-httpwwwgooglees.json')
+from Entidades.webPageInfo import webPageInfo
 
-webPageInformation.get
+webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/1499967801358/onLine/1499967809208-httpwwwgooglees.json')
+
+print("***************")
+print(webPageInfoObject.getUrl())
+print(webPageInfoObject.getTitle())
+
+
+
+
+
+
+
+
+
 
 
 

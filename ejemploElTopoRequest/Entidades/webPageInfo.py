@@ -2,17 +2,23 @@ import json
 
 
 class webPageInfo:
-    def __init__(self, url='', title='', isOnline=True):
-        self.url = url
-        self.title = title
-        self.children = []
-        self.isOnline = isOnline
-        self.headers = []
-        self.metadata = []
-        self.parrafo = []
-        self.span = []
-        self.images = 0
-        self.videos = 0
+    def __init__(self, url='', title='', isOnline=True, route=''):
+        if route != '':
+            #DE ESTA FORMA CARGAMOS UN JSON A ESTA CLASE
+            with open(route) as json_data:
+                self.__dict__ = json.load(json_data)
+        else:
+            #SI NO HAY JSON, CARGAMOS LA CLASE "A MANO"
+            self.url = url
+            self.title = title
+            self.children = []
+            self.isOnline = isOnline
+            self.headers = []
+            self.metadata = []
+            self.parrafo = []
+            self.span = []
+            self.images = 0
+            self.videos = 0
 
     def setUrl(self, url):
         self.url = url
@@ -76,3 +82,4 @@ class webPageInfo:
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+
