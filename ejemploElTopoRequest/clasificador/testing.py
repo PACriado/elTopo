@@ -2,13 +2,24 @@
 
 
 from Entidades.webPageInfo import webPageInfo
-
+from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+#ASI SE LEE UN FICHERO JSON Y TE RETORNA EL OBJETO WEBPAGE INFO
 webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/1499967801358/onLine/1499967809208-httpwwwgooglees.json')
 
 print("***************")
+#COMO PUEDES VER, LOS GETTER FUNCIONAN, YA QUE LO QUE HAS LEIDO ES UN OBJETO
 print(webPageInfoObject.getUrl())
 print(webPageInfoObject.getTitle())
+print("---------------")
 
+#ASI SE LEEN TODOS LOS FICHEROS QUE HAY DENTRO DE UN DIRECTORIO Y TE RETORNA UN ARRAY DE OBJETOS
+todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm/SalidaJSON/1499967801358/onLine/")
+
+for webPageInfoObjectInArray in todosLosObjetos:
+    #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
+    print(webPageInfoObjectInArray.getUrl())
+    print(webPageInfoObjectInArray.getTitle())
+    print("")
 
 
 
