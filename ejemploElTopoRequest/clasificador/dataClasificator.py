@@ -4,7 +4,7 @@ from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 import pickle
 from pprint import pprint
 #Class that classifies all the data depending of the tag selected.
-class clasificador:
+class dataClasificator:
 
     path = ""
     classifier = NaiveBayesClassifier
