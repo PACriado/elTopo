@@ -90,7 +90,71 @@ class webPageInfo:
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
+    def getAllUrls(self):
+        all = []
+        childrenSize = self.getChildren().__len__()
+        if childrenSize == 0:
+            return self.getUrl()
+        else:
+            for element in self.getChildren():
+                all.append(element.getAllUrls())
 
-    #AÑADIR ATRIBUTO CLASIFICADOR QUE ESTE VACIO. ESTE LE RELLENAREMOS A MANIJA
+        return all
+
+    def getAllTitles(self):
+        all = []
+        childrenSize = self.getChildren().__len__()
+        if childrenSize == 0:
+            return self.getTitle()
+        else:
+            for element in self.getChildren():
+                all.append(element.getAllTitles())
+
+        return all
+
+    def getAllHeaders(self):
+        all = []
+        childrenSize = self.getChildren().__len__()
+        if childrenSize == 0:
+            return self.getHeader()
+        else:
+            for element in self.getChildren():
+                all.append(element.getAllHeaders())
+
+        return all
+
+
+    def getAllMetadatas(self):
+        all = []
+        childrenSize = self.getChildren().__len__()
+        if childrenSize == 0:
+            return self.getMetadata()
+        else:
+            for element in self.getChildren():
+                all.append(element.getAllMetadatas())
+
+        return all
+
+    def getAllParrafos(self):
+        all = []
+        childrenSize = self.getChildren().__len__()
+        if childrenSize == 0:
+            return self.getParrafo()
+        else:
+            for element in self.getChildren():
+                all.append(element.getAllParrafos())
+
+        return all
+
+    def getAllSpans(self):
+        all = []
+        childrenSize = self.getChildren().__len__()
+        if childrenSize == 0:
+            return self.getSpan()
+        else:
+            for element in self.getChildren():
+                all.append(element.getAllSpans())
+
+        return all
     #AÑADIR METODOS QUE DEVUELVAN TODOS LOS METAS, TODOS LOS SPAN, etc etc es decir los propios y los de los hijos.
 
