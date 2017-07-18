@@ -1,6 +1,7 @@
 from textblob.classifiers import NaiveBayesClassifier
 from Entidades.webPageInfo import webPageInfo
 from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from trainer.dataTrainer import dataTrainer
 import clasificador
 from pprint import pprint
 import pickle
@@ -36,12 +37,28 @@ todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm
 ##prob_dist = classifier.prob_classify("I babys")
 ##prob_dist.max()
 
+
+
+
+
+##False escribimos, true leemos
+readWrite = True
+
+if(readWrite == False):
+    object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
+    object.train()
+    object.persistantWrite('/home/usertfm/Escritorio/testo/testin.txt')
+else:
+    object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
+    object.train()
+    object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
+
 for webPageInfoObjectInArray in todosLosObjetos:
 
     miClass = clasificador.clasificador( webPageInfoObjectInArray, "/home/usertfm/Escritorio/testo/testin.txt")
     #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
     ##print(miClass.getUrl())
-    pprint(miClass.printer())
+    ##pprint(miClass.printer())
     pprint(miClass.classifyUrl())
 
     ##print(miClass.getTitle())
