@@ -19,6 +19,7 @@ class webPageInfo:
             self.span = []
             self.images = 0
             self.videos = 0
+            self.label = "" #ESTE ATRIBUTO ES NECESARIO PARA EL CLASIFICADOR
 
     def setUrl(self, url):
         self.url = url
@@ -80,6 +81,16 @@ class webPageInfo:
     def getVideos(self):
         return self.videos
 
+    def setLabel(self, label):
+        self.label = label
+
+    def getLabel(self):
+        return self.label
+
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+
+
+    #AÑADIR ATRIBUTO CLASIFICADOR QUE ESTE VACIO. ESTE LE RELLENAREMOS A MANIJA
+    #AÑADIR METODOS QUE DEVUELVAN TODOS LOS METAS, TODOS LOS SPAN, etc etc es decir los propios y los de los hijos.
 
