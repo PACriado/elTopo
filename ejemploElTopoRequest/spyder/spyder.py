@@ -2,7 +2,7 @@ import sys
 
 from spyder.filtroInformacion.HttpCodeException import HttpCodeException
 
-from configElTopo.lecturaFicheroConfig import lecturaFicheroConfig
+from configElTopo.config import config
 from configElTopo.lecturaFicherosURL import lecturaFicherosURL
 from spyder.AlmacenamientoDatos.jsonOutputWebInfoUtils import jsonOutputWebInfoUtils
 from spyder.elTopoRequest import elTopoRequest as etr
@@ -19,13 +19,14 @@ class spyder:
     def __init__(self, rutaConfig= "./configElTopo/config.json"):
         #PARAMETROS DE CONFIGURACION
         self.RutaConfig = rutaConfig
-        self.RutaSalida = lecturaFicheroConfig.leerRutaSalida(self.RutaConfig)
-        self.RutaEntradaUrlsDICCIONARIO = lecturaFicheroConfig.leerRutaDiccionario(self.RutaConfig)
-        self.maxDepth = lecturaFicheroConfig.leerMaxDepth(self.RutaConfig)
-        self.UtilizarDiccionario = lecturaFicheroConfig.leerUsarDiccionario(self.RutaConfig)
-        self.UtilizarSiempreTor = lecturaFicheroConfig.leerSiempreTor(self.RutaConfig)
-        self.RenovarSiempreCircuitoTor= lecturaFicheroConfig.leerRenovarSiempreCircuitoTor(self.RutaConfig)
-        self.DelayIntentoRenovacionCircuitoTor = lecturaFicheroConfig.leerDelayIntentoRenovacionCircuitoTor(self.RutaConfig)
+        self.configuracion = config(self.RutaConfig)
+        self.RutaSalida = self.configuracion.getRutaSalida()
+        self.RutaEntradaUrlsDICCIONARIO = self.configuracion.getRutaDiccionario()
+        self.maxDepth = self.configuracion.getMaxDepth()
+        self.UtilizarDiccionario = self.configuracion.getUsarDiccionario()
+        self.UtilizarSiempreTor = self.configuracion.getUsarSiempreTor()
+        self.RenovarSiempreCircuitoTor= self.configuracion.getRenovarSiempreCircuitoTor()
+        self.DelayIntentoRenovacionCircuitoTor = self.configuracion.getDelayIntentoRenovacionCircuitoTor()
         #FIN PARAMETROS DE CONFIGURACION
 
         self.utilidadesJson = jsonOutputWebInfoUtils(self.RutaSalida)
