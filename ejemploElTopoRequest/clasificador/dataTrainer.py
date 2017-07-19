@@ -22,3 +22,4 @@ class dataTrainer:
         classifier_f = open(PathRead, "rb")
         self.classifier = pickle.load(classifier_f)
         classifier_f.close()
+        return self.classifier

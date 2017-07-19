@@ -4,7 +4,8 @@ import clasificador
 from Entidades.webPageInfo import webPageInfo
 from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 from clasificador.dataTrainer import dataTrainer
-
+from clasificador.dataClasificator import dataClasificator
+from textblob.classifiers import NaiveBayesClassifier
 #ASI SE LEE UN FICHERO JSON Y TE RETORNA EL OBJETO WEBPAGE INFO
 webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/1499887306392/offLine/1499888242828-httpsthehiddenwikiorg.json')
 
@@ -37,9 +38,9 @@ todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm
 
 
 
-
+classifier = NaiveBayesClassifier
 ##False escribimos, true leemos
-readWrite = False
+readWrite = True
 
 if(readWrite == False):
     object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
@@ -48,15 +49,13 @@ if(readWrite == False):
 else:
     object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
     object.train()
-    object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
-
-##for webPageInfoObjectInArray in todosLosObjetos:
-
-    ##miClass = clasificador.clasificador( webPageInfoObjectInArray, "/home/usertfm/Escritorio/testo/testin.txt")
+    classifier = object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
+    for webPageInfoObjectInArray in todosLosObjetos:
+       miClass = dataClasificator( webPageInfoObjectInArray, classifier)
     #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
-    ##print(miClass.getUrl())
+       ##print(miClass.getUrl())
     ##pprint(miClass.printer())
-   ## pprint(miClass.classifyUrl())
+       pprint(miClass.classifyAllUrl())
 
     ##print(miClass.getTitle())
     ##print(miClass.classify(webPageInfoObjectInArray.getTitle()))

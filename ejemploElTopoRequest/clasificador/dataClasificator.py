@@ -9,13 +9,13 @@ class dataClasificator:
     path = ""
     classifier = NaiveBayesClassifier
     webPageInfo = ""
-    def __init__(self, WPI, Path):
+    def __init__(self, WPI, Classifier):
 
         self.webPageInfo = WPI
-        self.path = Path
-        classifier_f = open(self.path, "rb")
-        self.classifier = pickle.load(classifier_f)
-        classifier_f.close()
+        ##self.path = Path
+        ##classifier_f = open(self.path, "rb")
+        self.classifier = Classifier
+        ##classifier_f.close()
 
 
     #Classification methods
@@ -39,8 +39,9 @@ class dataClasificator:
     def classifyParraf(self):
         return self.classifier.classify(self.webPageInfo.getParrafo())
 
-   ## def navigateChilds(self, webPageInfo):
-     ##   json = webPageInfo.toJSON()
-      ##  for key, value in json.items():
-        ##    if key == "children":
+    def classifyAllUrl(self):
+        urlList  = self.webPageInfo.getAllUrls()
+        for url in urlList:
+            pprint(self.classifier.classify(url))
+
 
