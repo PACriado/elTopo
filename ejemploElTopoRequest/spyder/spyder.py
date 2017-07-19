@@ -45,11 +45,6 @@ class spyder:
                 datos = filtro.getAllDataRecursiveObject()
                 contenido = filtro.getAllDataRecursiveJson(datos)
                 self.utilidadesJson.escribirJsonContenidoWeb(contenido, currentURL, ".json",datos.getIsOnline())
-                prueba = datos.getAllSpans()
-                print("**********")
-                print(prueba)
-                print("**********")
-
             except ElTopoRequestException as e:
                 print("ElTopoRequestException!!!!!!!!{0}".format(e.valor))
                 self.utilidadesJson.escribirJsonContenidoWeb(currentURL, currentURL, ".json",False)

@@ -6,7 +6,6 @@ from spyder.elTopoRequest.elTopoRequest import ElTopoRequestException
 from spyder.filtroInformacion.HttpCode import HttpCode
 from spyder.utils.utils import utils
 
-
 class filtroInformacion:
     def __init__(self, conexion, url, depth=1, maxDepth=1):
         self.conexion = conexion
@@ -23,7 +22,7 @@ class filtroInformacion:
                 print("LA WEB NO RETORNA UN HTTP 200! RETORNA {0}".format(self.page.status_code))
                 raise HttpCodeException("NO HA SALTADO UN 200!")
 
-            self.tree = html.fromstring(self.page.content)
+            self.tree = html.fromstring( self.page.content.decode('utf-8','ignore'))
         except ElTopoRequestException:
             # SI NO CONSEGUIMOS CONECTAR, PARA NOSOTROS LA WEB ESTA OFFLINE Y NO PODEMOS HACER MAS
             print("Web OffLine por no poder establecer conexion a {0}".format(self.url))
@@ -98,7 +97,11 @@ class filtroInformacion:
     def getAllDataRecursiveObject(self):
         currentWeb = ''
         if self.depth == self.maxDepth:
-            currentWeb = webPageInfo(url=self.getUrl(), title=self.getTitle())
+            title = self.getTitle()
+            if  (title == None) or (not title):
+                title = [""]
+
+            currentWeb = webPageInfo(url=self.getUrl(), title=title)
             # aqui meter todos los filtros
             currentWeb.setHeader(self.getHeader())
             currentWeb.setMetadata(self.getMetadata())
@@ -108,12 +111,16 @@ class filtroInformacion:
             currentWeb.setVideos(self.getVideos())
         else:
             allChildren = self.getLinksHref()
-            currentWeb = webPageInfo(url=self.getUrl(), title=self.getTitle())
+            title = self.getTitle()
+            if (title == None) or (not title):
+                title = [""]
+            currentWeb = webPageInfo(url=self.getUrl(), title=title)
             for currentChildren in allChildren:
                 try:
                     newFilter = filtroInformacion(self.conexion, currentChildren, depth=(self.depth + 1),
                                                   maxDepth=self.maxDepth)
-                    currentWeb.getChildren().append(newFilter.getAllDataRecursiveObject())
+                    children =newFilter.getAllDataRecursiveObject()
+                    currentWeb.getChildren().append(children)
                 except:
                     currentWeb.setIsOnline(False)
 
