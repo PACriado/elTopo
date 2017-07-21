@@ -16,7 +16,7 @@ webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/1499887306392/of
 ##print("---------------")
 
 #ASI SE LEEN TODOS LOS FICHEROS QUE HAY DENTRO DE UN DIRECTORIO Y TE RETORNA UN ARRAY DE OBJETOS
-todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm/SalidaJSON/1499887306392/offLine/")
+todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm/SalidaJSON/1500546733904/onLine/")
 
 ##print(todosLosObjetos)
 
@@ -55,7 +55,7 @@ else:
     #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
        ##print(miClass.getUrl())
     ##pprint(miClass.printer())
-       pprint(miClass.classifyAllUrl())
+       pprint(miClass.classifyAllSpan())
 
     ##print(miClass.getTitle())
     ##print(miClass.classify(webPageInfoObjectInArray.getTitle()))

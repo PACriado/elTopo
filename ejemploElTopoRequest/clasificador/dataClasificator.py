@@ -41,7 +41,31 @@ class dataClasificator:
 
     def classifyAllUrl(self):
         urlList  = self.webPageInfo.getAllUrls()
+        pprint("----" + urlList)
         for url in urlList:
-            pprint(self.classifier.classify(url))
+            ##pprint("************" + self.classifier.classify(url))
+            return self.classifier.classify(url)
 
+    def classifyAllHeaders(self):
+        headerList  = self.webPageInfo.getAllHeaders()
+        for header in headerList:
+            pprint(self.classifier.classify(header))
+            return self.classifier.classify(header)
 
+    def classifyAllTitles(self):
+        titleList  = self.webPageInfo.getAllTitles()
+        for titles in titleList:
+            pprint(self.classifier.classify(titles))
+            return self.classifier.classify(titles)
+
+    def classifyAllParrafos(self):
+        parrafosList  = self.webPageInfo.getAllParrafos()
+        for parrafo in parrafosList:
+            pprint(self.classifier.classify(parrafo))
+            return self.classifier.classify(parrafo)
+
+    def classifyAllSpan(self):
+        spanList  = self.webPageInfo.getAllSpans()
+        for span in spanList:
+            pprint(self.classifier.classify(span))
+            return self.classifier.classify(span)
