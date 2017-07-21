@@ -52,13 +52,8 @@ else:
     object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
     object.train()
     classifier = object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
-    entitiesArray = EntitiesArray()
-    for webPageInfoObjectInArray in todosLosObjetos:
-
-        ##print(webPageInfoObjectInArray.getParrafo())
-        classifyEntity = ClassifyEntity(webPageInfoObjectInArray.getParrafo(), webPageInfoObjectInArray.getLabel())
-        entitiesArray.add(classifyEntity)
-        print(entitiesArray.createJson())
+    trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
+    trainer.generateFileParagraphs("")
        #miClass = dataClasificator( webPageInfoObjectInArray, classifier)
     #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
        ##print(miClass.getUrl())

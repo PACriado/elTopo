@@ -1,10 +1,11 @@
 from textblob.classifiers import NaiveBayesClassifier
 import pickle
+from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from clasificador.entities.ClassifyEntity import ClassifyEntity
+from clasificador.entities.EntitiesArray import EntitiesArray
 
 class dataTrainer:
 
-    path = ""
-    cl = ""
 
     def __init__(self, Path):
         self.path = Path
@@ -23,3 +24,12 @@ class dataTrainer:
         self.classifier = pickle.load(classifier_f)
         classifier_f.close()
         return self.classifier
+
+    def generateFileParagraphs(self, finalPath):
+        todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        for webPageInfoObjectInArray in todosLosObjetos:
+            for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
+                classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+                print(entitiesArray.createJson())
