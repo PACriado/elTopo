@@ -2,13 +2,12 @@
 
 class EntitiesArray:
 
-    classifyEntity = ""
-    entityArray = []
+    def __init__(self):
+        self.entityArray = []
 
-    def __init__(self, ClassifyEntity):
-        self.classifyEntity = ClassifyEntity
+    def add(self, newObject):
+        self.entityArray.append(newObject.toJSON())
 
     def createJson(self):
-        self.entityArray.append(self.classifyEntity.toJSON())
         return self.entityArray
 

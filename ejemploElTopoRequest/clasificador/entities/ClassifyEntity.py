@@ -3,9 +3,6 @@ import json
 
 class ClassifyEntity:
 
-    text = ""
-    label = ""
-
     def __init__(self, Text, Label):
         self.text = Text
         self.label = Label
