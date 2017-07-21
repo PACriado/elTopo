@@ -1,5 +1,7 @@
 from pprint import pprint
-
+import clasificador.entities.ClassifyEntity
+from clasificador.entities.ClassifyEntity import ClassifyEntity
+from clasificador.entities.EntitiesArray import EntitiesArray
 import clasificador
 from Entidades.webPageInfo import webPageInfo
 from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
@@ -51,11 +53,16 @@ else:
     object.train()
     classifier = object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
     for webPageInfoObjectInArray in todosLosObjetos:
-       miClass = dataClasificator( webPageInfoObjectInArray, classifier)
+
+        ##print(webPageInfoObjectInArray.getParrafo())
+        object1 = ClassifyEntity(webPageInfoObjectInArray.getParrafo(), webPageInfoObjectInArray.getLabel())
+        object2 = EntitiesArray(object1)
+        print(object2.createJson())
+       #miClass = dataClasificator( webPageInfoObjectInArray, classifier)
     #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
        ##print(miClass.getUrl())
     ##pprint(miClass.printer())
-       pprint(miClass.classifyAllSpan())
+       #pprint(miClass.classifyAllSpan())
 
     ##print(miClass.getTitle())
     ##print(miClass.classify(webPageInfoObjectInArray.getTitle()))
