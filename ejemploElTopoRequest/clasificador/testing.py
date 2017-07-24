@@ -38,10 +38,10 @@ todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm
 
 classifier = NaiveBayesClassifier
 ejemplo = reader()
-ejemplo.training()
-ejemplo.clasify()
-ejemplo.generateJsonData()
-classifier = ejemplo.readOrWrite()
+##ejemplo.training()
+classifier = ejemplo.clasify()
+##ejemplo.generateJsonData()
+
 for webPageInfoObjectInArray in todosLosObjetos:
     miClass = dataClasificator( webPageInfoObjectInArray, classifier)
 

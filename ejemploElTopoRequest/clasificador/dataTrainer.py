@@ -37,6 +37,6 @@ class dataTrainer:
                 entitiesArray.add(classifyEntity)
                 print(entitiesArray.createJsonString())
 
-        outfile.write(entitiesArray.createJsonString())
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
         outfile.close()
