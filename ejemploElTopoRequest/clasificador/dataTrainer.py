@@ -1,6 +1,6 @@
 from textblob.classifiers import NaiveBayesClassifier
 import pickle
-from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 from clasificador.entities.ClassifyEntity import ClassifyEntity
 from clasificador.entities.EntitiesArray import EntitiesArray
 
@@ -32,4 +32,8 @@ class dataTrainer:
             for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
                 classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
-                print(entitiesArray.createJson())
+                print(entitiesArray.createJsonString())
+                outfile = open(finalPath, 'w')
+                outfile.write(entitiesArray.createJsonString())
+                outfile.close()
+

@@ -1,13 +1,9 @@
-from pprint import pprint
-import clasificador.entities.ClassifyEntity
-from clasificador.entities.ClassifyEntity import ClassifyEntity
-from clasificador.entities.EntitiesArray import EntitiesArray
-import clasificador
 from Entidades.webPageInfo import webPageInfo
-from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 from clasificador.dataTrainer import dataTrainer
 from clasificador.dataClasificator import dataClasificator
 from textblob.classifiers import NaiveBayesClassifier
+from clasificador.reader import reader
 #ASI SE LEE UN FICHERO JSON Y TE RETORNA EL OBJETO WEBPAGE INFO
 webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/1499887306392/offLine/1499888242828-httpsthehiddenwikiorg.json')
 
@@ -18,7 +14,7 @@ webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/1499887306392/of
 ##print("---------------")
 
 #ASI SE LEEN TODOS LOS FICHEROS QUE HAY DENTRO DE UN DIRECTORIO Y TE RETORNA UN ARRAY DE OBJETOS
-todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm/SalidaJSON/1500546733904/onLine/")
+todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm/SalidaJSON/1500914757772/onLine/")
 
 ##print(todosLosObjetos)
 
@@ -41,24 +37,13 @@ todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm
 
 
 classifier = NaiveBayesClassifier
-##False escribimos, true leemos
-readWrite = True
+ejemplo = reader(True)
+ejemplo.generateJsonData()
+classifier = ejemplo.readOrWrite()
+for webPageInfoObjectInArray in todosLosObjetos:
+    miClass = dataClasificator( webPageInfoObjectInArray, classifier)
 
-if(readWrite == False):
-    object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
-    object.train()
-    object.persistantWrite('/home/usertfm/Escritorio/testo/testin.txt')
-else:
-    object = dataTrainer('/home/usertfm/Escritorio/prueba/test.json')
-    object.train()
-    classifier = object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
-    trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-    trainer.generateFileParagraphs("")
-       #miClass = dataClasificator( webPageInfoObjectInArray, classifier)
-    #ASI SE RECORRE EL ARRAY Y COMO VES, LOS GETTER FUNCIONAN PORQUE HAS LEIDO OBJETOS :)
-       ##print(miClass.getUrl())
-    ##pprint(miClass.printer())
-       #pprint(miClass.classifyAllSpan())
+    print(miClass.classifyAllParrafos())
 
     ##print(miClass.getTitle())
     ##print(miClass.classify(webPageInfoObjectInArray.getTitle()))
@@ -93,24 +78,5 @@ else:
 ##classifier = pickle.load(classifier_f)
 ##classifier_f.close()
 #!/usr/bin/python
-
-
-
-
-
-
-
-##resultado = classifier.classify(data["span"])
-##prob_dist = classifier.prob_classify("I babys")
-##prob_dist.max()
-##new_data = [('She is my best friend.', 'pos'),
- ##            ("I'm happy to have a new friend.", 'pos'),
- ##            ("Stay thirsty, my friend.", 'pos'),
- ##            ("He ain't from around here.", 'neg')]
-##cl.update(new_data)
-##True
-
-##cl.show_informative_features(3)
-##print("Resultado: {0}".format(resultado))
 
 

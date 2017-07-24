@@ -1,6 +1,6 @@
 from textblob.classifiers import NaiveBayesClassifier
 from Entidades.webPageInfo import webPageInfo
-from accesoDatos.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 import pickle
 from pprint import pprint
 #Class that classifies all the data depending of the tag selected.
@@ -66,6 +66,9 @@ class dataClasificator:
 
     def classifyAllSpan(self):
         spanList  = self.webPageInfo.getAllSpans()
+        print(spanList)
         for span in spanList:
-            pprint(self.classifier.classify(span))
-            return self.classifier.classify(span)
+            newStr = str(span)
+            print(newStr)
+            pprint(self.classifier.classify(newStr))
+            ##return self.classifier.classify(span)
