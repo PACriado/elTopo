@@ -37,7 +37,9 @@ todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm
 
 
 classifier = NaiveBayesClassifier
-ejemplo = reader(True)
+ejemplo = reader()
+ejemplo.training()
+ejemplo.clasify()
 ejemplo.generateJsonData()
 classifier = ejemplo.readOrWrite()
 for webPageInfoObjectInArray in todosLosObjetos:

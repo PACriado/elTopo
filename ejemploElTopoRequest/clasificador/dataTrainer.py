@@ -28,12 +28,15 @@ class dataTrainer:
     def generateFileParagraphs(self, finalPath):
         todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
         for webPageInfoObjectInArray in todosLosObjetos:
             for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
                 classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
                 print(entitiesArray.createJsonString())
-                outfile = open(finalPath, 'w')
-                outfile.write(entitiesArray.createJsonString())
-                outfile.close()
 
+        outfile.write(entitiesArray.createJsonString())
+        outfile.write("]")
+        outfile.close()

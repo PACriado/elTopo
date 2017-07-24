@@ -14,6 +14,7 @@ class ClassifyEntity:
         obj = {"text": self.text, "label": self.label}
         print("objeto")
         print(obj)
+        print(newStrText)
         print("objeto2")
         ##print(json.dumps(obj))
         return obj
