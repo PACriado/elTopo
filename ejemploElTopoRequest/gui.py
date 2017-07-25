@@ -1,7 +1,7 @@
-from interfazGrafica.iConfiguracion import Ventana
+from interfazGrafica.VentanaConfig import VentanaConfig
 
 def main():
-    app = Ventana()
+    app = VentanaConfig()
 
 if __name__ == '__main__':
     main()
