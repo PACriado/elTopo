@@ -1,11 +1,10 @@
 from textblob.classifiers import NaiveBayesClassifier
 from clasificador.dataTrainer import dataTrainer
 
-
+##cambiar de nombre a clasificator
 classifier = NaiveBayesClassifier
-##False escribimos, true leemos
 
-class reader:
+class classificator:
 
 
 

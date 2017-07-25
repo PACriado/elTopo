@@ -25,17 +25,99 @@ class dataTrainer:
         classifier_f.close()
         return self.classifier
 
+    ##METODOS QUE GENERAN FICHEROS DE CONFIGURACIÓN CON DIFERENTES TIPOS DE DATOS.
     def generateFileParagraphs(self, finalPath):
-        todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         entitiesArray = EntitiesArray()
         outfile = open(finalPath, 'w')
         outfile.write("[")
 
-        for webPageInfoObjectInArray in todosLosObjetos:
+        for webPageInfoObjectInArray in allObjects:
             for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
                 classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
                 print(entitiesArray.createJsonString())
+
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
+        outfile.write("]")
+        outfile.close()
+
+    def generateFileUrl(self, finalPath):
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
+        for webPageInfoObjectInArray in allObjects:
+            for cadenaUrl in webPageInfoObjectInArray.getUrl():
+                classifyEntity = ClassifyEntity(cadenaUrl, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+
+
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
+        outfile.write("]")
+        outfile.close()
+
+    def generateFileTitle(self, finalPath):
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
+        for webPageInfoObjectInArray in allObjects:
+            for cadenaTitle in webPageInfoObjectInArray.getTitle():
+                classifyEntity = ClassifyEntity(cadenaTitle, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+
+
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
+        outfile.write("]")
+        outfile.close()
+
+    def generateFileHeader(self, finalPath):
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
+        for webPageInfoObjectInArray in allObjects:
+            for cadenaHeader in webPageInfoObjectInArray.getHeader():
+                classifyEntity = ClassifyEntity(cadenaHeader, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+
+
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
+        outfile.write("]")
+        outfile.close()
+
+    def generateFileMeta(self, finalPath):
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
+        for webPageInfoObjectInArray in allObjects:
+            for cadenaMeta in webPageInfoObjectInArray.getMetaData():
+                classifyEntity = ClassifyEntity(cadenaMeta, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+
+
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
+        outfile.write("]")
+        outfile.close()
+
+
+    def generateFileSpan(self, finalPath):
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
+        for webPageInfoObjectInArray in allObjects:
+            for cadenaSpan in webPageInfoObjectInArray.getSpan():
+                classifyEntity = ClassifyEntity(cadenaSpan, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
