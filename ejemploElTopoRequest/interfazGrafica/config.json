@@ -1,0 +1,14 @@
+{
+  "RutaSalida": "/home/usertfm/SalidaJSON/",
+  "RutaDiccionario": "./configElTopo/diccionario.txt",
+  "MaxDepth": 1,
+  "UsarDiccionario": false,
+  "UsarSiempreTor": false,
+  "RenovarSiempreCircuitoTor": false,
+  "DelayIntentoRenovacionCircuitoTor": 2,
+  "url": [
+    "http://www.google.es",
+    "http://webquenoexisteyestaoffline.com",
+    "http://info.cern.ch/"
+  ]
+}
