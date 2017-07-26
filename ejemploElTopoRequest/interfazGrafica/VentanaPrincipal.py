@@ -17,7 +17,7 @@ class VentanaPrincipal():
 
         #Imagen
       #  gif = PhotoImage(file="/home/usertfm/gitRepository/ejemploElTopoRequest/interfazGrafica/Imagenes/topo.gif")
-        jpg = Image.open("./interfazGrafica/Imagenes/topo11.png")
+        jpg = Image.open("./interfazGrafica/Imagenes/logo3.png")
         fondo = ImageTk.PhotoImage(jpg)
         LBLFondo = Label(self.ventana,image=fondo).place(x=0,y=0)
       #  LBLImagen = Label(self.ventana,image=gif).place(x=200, y=100)
