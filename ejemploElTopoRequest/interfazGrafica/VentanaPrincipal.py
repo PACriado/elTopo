@@ -45,8 +45,13 @@ class VentanaPrincipal():
         self.MenuAyuda = Menu(self.menu)
         self.menu.add_cascade(label="Ayuda", menu=self.MenuAyuda)
         self.MenuAyuda.add_command(label="Acerca de...", command=self.About)
-
+        self.ventana.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.ventana.mainloop()
+
+    def on_closing(self):
+        sys.exit()
+        self.ventana.destroy()
+
 
     def NewFile(self):
         print("New File!")
