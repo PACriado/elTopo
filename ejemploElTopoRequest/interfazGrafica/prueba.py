@@ -1,64 +1,43 @@
 from tkinter import *
 from tkinter import ttk
-import json
+from spyder.spyder import spyder
+import sys,json
 
-
-
-
-class Prueba():
+class ExampleApp(Tk):
     def __init__(self):
-        self.ventana = Tk()
-        self.ventana.geometry('300x200')
-        self.ventana.title('Prueba3')
-        self.tinfo = Text(self.ventana, width=40, height = 10)
-        self.tinfo.pack(side=TOP)
-        self.botoninfo = ttk.Button(self.ventana, text = 'Info', command = self.verinfo)
-        self.botoninfo.pack(side = LEFT)
-        self.botonsalir =ttk.Button(self.ventana, text='Salir',command=self.ventana.destroy)
-        self.botonsalir.pack(side=RIGHT)
+        Tk.__init__(self)
+        toolbar = Frame(self)
+        toolbar.pack(side="top", fill="x")
+        b1 = Button(self, text="print to stdout", command=self.print_stdout)
+        b2 = Button(self, text="print to stderr", command=self.print_stderr)
+        b1.pack(in_=toolbar, side="left")
+        b2.pack(in_=toolbar, side="left")
+        self.text = Text(self, wrap="word")
+        self.text.pack(side="top", fill="both", expand=True)
+        self.text.tag_configure("stderr", foreground="#b22222")
 
-        #Resaltamos el borde del botoninfo
-        self.botoninfo.focus_set()
-        self.ventana.mainloop()
+        sys.stdout = TextRedirector(self.text, "stdout")
+        sys.stderr = TextRedirector(self.text, "stderr")
 
+    def print_stdout(self):
+        '''Illustrate that using 'print' writes to stdout'''
+        theSpyder = spyder(rutaConfig= "/home/usertfm/gitRepository/ejemploElTopoRequest/configElTopo/config.json")
+        theSpyder.launch()
+        #print ("this is stdout")
 
-    def verinfo(self):
-        #Borrar contenido de la caja de texto
-        self.tinfo.delete("1.0",END)
-        #Obtenemos informacion de la ventana creada
+    def print_stderr(self):
+        '''Illustrate that we can write directly to stderr'''
+        sys.stderr.write("this is stderr\n")
 
-        inf1 = self.ventana.winfo_class()
-        inf2 = self.ventana.winfo_geometry()
-        inf3 = str(self.ventana.winfo_width())
-        inf4 = str(self.ventana.winfo_height())
-        inf5 = str(self.ventana.winfo_rootx())
-        inf6 = str(self.ventana.winfo_rooty())
-        inf7 = str(self.ventana.winfo_id())
-        inf8 = self.ventana.winfo_name()
-        inf9 = self.ventana.winfo_manager()
+class TextRedirector(object):
+    def __init__(self, widget, tag="stdout"):
+        self.widget = widget
+        self.tag = tag
 
-        #Contruimos una cadena de texto con toda la info y la insertamos en la cadena de texto creada
+    def write(self, str):
+        self.widget.configure(state="normal")
+        self.widget.insert("end", str, (self.tag,))
+        self.widget.configure(state="disabled")
 
-
-        texto_info = "Clase de 'ventana' :" + inf1 + "\n"
-        texto_info += "Resolucion y posicion:" + inf2 + "\n"
-        texto_info += "Anchura Ventana:" + inf3 + "\n"
-        texto_info += "Altura Ventana:" + inf4 + "\n"
-        texto_info += "Posicion Ventana X:" + inf5 + "\n"
-        texto_info += "Posicion Ventana Y:" + inf6 + "\n"
-        texto_info += "Id de la 'ventana' :" + inf7 + "\n"
-        texto_info += "Nombre del objeto:" + inf8 + "\n"
-        texto_info += "Gestor de ventanas:" + inf9 + "\n"
-
-        self.tinfo.insert("1.0",texto_info)
-
-
-
-
-def main():
-    app = Prueba()
-
-
-
-if __name__ == '__main__':
-    main()
+app = ExampleApp()
+app.mainloop()
