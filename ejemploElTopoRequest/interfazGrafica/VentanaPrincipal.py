@@ -2,9 +2,8 @@ from tkinter import *
 from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 from interfazGrafica.VentanaConfig import VentanaConfig
+from interfazGrafica.VentanaTerminal import VentanaTerminal
 from interfazGrafica.VentanaCrawler import VentanaCrawler
-
-
 
 
 class VentanaPrincipal():
@@ -35,16 +34,22 @@ class VentanaPrincipal():
         self.menu.add_cascade(label="Configuracion", menu=self.MenuConfiguracion)
         self.MenuConfiguracion.add_command(label="Editar",command=self.AbrirVentanaConfiguracion)
 
+        #MENU TERMINAL
+        self.MenuTerminal = Menu(self.menu)
+        self.menu.add_cascade(label="Terminal", menu=self.MenuTerminal)
+        self.MenuTerminal.add_command(label="Abrir...",command=self.AbrirVentanaTerminal)
+
         #MENU CRAWLER
-        self.MenuConfiguracion = Menu(self.menu)
-        self.menu.add_cascade(label="Crawler", menu=self.MenuConfiguracion)
-        self.MenuConfiguracion.add_command(label="Abrir",command=self.AbrirVentanaCrawler)
+        self.MenuCrawler = Menu(self.menu)
+        self.menu.add_cascade(label="Crawler",menu=self.MenuCrawler)
+        self.MenuCrawler.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
 
 
         #MENU AYUDA
         self.MenuAyuda = Menu(self.menu)
         self.menu.add_cascade(label="Ayuda", menu=self.MenuAyuda)
         self.MenuAyuda.add_command(label="Acerca de...", command=self.About)
+
         self.ventana.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.ventana.mainloop()
 
@@ -62,10 +67,16 @@ class VentanaPrincipal():
 
     def AbrirVentanaConfiguracion(self):
         ventanaConfig = VentanaConfig()
-        print ("AQUI HAY QUE ABRIR LA VENTANA DE CONFIGURACION")
+        print ("Abriendo la ventana de configuracion")
 
     def AbrirVentanaCrawler(self):
         ventanaCrawler = VentanaCrawler()
+        print ("Iniciando el crawler...")
+
+    def AbrirVentanaTerminal(self):
+        ventanaTerminal = VentanaTerminal()
+        print ("...Abriendo una terminal")
+
 
     def About(self):
-        print ("This is a simple example of a menu")
+        print ("Este es nuestro Menu ")
