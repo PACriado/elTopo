@@ -33,7 +33,7 @@ class VentanaConfig():
         #row 2 : Segunda fila
         self.LBLRutaDiccionario = ttk.Label(self.marco,text="Ruta diccionario:")
         self.LBLRutaDiccionario.grid(row=1,column=0,sticky=W)
-        rutaD_str = self.configuracion.getUsarDiccionario()
+        rutaD_str = self.configuracion.getRutaDiccionario()
         self.TXTRutaDiccionario = ttk.Entry(self.marco,width=30)
         self.TXTRutaDiccionario.insert(0,rutaD_str)
         self.TXTRutaDiccionario.grid(row=1,column=1)
@@ -41,41 +41,68 @@ class VentanaConfig():
         #row 3 : Tercera fila
         self.LBLMaxDepth = ttk.Label(self.marco,text="Maxdepth:")
         self.LBLMaxDepth.grid(row=2,column=0,sticky=W)
-        maxD_str = self.configuracion.getMaxDepth()
-        self.TXTMaxDepth = ttk.Entry(self.marco,width=30)
-        self.TXTMaxDepth.insert(0,maxD_str)
-        self.TXTMaxDepth.grid(row=2,column=1)
+      #  maxD_str = self.configuracion.getMaxDepth()
+       # self.TXTMaxDepth = ttk.Entry(self.marco,width=30)
+      #  self.TXTMaxDepth.insert(0,maxD_str)
+      #  self.TXTMaxDepth.grid(row=2,column=1)
 
+      #  self.SCLMaxDepth = Scale(self.marco, from_=1, to=200, orient=HORIZONTAL)
+     #   self.SCLMaxDepth.grid(row=2,column=1,sticky=W)
+
+        self.SBOXMaxDepth = Spinbox(self.marco, from_=0, to=10)
+        self.SBOXMaxDepth.grid(row=2,column=1,sticky=W)
+
+
+        #row 4 BOOL
         self.LBLUsarDic = ttk.Label(self.marco,text="Usar Diccionario:")
         self.LBLUsarDic.grid(row=3,column=0,sticky=W)
-        usarD_str = self.configuracion.getUsarDiccionario()
-        self.TXTUsarDic = ttk.Entry(self.marco,width=30)
-        self.TXTUsarDic.insert(0,usarD_str)
-        self.TXTUsarDic.grid(row=3,column=1)
+       # usarD_str = self.configuracion.getUsarDiccionario()
+       # self.TXTUsarDic = ttk.Entry(self.marco,width=30)
+       # self.TXTUsarDic.insert(0,usarD_str)
+        self.var= self.configuracion.getUsarDiccionario()
 
-        #row 5 :
+       # self.checkbox_value = BooleanVar(self)
+
+        prueba=int(self.var=='True')
+
+        self.chk1 = Checkbutton(self.marco,variable=prueba)
+        self.chk1.grid(row=3,column=1,sticky=W)
+
+
+        #self.TXTUsarDic.grid(row=3,column=1)
+
+        #row 5 BOOL
         self.LBLUsarTor = ttk.Label(self.marco,text="Usar Tor:")
         self.LBLUsarTor.grid(row=4,column=0,sticky=W)
-        usarT_str = self.configuracion.getUsarSiempreTor()
-        self.TXTUsarTor = ttk.Entry(self.marco,width=30)
-        self.TXTUsarTor.insert(0,usarT_str)
-        self.TXTUsarTor.grid(row=4,column=1)
+        self.usarT_str= self.configuracion.getUsarSiempreTor()
 
-        #row 6 : Tercera fila
+        self.chk2 = Checkbutton(self.marco,variable=self.usarT_str)
+        self.chk2.grid(row=4,column=1,sticky=W)
+
+        #self.TXTUsarTor = ttk.Entry(self.marco,width=30)
+        #self.TXTUsarTor.insert(0,usarT_str)
+        #self.TXTUsarTor.grid(row=4,column=1)
+
+        #row 6 BOOL
         self.LBLRenovarC= ttk.Label(self.marco,text="Renovar circuito siempre:")
         self.LBLRenovarC.grid(row=5,column=0,sticky=W)
-        renovarC_str = self.configuracion.getRenovarSiempreCircuitoTor()
-        self.TXTRenovarC = ttk.Entry(self.marco,width=30)
-        self.TXTRenovarC.insert(0,renovarC_str)
-        self.TXTRenovarC.grid(row=5,column=1)
+       # renovarC_str = self.configuracion.getRenovarSiempreCircuitoTor()
+        self.renovarC_str= self.configuracion.getRenovarSiempreCircuitoTor()
+        self.chk3 = Checkbutton(self.marco,variable=self.renovarC_str)
+        self.chk3.grid(row=5,column=1,sticky=W)
+        #self.TXTRenovarC = ttk.Entry(self.marco,width=30)
+        #self.TXTRenovarC.insert(0,renovarC_str)
+        #self.TXTRenovarC.grid(row=5,column=1)
 
         #row 7 : Tercera fila
         self.LBLDelaysC = ttk.Label(self.marco,text="Delays renovacion circuito:")
         self.LBLDelaysC.grid(row=6,column=0,sticky=W)
-        delaysC_str = self.configuracion.getDelayIntentoRenovacionCircuitoTor()
-        self.TXTDelaysC = ttk.Entry(self.marco,width=30)
-        self.TXTDelaysC.insert(0,delaysC_str)
-        self.TXTDelaysC.grid(row=6,column=1)
+      #  delaysC_str = self.configuracion.getDelayIntentoRenovacionCircuitoTor()
+      #  self.TXTDelaysC = ttk.Entry(self.marco,width=30)
+      #  self.TXTDelaysC.insert(0,delaysC_str)
+
+        self.TXTDelaysC = Scale(self.marco, from_=1, to=200, orient=HORIZONTAL)
+        self.TXTDelaysC.grid(row=6,column=1,sticky=W)
 
         self.separador1= ttk.Separator(self.marco,orient=HORIZONTAL)
         self.separador1.grid(row=8,column=0)
