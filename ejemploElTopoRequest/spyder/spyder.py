@@ -56,3 +56,4 @@ class spyder:
                 print("Error no contemplado: {0}".format(sys.exc_info()))
                 self.utilidadesJson.escribirJsonContenidoWeb(currentURL, currentURL, ".json",False)
         print("Los ficheros con los datos de las URLs analizadas estan en {0}".format(self.utilidadesJson.baseDirectory))
+        return self.utilidadesJson.baseDirectory
