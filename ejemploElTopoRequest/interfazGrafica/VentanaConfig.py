@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import ttk
+from tkinter import ttk,font
 from configElTopo.config import config
 
 
@@ -9,71 +9,85 @@ class VentanaConfig():
         self.rutaConfig= "./configElTopo/config.json"
         self.configuracion = config(route=self.rutaConfig)
 
+
         self.ventana = Tk()
-        self.ventana.geometry('300x200')
         self.ventana.title('Configuracion')
 
+
+
+
+        self.marco = ttk.Frame(self.ventana, borderwidth=2)
+        self.marco.grid(row=0,column=0)
+
+
         # row 1 : Primera fila
-        self.LBLRutaSalida = Label(self.ventana,text="Ruta de salida :")
-        self.LBLRutaSalida.grid(row=1,column=1,sticky=W)
+        self.LBLRutaSalida = ttk.Label(self.marco,text="Ruta de salida:")
+        self.LBLRutaSalida.grid(row=0,column=0,sticky=W)
         rutaS_str = self.configuracion.getRutaSalida()
-        TXTRutaSalida = Entry(self.ventana)
-        TXTRutaSalida.insert(0,rutaS_str)
+        self.TXTRutaSalida = ttk.Entry(self.marco,width=30)
+        self.TXTRutaSalida.insert(0,rutaS_str)
         #TXTRutaSalida.pack()
-        TXTRutaSalida.grid(row=1,column=2)
+        self.TXTRutaSalida.grid(row=0,column=1)
 
 
         #row 2 : Segunda fila
-        self.LBLRutaDiccionario = Label(self.ventana,text="Ruta diccionario :")
-        self.LBLRutaDiccionario.grid(row=2,column=1,sticky=W)
+        self.LBLRutaDiccionario = ttk.Label(self.marco,text="Ruta diccionario:")
+        self.LBLRutaDiccionario.grid(row=1,column=0,sticky=W)
         rutaD_str = self.configuracion.getUsarDiccionario()
-        TXTRutaDiccionario = Entry(self.ventana)
-        TXTRutaDiccionario.insert(0,rutaD_str)
-        TXTRutaDiccionario.grid(row=2,column=2)
+        self.TXTRutaDiccionario = ttk.Entry(self.marco,width=30)
+        self.TXTRutaDiccionario.insert(0,rutaD_str)
+        self.TXTRutaDiccionario.grid(row=1,column=1)
 
         #row 3 : Tercera fila
-        self.LBLMaxDepth = Label(self.ventana,text="Maxdepth :")
-        self.LBLMaxDepth.grid(row=3,column=1,sticky=W)
+        self.LBLMaxDepth = ttk.Label(self.marco,text="Maxdepth:")
+        self.LBLMaxDepth.grid(row=2,column=0,sticky=W)
         maxD_str = self.configuracion.getMaxDepth()
-        TXTMaxDepth = Entry(self.ventana)
-        TXTMaxDepth.insert(0,maxD_str)
-        TXTMaxDepth.grid(row=3,column=2)
+        self.TXTMaxDepth = ttk.Entry(self.marco,width=30)
+        self.TXTMaxDepth.insert(0,maxD_str)
+        self.TXTMaxDepth.grid(row=2,column=1)
 
-        self.LBLUsarDic = Label(self.ventana,text="Usar Diccionario :")
-        self.LBLUsarDic.grid(row=4,column=1,sticky=W)
+        self.LBLUsarDic = ttk.Label(self.marco,text="Usar Diccionario:")
+        self.LBLUsarDic.grid(row=3,column=0,sticky=W)
         usarD_str = self.configuracion.getUsarDiccionario()
-        TXTUsarDic = Entry(self.ventana)
-        TXTUsarDic.insert(0,usarD_str)
-        TXTUsarDic.grid(row=4,column=2)
+        self.TXTUsarDic = ttk.Entry(self.marco,width=30)
+        self.TXTUsarDic.insert(0,usarD_str)
+        self.TXTUsarDic.grid(row=3,column=1)
 
         #row 5 :
-        self.LBLUsarTor = Label(self.ventana,text="Usar Tor :")
-        self.LBLUsarTor.grid(row=5,column=1,sticky=W)
+        self.LBLUsarTor = ttk.Label(self.marco,text="Usar Tor:")
+        self.LBLUsarTor.grid(row=4,column=0,sticky=W)
         usarT_str = self.configuracion.getUsarSiempreTor()
-        TXTUsarTor = Entry(self.ventana)
-        TXTUsarTor.insert(0,usarT_str)
-        TXTUsarTor.grid(row=5,column=2)
+        self.TXTUsarTor = ttk.Entry(self.marco,width=30)
+        self.TXTUsarTor.insert(0,usarT_str)
+        self.TXTUsarTor.grid(row=4,column=1)
 
         #row 6 : Tercera fila
-        self.LBLRenovarC= Label(self.ventana,text="Renovar circuito siempre :")
-        self.LBLRenovarC.grid(row=6,column=1,sticky=W)
+        self.LBLRenovarC= ttk.Label(self.marco,text="Renovar circuito siempre:")
+        self.LBLRenovarC.grid(row=5,column=0,sticky=W)
         renovarC_str = self.configuracion.getRenovarSiempreCircuitoTor()
-        TXTRenovarC = Entry(self.ventana)
-        TXTRenovarC.insert(0,renovarC_str)
-        TXTRenovarC.grid(row=6,column=2)
+        self.TXTRenovarC = ttk.Entry(self.marco,width=30)
+        self.TXTRenovarC.insert(0,renovarC_str)
+        self.TXTRenovarC.grid(row=5,column=1)
 
         #row 7 : Tercera fila
-        self.LBLDelaysC = Label(self.ventana,text="Delays renovacion circuito :")
-        self.LBLDelaysC.grid(row=7,column=1,sticky=W)
+        self.LBLDelaysC = ttk.Label(self.marco,text="Delays renovacion circuito:")
+        self.LBLDelaysC.grid(row=6,column=0,sticky=W)
         delaysC_str = self.configuracion.getDelayIntentoRenovacionCircuitoTor()
-        TXTDelaysC = Entry(self.ventana)
-        TXTDelaysC.insert(0,delaysC_str)
-        TXTDelaysC.grid(row=7,column=2)
+        self.TXTDelaysC = ttk.Entry(self.marco,width=30)
+        self.TXTDelaysC.insert(0,delaysC_str)
+        self.TXTDelaysC.grid(row=6,column=1)
+
+        self.separador1= ttk.Separator(self.marco,orient=HORIZONTAL)
+        self.separador1.grid(row=8,column=0)
+
+
+        self.BTN1 = ttk.Button(self.marco,text="Aceptar",command=quit)
+        self.BTN1.grid(row=9,column=0)
 
 
 
-        self.finish = Button(self.ventana,text="finalizar",command=self.ventana.quit)
-        self.finish.grid(row=9,column=2)
+
+
 
 
 

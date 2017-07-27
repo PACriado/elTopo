@@ -12,7 +12,7 @@ class VentanaPrincipal():
         self.ventana = Tk()
 
         self.ventana.geometry('800x600')
-        self.ventana.title('Principal')
+        self.ventana.title('El topo')
 
         #Imagen
       #  gif = PhotoImage(file="/home/usertfm/gitRepository/ejemploElTopoRequest/interfazGrafica/Imagenes/topo.gif")
