@@ -2,9 +2,9 @@ import json
 
 
 class SpyderRequest:
-    def __init__(self, Url="", jsonRequest =""):
+    def __init__(self, Url="", jsonRequest=""):
         if jsonRequest != '':
-            self.__dict__ = json.loads(jsonRequest)
+            self.__dict__ = json.loads(json.loads(jsonRequest))
         else:
             self.url = Url
 

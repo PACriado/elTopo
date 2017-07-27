@@ -1,7 +1,7 @@
 import requests
 import json
 import os
-from EntidadesRest.SpyderRequest import SpyderRequest
+
 from EntidadesRest.SpyderResponse import SpyderResponse
 
 class SpyderRestCaller:
@@ -9,7 +9,7 @@ class SpyderRestCaller:
         self.url = URL
 
     def call(self,DATA=""):
-        data = DATA
-        r = requests.get(self.url, data=data)
+        data = DATA.toJSON()
+        r = requests.post(self.url, json=data)
         Response = SpyderResponse(jsonResponse = r.content.decode('UTF-8'))
         return  Response

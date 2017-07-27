@@ -4,7 +4,6 @@ import json
 class SpyderResponse:
     def __init__(self,FilesPath="",jsonResponse=""):
         if jsonResponse != '':
-            print(jsonResponse)
             self.__dict__ = json.loads(jsonResponse)
         else:
             self.filesPath = FilesPath

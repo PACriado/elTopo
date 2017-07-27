@@ -1,13 +1,17 @@
 from spyder.spyder import spyder
 from flask import Flask
+from flask import request
 from EntidadesRest.SpyderRequest import SpyderRequest
 from EntidadesRest.SpyderResponse import SpyderResponse
 
 
 app = Flask(__name__)
 
-@app.route("/lanzar")
+@app.route("/lanzar", methods=['GET', 'POST'])
 def lanzar():
+    dataReq = request.data.decode('UTF-8')
+    spyderRequest = SpyderRequest(jsonRequest=dataReq)
+
     theSpyder = spyder("../configElTopo/config.json")
     rutaFicheros = theSpyder.launch()
     spyderResponse = SpyderResponse(FilesPath=rutaFicheros)
