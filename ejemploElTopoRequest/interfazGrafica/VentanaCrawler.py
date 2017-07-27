@@ -23,7 +23,7 @@ class VentanaCrawler():
        # sys.stderr = TextRedirector(self.text, "stderr")
 
     def print_stdout(self):
-        theSpyder = spyder(rutaConfig= "/home/usertfm/gitRepository/ejemploElTopoRequest/configElTopo/config.json")
+        theSpyder = spyder(rutaConfig= "./configElTopo/config.json")
         theSpyder.launch()
         #print ("this is stdout")
    # def print_stderr(self):
