@@ -3,8 +3,8 @@ from clasificador.classificator import classificator
 from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
 from EntidadesRest.SpyderRequest import SpyderRequest
 
-'''
-crawlerOrClassificator = True
+
+crawlerOrClassificator = False
 
 if (crawlerOrClassificator == True):
     theSpyder = spyder()
@@ -16,12 +16,13 @@ else:
     if(trainOrClassify == True):
         ejemplo.training()
     else:
-        classifier = ejemplo.clasify()
-        ejemplo.generateJsonData()'''
+        classifier = ejemplo.getClasifier()
+        ejemplo.generateJsonSpanData()
 
-
+'''
 caller = SpyderRestCaller(URL="http://localhost:5000/lanzar")
 #request= SpyderRequest(Url="www.google.es")
 request= SpyderRequest()
 response = caller.call(request)
 print(response.filesPath)
+'''

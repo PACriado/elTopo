@@ -43,16 +43,15 @@ class dataTrainer:
         outfile.close()
 
     def generateFileUrl(self, finalPath):
+        print("Generating URLs JSON")
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         entitiesArray = EntitiesArray()
         outfile = open(finalPath, 'w')
         outfile.write("[")
 
         for webPageInfoObjectInArray in allObjects:
-            for cadenaUrl in webPageInfoObjectInArray.getUrl():
-                classifyEntity = ClassifyEntity(cadenaUrl, webPageInfoObjectInArray.getLabel())
-                entitiesArray.add(classifyEntity)
-
+            classifyEntity = ClassifyEntity(webPageInfoObjectInArray.getUrl(), webPageInfoObjectInArray.getLabel())
+            entitiesArray.add(classifyEntity)
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
@@ -97,7 +96,7 @@ class dataTrainer:
         outfile.write("[")
 
         for webPageInfoObjectInArray in allObjects:
-            for cadenaMeta in webPageInfoObjectInArray.getMetaData():
+            for cadenaMeta in webPageInfoObjectInArray.getMetadata():
                 classifyEntity = ClassifyEntity(cadenaMeta, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
 

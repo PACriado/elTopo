@@ -10,12 +10,11 @@ class ClassifyEntity:
 
     def toJSON(self):
         newStrText = self.text.replace("\'", "\"")
-        print(newStrText)
         obj = {"text": self.text, "label": self.label}
-        print("objeto")
-        print(obj)
-        print(newStrText)
-        print("objeto2")
+        ##print("objeto")
+        ##print(obj)
+        ##print(newStrText)
+        ##print("objeto2")
         ##print(json.dumps(obj))
         return obj
 
