@@ -59,16 +59,12 @@ class VentanaConfig():
         #self.TXTUsarDic = ttk.Entry(self.marco,width=30)
         #self.TXTUsarDic.insert(0,usarD_str)
         self.usarD_str=self.configuracion.getUsarDiccionario()
-        #self.int_var = int(self.var)
-        #print(self.var)
-        #print(self.int_var)
-        print(self.usarD_str)
-        print(int(self.usarD_str))
+
+        #print(self.usarD_str)
+        #print(int(self.usarD_str))
 
 
         value=StringVar(self.usarD_str)
-
-
         self.CMBUsarDic = ttk.Combobox(self.marco,textvariable=value,state ='readonly')
         self.CMBUsarDic['values'] = ['False', 'True']
         self.CMBUsarDic.current(int(self.usarD_str))
@@ -89,7 +85,7 @@ class VentanaConfig():
         self.LBLUsarTor = ttk.Label(self.marco,text="Usar Tor:")
         self.LBLUsarTor.grid(row=4,column=0,sticky=W)
         self.usarT_str= self.configuracion.getUsarSiempreTor()
-        print(self.usarT_str)
+
 
         # self.chk2 = Checkbutton(self.marco,variable=self.usarT_str)
 
@@ -113,8 +109,6 @@ class VentanaConfig():
         #renovarC_str = self.configuracion.getRenovarSiempreCircuitoTor()
         self.renovarC_str= self.configuracion.getRenovarSiempreCircuitoTor()
 
-        print(self.renovarC_str)
-        print(int(self.renovarC_str))
 
         value=StringVar(self.renovarC_str)
 
