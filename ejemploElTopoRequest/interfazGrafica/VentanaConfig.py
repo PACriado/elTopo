@@ -42,11 +42,7 @@ class VentanaConfig():
         self.LBLMaxDepth = ttk.Label(self.marco,text="Maxdepth:")
         self.LBLMaxDepth.grid(row=2,column=0,sticky=W)
         maxD_str = self.configuracion.getMaxDepth()
-        #self.TXTMaxDepth = ttk.Entry(self.marco,width=30)
-        #self.TXTMaxDepth.insert(0,maxD_str)
-        #self.TXTMaxDepth.grid(row=2,column=1)
-        #self.SCLMaxDepth = Scale(self.marco, from_=1, to=200, orient=HORIZONTAL)
-        #self.SCLMaxDepth.grid(row=2,column=1,sticky=W)
+
 
         self.SBOXMaxDepth = Spinbox(self.marco, from_=maxD_str, to=10)
         self.SBOXMaxDepth.grid(row=2,column=1,sticky=W)
@@ -64,8 +60,8 @@ class VentanaConfig():
         #print(int(self.usarD_str))
 
 
-        value=StringVar(self.usarD_str)
-        self.CMBUsarDic = ttk.Combobox(self.marco,textvariable=value,state ='readonly')
+        self.value=StringVar(self.marco,self.usarD_str)
+        self.CMBUsarDic = ttk.Combobox(self.marco,textvariable=self.value,state ='readonly')
         self.CMBUsarDic['values'] = ['False', 'True']
         self.CMBUsarDic.current(int(self.usarD_str))
         self.CMBUsarDic.grid(row=3,column=1,sticky=W)
@@ -89,9 +85,9 @@ class VentanaConfig():
 
         # self.chk2 = Checkbutton(self.marco,variable=self.usarT_str)
 
-        value=StringVar(self.usarT_str)
+        self.value2=StringVar(self.marco,self.usarT_str)
 
-        self.CMBUsarTor = ttk.Combobox(self.marco,textvariable=value,state ='readonly')
+        self.CMBUsarTor = ttk.Combobox(self.marco,textvariable=self.value2,state ='readonly')
         self.CMBUsarTor['values'] = ['False', 'True']
         self.CMBUsarTor.current(int(self.usarT_str))
         self.CMBUsarTor.grid(row=4,column=1,sticky=W)
@@ -110,9 +106,9 @@ class VentanaConfig():
         self.renovarC_str= self.configuracion.getRenovarSiempreCircuitoTor()
 
 
-        value=StringVar(self.renovarC_str)
+        self.value3=StringVar(self.marco,self.renovarC_str)
 
-        self.CMBRenovarC = ttk.Combobox(self.marco,textvariable=value,state ='readonly')
+        self.CMBRenovarC = ttk.Combobox(self.marco,textvariable=self.value3,state ='readonly')
         self.CMBRenovarC['values'] = ['False', 'True']
         self.CMBRenovarC.current(int(self.renovarC_str))
         self.CMBRenovarC.grid(row=5,column=1,sticky=W)
