@@ -2,13 +2,23 @@ import json
 
 
 class webPageInfo:
-    def __init__(self, url='', title='', isOnline=True, route=''):
-        if route != '':
+
+    def __init__(self, url='', title='', isOnline=True, route='', dictionary =''):
+        if dictionary != '':
+            ##print(dictionary)
+            self.__dict__ = dictionary
+            for e in self.__dict__:
+                    setattr(self, e, self.__dict__[e])
+
+        elif route != '':
             #DE ESTA FORMA CARGAMOS UN JSON A ESTA CLASE
             with open(route) as json_data:
                 self.__dict__ = json.load(json_data)
+                for e in self.__dict__:
+                    setattr(self, e, self.__dict__[e])
         else:
             #SI NO HAY JSON, CARGAMOS LA CLASE "A MANO"
+            print("che")
             self.url = url
             self.title = title
             self.children = []
@@ -97,9 +107,10 @@ class webPageInfo:
             return self.getUrl()
         else:
             for element in self.getChildren():
-                all.append(element.getAllUrls())
-
+                mElement = webPageInfo(dictionary=element)
+                all.append(mElement.getAllUrls())
         return all
+
 
     def getAllTitles(self):
         all = []
@@ -108,7 +119,8 @@ class webPageInfo:
             return self.getTitle()
         else:
             for element in self.getChildren():
-                all.append(element.getAllTitles())
+                mElement = webPageInfo(dictionary=element)
+                all.append(mElement.getAllTitles())
 
         return all
 
@@ -119,8 +131,9 @@ class webPageInfo:
             return self.getHeader()
         else:
             for element in self.getChildren():
-                all.append(element.getAllHeaders())
-
+                mElement = webPageInfo(dictionary=element)
+                all.append(mElement.getAllHeaders())
+                ##print(mElement.getHeader())
         return all
 
 
@@ -131,7 +144,8 @@ class webPageInfo:
             return self.getMetadata()
         else:
             for element in self.getChildren():
-                all.append(element.getAllMetadatas())
+                mElement = webPageInfo(dictionary=element)
+                all.append(mElement.getAllMetadatas())
 
         return all
 
@@ -142,7 +156,8 @@ class webPageInfo:
             return self.getParrafo()
         else:
             for element in self.getChildren():
-                all.append(element.getAllParrafos())
+                mElement = webPageInfo(dictionary=element)
+                all.append(mElement.getAllParrafos())
 
         return all
 
@@ -153,8 +168,8 @@ class webPageInfo:
             return self.getSpan()
         else:
             for element in self.getChildren():
-                all.append(element.getAllSpans())
-
+                mElement = webPageInfo(dictionary=element)
+                all.append(mElement.getAllSpans())
         return all
     #AÑADIR METODOS QUE DEVUELVAN TODOS LOS METAS, TODOS LOS SPAN, etc etc es decir los propios y los de los hijos.
 

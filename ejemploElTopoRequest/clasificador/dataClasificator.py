@@ -19,8 +19,6 @@ class dataClasificator:
 
 
     #Classification methods
-    def printer(self):
-        return self.webPageInfo.getUrl()
 
     def classifyUrl(self):
         url = self.webPageInfo.getUrl()
@@ -40,35 +38,44 @@ class dataClasificator:
         return self.classifier.classify(self.webPageInfo.getParrafo())
 
     def classifyAllUrl(self):
+        all = []
         urlList  = self.webPageInfo.getAllUrls()
-        pprint("----" + urlList)
         for url in urlList:
             ##pprint("************" + self.classifier.classify(url))
-            return self.classifier.classify(url)
+            all.append(self.classifier.classify(url))
+        return all
 
     def classifyAllHeaders(self):
+        all = []
         headerList  = self.webPageInfo.getAllHeaders()
         for header in headerList:
-            pprint(self.classifier.classify(header))
-            return self.classifier.classify(header)
+            for e in header:
+                add = self.classifier.classify(e)
+        return all
 
     def classifyAllTitles(self):
+        all = []
         titleList  = self.webPageInfo.getAllTitles()
         for titles in titleList:
-            pprint(self.classifier.classify(titles))
-            return self.classifier.classify(titles)
+            for e in titles:
+                all.append(self.classifier.classify(e))
+        return all
 
     def classifyAllParrafos(self):
+        all = []
         parrafosList  = self.webPageInfo.getAllParrafos()
         for parrafo in parrafosList:
-            pprint(self.classifier.classify(parrafo))
-            return self.classifier.classify(parrafo)
+            ##print(parrafo)
+            for e in parrafo:
+                all.append(self.classifier.classify(e))
+        return all
 
     def classifyAllSpan(self):
+        all = []
         spanList  = self.webPageInfo.getAllSpans()
         print(spanList)
         for span in spanList:
-            newStr = str(span)
-            print(newStr)
-            pprint(self.classifier.classify(newStr))
+            for e in span:
             ##return self.classifier.classify(span)
+                all.append(self.classifier.classify(e))
+        return all

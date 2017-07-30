@@ -4,9 +4,9 @@ from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
 from EntidadesRest.SpyderRequest import SpyderRequest
 
 
-crawlerOrClassificator = False
+crawlerOrClassificator = True
 
-if (crawlerOrClassificator == True):
+if (crawlerOrClassificator == False):
     theSpyder = spyder()
     theSpyder.launch()
 
