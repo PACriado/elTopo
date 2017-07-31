@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from configElTopo.config import config
-
+from tkinter.scrolledtext import ScrolledText
 
 
 class VentanaConfig():
@@ -128,7 +128,7 @@ class VentanaConfig():
         #self.TXTDelaysC = ttk.Entry(self.marco,width=30)
         #self.TXTDelaysC.insert(0,delaysC_str)
 
-        self.TXTDelaysC = Scale(self.marco, from_=delaysC_str, to=200, orient=HORIZONTAL)
+        self.TXTDelaysC = Scale(self.marco, from_=10, to=200, orient=HORIZONTAL)
         self.TXTDelaysC.grid(row=6,column=1,sticky=W)
 
         self.separador1= ttk.Separator(self.marco,orient=HORIZONTAL)
@@ -136,7 +136,18 @@ class VentanaConfig():
 
 
         self.BTNGuardar = ttk.Button(self.marco,text="Guardar",command=self.salvarCambios)
-        self.BTNGuardar.grid(row=9,column=0)
+        self.BTNGuardar.grid(row=10,column=0)
+
+
+        # row 1 : Primera fila
+        self.LBLURLs = ttk.Label(self.marco,text="Urls:")
+        self.LBLURLs.grid(row=9,column=0,sticky=W)
+        urls_str = self.configuracion.geturl()
+        self.TXTURLs = ScrolledText(self.marco,width=30)
+        for url in urls_str:
+            self.TXTURLs.insert(INSERT,url+"\n")
+        #TXTRutaSalida.pack()
+        self.TXTURLs.grid(row=9,column=1)
 
 
         #self.BTNGuardar = ttk.Button(self.ventana, text = 'Guardar', command = self.guardarConfig)
@@ -182,6 +193,13 @@ class VentanaConfig():
         self.configuracion.setRenovarSiempreCircuitoTor(varRenovarTor)
         self.configuracion.setMaxDepth(int(self.SBOXMaxDepth.get()))
         self.configuracion.setDelayIntentoRenovacionCircuitoTor(self.TXTDelaysC.get())
+
+        allURLs = self.TXTURLs.get(1.0, END)
+        arrayURLS = [i.strip() for i in allURLs.splitlines()]
+        arrayURLS.remove('')
+        self.configuracion.seturl(arrayURLS)
+
         self.configuracion.writeFileJSON(self.configuracion.getRoute())
+
         self.ventana.destroy()
 
