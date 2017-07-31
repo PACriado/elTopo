@@ -44,7 +44,8 @@ class VentanaConfig():
         maxD_str = self.configuracion.getMaxDepth()
 
 
-        self.SBOXMaxDepth = Spinbox(self.marco, from_=maxD_str, to=10)
+        self.SBOXMaxDepth = Spinbox(self.marco, from_=1, to=10)
+
         self.SBOXMaxDepth.grid(row=2,column=1,sticky=W)
 
 
@@ -134,8 +135,8 @@ class VentanaConfig():
         self.separador1.grid(row=8,column=0)
 
 
-        self.BTN1 = ttk.Button(self.marco,text="Aceptar",command=quit)
-        self.BTN1.grid(row=9,column=0)
+        self.BTNGuardar = ttk.Button(self.marco,text="Guardar",command=self.salvarCambios)
+        self.BTNGuardar.grid(row=9,column=0)
 
 
         #self.BTNGuardar = ttk.Button(self.ventana, text = 'Guardar', command = self.guardarConfig)
@@ -149,7 +150,6 @@ class VentanaConfig():
         self.ventana.mainloop()
 
 
-
         #def guardarConfig(self):
         #Borrar contenido de la caja de texto
         #self.TXTRutaSalida.delete("1.0",END)
@@ -159,3 +159,29 @@ class VentanaConfig():
         #configuracion = config ()
         #info = configuracion.toJSON()
         #self.TXTRutaSalida.insert("1.0",info)
+    def salvarCambios(self):
+        self.configuracion.setRutaSalida(self.TXTRutaSalida.get())
+        self.configuracion.setRutaDiccionario(self.TXTRutaDiccionario.get())
+        if(self.CMBUsarDic.get()=='False'):
+            varUsarDict = False
+        else:
+            varUsarDict = True
+        self.configuracion.setUsarDiccionario(varUsarDict)
+
+        if(self.CMBUsarTor.get()=='False'):
+            varUsarTor = False
+        else:
+            varUsarTor = True
+        self.configuracion.setUsarSiempreTor(varUsarTor)
+
+        if(self.CMBRenovarC.get()=='False'):
+            varRenovarTor = False
+        else:
+            varRenovarTor = True
+
+        self.configuracion.setRenovarSiempreCircuitoTor(varRenovarTor)
+        self.configuracion.setMaxDepth(int(self.SBOXMaxDepth.get()))
+        self.configuracion.setDelayIntentoRenovacionCircuitoTor(self.TXTDelaysC.get())
+        self.configuracion.writeFileJSON(self.configuracion.getRoute())
+        self.ventana.destroy()
+

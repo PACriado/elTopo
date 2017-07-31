@@ -4,6 +4,7 @@ import json
 class config:
 
     def __init__(self, route=''):
+
         if route != '':
             #DE ESTA FORMA CARGAMOS UN JSON A ESTA CLASE
             with open(route) as json_data:
@@ -17,7 +18,7 @@ class config:
             self.RenovarSiempreCircuitoTor=False
             self.DelayIntentoRenovacionCircuitoTor=2
             self.url=[]
-
+        self.Route = route
 
     def setRutaSalida(self, rutaSalida):
         self.RutaSalida = rutaSalida
@@ -66,6 +67,12 @@ class config:
 
     def geturl(self):
         return self.url
+
+    def setRoute(self, route):
+        self.Route = route
+
+    def getRoute(self):
+        return self.Route
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
