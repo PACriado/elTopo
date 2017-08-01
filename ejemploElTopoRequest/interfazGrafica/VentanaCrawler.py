@@ -13,7 +13,7 @@ class VentanaCrawler():
         toolbar = Frame(self.ventana)
         toolbar.pack(side="top", fill="x")
         b1 = Button(self.ventana, text="Iniciar", command=self.print_stdout)
-       # b2 = Button(self, text="print to stderr", command=self.print_stderr)
+
         b1.pack(in_=toolbar, side="left")
         #b2.pack(in_=toolbar, side="left")
         self.text = Text(self.ventana, wrap="word")

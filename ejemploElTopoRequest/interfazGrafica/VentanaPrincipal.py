@@ -1,9 +1,11 @@
 from tkinter import *
-from tkinter.filedialog import askopenfilename
+from tkinter.filedialog import askopenfilename,askdirectory
 from PIL import Image, ImageTk
 from interfazGrafica.VentanaConfig import VentanaConfig
 from interfazGrafica.VentanaTerminal import VentanaTerminal
 from interfazGrafica.VentanaCrawler import VentanaCrawler
+from interfazGrafica.VentanaClasificador import VentanaClasificador
+import sys,os
 
 
 class VentanaPrincipal():
@@ -44,6 +46,11 @@ class VentanaPrincipal():
         self.menu.add_cascade(label="Crawler",menu=self.MenuCrawler)
         self.MenuCrawler.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
 
+        #MENU CLASIFICADOR
+        self.MenuClasificador = Menu(self.menu)
+        self.menu.add_cascade(label="Clasificador",menu=self.MenuClasificador)
+        self.MenuClasificador.add_command(label="Abrir...",command=self.AbrirVentanaClasificador)
+       # self.MenuClasificador.add_command(label="Prueba Dir...", command=self.OpenDirectory)
 
         #MENU AYUDA
         self.MenuAyuda = Menu(self.menu)
@@ -65,6 +72,7 @@ class VentanaPrincipal():
         name =  askopenfilename()
         print (name)
 
+
     def AbrirVentanaConfiguracion(self):
         ventanaConfig = VentanaConfig()
         print ("Abriendo la ventana de configuracion")
@@ -72,6 +80,10 @@ class VentanaPrincipal():
     def AbrirVentanaCrawler(self):
         ventanaCrawler = VentanaCrawler()
         print ("Iniciando el crawler...")
+
+    def AbrirVentanaClasificador(self):
+        ventanaClasificador = VentanaClasificador()
+        print ("Iniciando el clasificador...")
 
     def AbrirVentanaTerminal(self):
         ventanaTerminal = VentanaTerminal()
