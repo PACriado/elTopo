@@ -16,6 +16,8 @@ from urllib.parse import urlparse
 
 procesador = Preprocesator("/home/usertfm/SalidaJSON/1501436636356/onLine/", "/home/usertfm/SalidaJSON/Preproc/")
 procesador.process()
+
+
 ##cargarmelo, llevarlo al main, booleano entrenar o clasificar, y otro booleano que sea lanzar crawler para clasificador.
 
 ##ejemplo = classificator()
