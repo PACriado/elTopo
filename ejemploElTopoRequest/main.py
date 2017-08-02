@@ -4,6 +4,7 @@ from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
 from EntidadesRest.SpyderRequest import SpyderRequest
 
 testRestService = True
+testListRestService = False
 crawlerOrClassificator = False
 
 if(not testRestService):
@@ -20,10 +21,15 @@ if(not testRestService):
             classifier = ejemplo.getClasifier()
             ejemplo.generateJsonSpanData()
 else:
-    caller = SpyderRestCaller(URL="http://localhost:5005/lanzar")
+    if(testListRestService):
+        caller = SpyderRestCaller()
+        paths = caller.callList()
+        print(paths)
 
-    request= SpyderRequest()
-    #request= SpyderRequest(Url="www.google.es")
-    response = caller.call(request)
-    print(response.filesPath)
+    else:
+        caller = SpyderRestCaller(URL="http://localhost:5005/lanzar")
+        request= SpyderRequest()
+        #request= SpyderRequest(Url="www.google.es")
+        response = caller.call(request)
+        print(response.filesPath)
 

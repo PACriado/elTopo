@@ -1,14 +1,16 @@
 {
-  "RutaSalida": "/home/usertfm/SalidaJSON/",
-  "RutaDiccionario": "./configElTopo/diccionario.txt",
-  "MaxDepth": 1,
-  "UsarDiccionario": false,
-  "UsarSiempreTor": false,
-  "RenovarSiempreCircuitoTor": false,
-  "DelayIntentoRenovacionCircuitoTor": 2,
-  "url": [
-    "http://www.google.es",
-    "http://webquenoexisteyestaoffline.com",
-    "http://info.cern.ch/"
-  ]
+    "DelayIntentoRenovacionCircuitoTor": 10,
+    "MaxDepth": 2,
+    "RenovarSiempreCircuitoTor": false,
+    "Route": "./configElTopo/config.json",
+    "RutaDiccionario": "./configElTopo/diccionario.txt",
+    "RutaSalida": "/home/usertfm/SalidaJSON/",
+    "RutaServidoresSpyderRest": "./configElTopo/servidoresSpyder.txt",
+    "UsarDiccionario": false,
+    "UsarSiempreTor": false,
+    "url": [
+        "http://www.google.es",
+        "http://webquenoexisteyestaoffline.com",
+        "http://info.cern.ch/"
+    ]
 }
