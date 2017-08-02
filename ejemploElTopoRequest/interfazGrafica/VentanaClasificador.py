@@ -22,13 +22,14 @@ class VentanaClasificador():
 
 
         b2 = Button(self.ventana, text="Abrir directorio",command=self.ruta_text)
+        self.url = Entry(self.ventana,width = 80)
 
 
 
 
         b1.pack(in_=self.toolbar, side="left")
         b2.pack(in_=self.toolbar, side="left")
-
+        self.url.pack(in_=self.toolbar,side = "left")
 
         self.text = Text(self.ventana, wrap="word")
         self.text.pack(side="top", fill="both", expand=True)
@@ -42,11 +43,11 @@ class VentanaClasificador():
         #print ("this is stdout")
 
     def ruta_text(self):
-        url = Entry(self.ventana,width = 30)
-        url.pack(in_=self.toolbar,side = "left")
+
         result = askdirectory()
-        url.insert(0,result)
-        url.pack(in_=self.toolbar,side = "left")
+        self.url.delete(0,'end')
+        self.url.insert(0,result)
+        self.url.pack(in_=self.toolbar,side = "left")
 
 
    # def print_stderr(self):
