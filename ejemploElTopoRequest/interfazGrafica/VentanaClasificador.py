@@ -6,14 +6,12 @@ import sys
 from tkinter.filedialog import askdirectory
 
 
-
-
 class VentanaClasificador():
 
     def __init__(self):
 
         self.ventana = Tk()
-        self.ventana.title('Crawler')
+        self.ventana.title('Clasificador')
         self.toolbar = Frame(self.ventana)
         self.toolbar.pack(side="top", fill="x")
 
@@ -35,7 +33,6 @@ class VentanaClasificador():
         self.text.pack(side="top", fill="both", expand=True)
         self.text.tag_configure("stderr", foreground="#b22222")
         sys.stdout = TextRedirector(self.text, "stdout")
-       # sys.stderr = TextRedirector(self.text, "stderr")
 
     def print_stdout(self):
         theSpyder = spyder(rutaConfig= "./configElTopo/config.json")
@@ -50,8 +47,7 @@ class VentanaClasificador():
         self.url.pack(in_=self.toolbar,side = "left")
 
 
-   # def print_stderr(self):
-       # sys.stderr.write("this is stderr\n")
+
 
 class TextRedirector(object):
     def __init__(self, widget, tag="stdout"):
