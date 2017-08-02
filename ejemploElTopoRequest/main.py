@@ -21,8 +21,9 @@ if(not testRestService):
             ejemplo.generateJsonSpanData()
 else:
     caller = SpyderRestCaller(URL="http://localhost:5005/lanzar")
-    #request= SpyderRequest(Url="www.google.es")
+
     request= SpyderRequest()
+    #request= SpyderRequest(Url="www.google.es")
     response = caller.call(request)
     print(response.filesPath)
 
