@@ -13,7 +13,7 @@ def lanzar():
     dataReq = request.data.decode('UTF-8')
     spyderRequest = SpyderRequest(jsonRequest=dataReq)
 
-    theSpyder = spyder("../configElTopo/config.json")
+    theSpyder = spyder("./configElTopo/config.json")
     rutaFicheros = theSpyder.launch()
     spyderResponse = SpyderResponse(FilesPath=rutaFicheros)
     return spyderResponse.toJSON()
