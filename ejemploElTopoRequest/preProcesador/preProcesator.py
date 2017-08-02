@@ -13,19 +13,31 @@ class Preprocesator:
         self.path = Path
         self.outputWPInfo = []
         self.finalPath = FinalPath
+        self.copyList = []
 
+    ##estan llamados asi porque son pruebas
+    def metodo(self, WebPageInfo):
+        for i in WebPageInfo.getChildren():
+             elementChildWPInfo = webPageInfo(dictionary=i)
+             self.outputWPInfo.append(elementChildWPInfo)
+    ##llamado asi porque es una prueba
+    def metodo2(self):
+        for elementCopy in self.copyList:
+            self.outputWPInfo.append(elementCopy)
 
     def process(self):
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         for webPageInfoObject in allObjects:
             resultList = self.splitter(webPageInfoObject)
-
+            self.metodo(webPageInfoObject)
+            self.metodo2()
         for element in self.outputWPInfo:
             domain = element.getUrl()
             hostname = urlparse(domain).hostname.split(".")
             hostname = ".".join(len(hostname[-2]) < 4 and hostname[-3:] or hostname[-2:])
             path = self.finalPath + hostname + ".json"
             self.writeFile(path, element)
+
 
     ##Metodo para escribir los json con la informacion necesaria
     def writeFile(self,finalPath, element):
@@ -45,9 +57,11 @@ class Preprocesator:
         else:
             print(WebPageInfoObject.getUrl() + " Tiene hijos")
 
+
             for elementChild in WebPageInfoObject.getChildren():
                 elementChildWPInfo = webPageInfo(dictionary=elementChild)
                 childUrl = elementChildWPInfo.getUrl()
+                self.copyList.append(elementChildWPInfo)
                 elementChildDomain = urlparse(childUrl).hostname.split(".")
                 elementChildDomain = ".".join(len(elementChildDomain[-2]) < 4 and elementChildDomain[-3:] or elementChildDomain[-2:])
                 if (elementChildDomain == currentDomain):
@@ -57,29 +71,7 @@ class Preprocesator:
                 else:
                     print("Dominios diferentes hijo: " + elementChildDomain + " Padre: " + currentDomain)
                     ##quitar el elemento child de la lista getCHildren que recorremos, meterle a la lista final dicho objeto,
-        '''
-        webPageInfoObjectInArray = WebPageInfoObject
-        domain = webPageInfoObjectInArray.getUrl()
-        hostname = urlparse(domain).hostname.split(".")
-        hostname = ".".join(len(hostname[-2]) < 4 and hostname[-3:] or hostname[-2:])
-        ##Si el webpage tiene hijos comprobamos el dominio de cada uno, si es el mismo lo dejamos en el json del padre, si es distinto creamos uno nuevo
-        if webPageInfoObjectInArray.getChildren() is not None:
-            print(hostname)
-            ##if any(hostname in s for s in self.mDomains):
-            if hostname in self.outputWPInfo:
-                print(hostname)
-                path = self.finalPath + hostname + ".json"
-                with open(path,'wb') as file:
-                    file.write(webPageInfoObjectInArray.toJSON())
-                    file.close()
-            else:
-                self.outputWPInfo.append(webPageInfoObjectInArray)
+                    ##self.outputWPInfo.append(elementChildWPInfo)
+                    self.copyList.append(elementChildWPInfo)
 
-            for children in WebPageInfoObject.getChildren():
-                wpInfo = webPageInfo(dictionary=children)
-                self.splitter(wpInfo)
-        return self.outputWPInfo
-        '''
-        ##child = webPageInfo(children)
-        ##print(child.toJSON())
-        ##child= webPageInfo(child.toJSON())
+
