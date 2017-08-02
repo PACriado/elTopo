@@ -18,12 +18,13 @@ class VentanaPrincipal():
 
         #Imagen
       #  gif = PhotoImage(file="/home/usertfm/gitRepository/ejemploElTopoRequest/interfazGrafica/Imagenes/topo.gif")
-        jpg = Image.open("./interfazGrafica/Imagenes/logo3.png")
-        fondo = ImageTk.PhotoImage(jpg)
+        imagen = Image.open("./interfazGrafica/Imagenes/logo3.png")
+        fondo = ImageTk.PhotoImage(imagen)
         LBLFondo = Label(self.ventana,image=fondo).place(x=0,y=0)
       #  LBLImagen = Label(self.ventana,image=gif).place(x=200, y=100)
         self.menu = Menu(self.ventana)
         self.ventana.config(menu=self.menu)
+
         #MENU ARCHIVO
         self.MenuArchivo = Menu(self.menu)
         self.menu.add_cascade(label="Archivo", menu=self.MenuArchivo)
@@ -31,6 +32,7 @@ class VentanaPrincipal():
         self.MenuArchivo.add_command(label="Abrir...", command=self.OpenFile)
         self.MenuArchivo.add_separator()
         self.MenuArchivo.add_command(label="Salir", command=self.ventana.quit)
+
         #MENU CONFIGURACION
         self.MenuConfiguracion = Menu(self.menu)
         self.menu.add_cascade(label="Configuracion", menu=self.MenuConfiguracion)
@@ -42,9 +44,20 @@ class VentanaPrincipal():
         self.MenuTerminal.add_command(label="Abrir...",command=self.AbrirVentanaTerminal)
 
         #MENU CRAWLER
+
         self.MenuCrawler = Menu(self.menu)
+        self.SubMenu = Menu(self.menu)
+        self.SubMenuCrawlerL = Menu(self.menu)
+        self.SubMenuCrawlerR = Menu(self.menu)
+
         self.menu.add_cascade(label="Crawler",menu=self.MenuCrawler)
-        self.MenuCrawler.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
+        self.MenuCrawler.add_cascade(label="Local",menu=self.SubMenuCrawlerL)
+        self.MenuCrawler.add_cascade(label="Remoto",menu=self.SubMenuCrawlerR)
+        self.SubMenuCrawlerL.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
+        self.SubMenuCrawlerR.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
+        self.SubMenuCrawlerR.add_command(label="Configurar...",command=self.AbrirVentanaConfiguracion)
+
+
 
         #MENU CLASIFICADOR
         self.MenuClasificador = Menu(self.menu)
