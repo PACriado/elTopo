@@ -7,6 +7,7 @@ from EntidadesRest.SpyderResponse import SpyderResponse
 
 app = Flask(__name__)
 
+
 @app.route("/lanzar", methods=['GET', 'POST'])
 def lanzar():
     dataReq = request.data.decode('UTF-8')
@@ -18,4 +19,9 @@ def lanzar():
     return spyderResponse.toJSON()
 
 if __name__ == "__main__":
+    print("spyderRest.py is being run directly")
     app.run()
+
+
+def start(serverPort=5000):
+    app.run(port=serverPort)
