@@ -83,15 +83,23 @@ class Preprocesator:
 
 
     def mergeLists(self, allObjects):
-
+        existe = False
+        padre = None
         for wpiObject in allObjects:
            if not self.finalArray:
                self.finalArray.append(wpiObject)
            else:
                for existObject in self.finalArray:
                    if wpiObject.getDomain() == existObject.getDomain():
+                       existe = True
+                       padre = existObject
                        print("DOMINIO YA EXISTE")
-                       existObject.getChildren().append(wpiObject)
+                       break
                    else:
+                       existe = False
                        print("DOminio no existe")
-                       self.finalArray.append(wpiObject)
+
+               if(existe):
+                   padre.getChildren().append(wpiObject)
+               else:
+                   self.finalArray.append(wpiObject)
