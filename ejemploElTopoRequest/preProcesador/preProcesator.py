@@ -9,24 +9,39 @@ class Preprocesator:
         self.path = Path
         self.outputWPInfo = []
         self.finalPath = FinalPath
-
+        self.finalArray = []
 
     def process(self):
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         for webPageInfoObject in allObjects:
             self.splitter(webPageInfoObject)
+
+        '''
+        HAY QUE JUNTAR LOS ARRAYS allObject y self.outputWPInfo.
+        lo primero que hay que hacer es crear un array final, que sera donde se junten los 2 arrays.
+        añadir a este array final unicamente un objeto por cada dominio. (usa el getDomain() que he creado para los webPageInfos)
+        si se encuentra otro objeto con el mismo dominio que uno que ya se ha insertado, añadirle como hijo del objeto existente que tiene el mismo dominio.
+
+        Esta operacion hay que hacerla tambien con el array self.outputWPInfo.
+
+        luego solo hay que recorrer el array final que tienes que crear, y crear los ficheros tal y como tienes abajo.
+
+        '''
+        self.mergeLists(allObjects)
+        self.mergeLists(self.outputWPInfo)
         ##PRUEBA
-        for webPageInfoObject in allObjects:
+        for webPageInfoObject in self.finalArray:
             hostname = webPageInfoObject.getDomain()
-            path = self.finalPath+"prueba/" + hostname + ".json"
+            path = self.finalPath + hostname + ".json"
             print("DOMINIO: " + hostname + " FICHERO: "+ path)
             self.writeFile(path, webPageInfoObject)
-        ##FIN PRUEBA
-        for element in self.outputWPInfo:
+
+        '''for element in self.outputWPInfo:
             hostname = element.getDomain()
             path = self.finalPath + hostname + ".json"
             print("DOMINIO: " + hostname + " FICHERO: "+ path)
-            self.writeFile(path, element)
+            self.writeFile(path, element)'''
+        ##FIN PRUEBA
 
     ##Metodo para escribir los json con la informacion necesaria
     def writeFile(self,finalPath, element):
@@ -67,3 +82,16 @@ class Preprocesator:
                 self.outputWPInfo.append(webPageInfo(dictionary=elementoHijoAPadre))
 
 
+    def mergeLists(self, allObjects):
+
+        for wpiObject in allObjects:
+           if not self.finalArray:
+               self.finalArray.append(wpiObject)
+           else:
+               for existObject in self.finalArray:
+                   if wpiObject.getDomain() == existObject.getDomain():
+                       print("DOMINIO YA EXISTE")
+                       existObject.getChildren().append(wpiObject)
+                   else:
+                       print("DOminio no existe")
+                       self.finalArray.append(wpiObject)
