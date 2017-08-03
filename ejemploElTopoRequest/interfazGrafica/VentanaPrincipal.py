@@ -6,7 +6,6 @@ from interfazGrafica.VentanaConfigCrawler import VentanaConfigCrawler
 from interfazGrafica.VentanaTerminal import VentanaTerminal
 from interfazGrafica.VentanaCrawler import VentanaCrawler
 from interfazGrafica.VentanaClasificador import VentanaClasificador
-from interfazGrafica.VentanaCrawlerR import VentanaCrawlerR
 from interfazGrafica.VentanaEntrenamiento import VentanaEntrenamiento
 
 import sys,os
@@ -58,7 +57,6 @@ class VentanaPrincipal():
         self.MenuCrawler.add_cascade(label="Local",menu=self.SubMenuCrawlerL)
         self.MenuCrawler.add_cascade(label="Remoto",menu=self.SubMenuCrawlerR)
         self.SubMenuCrawlerL.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
-        self.SubMenuCrawlerR.add_command(label="Abrir...",command=self.AbrirVentanaCrawlerR)
         self.SubMenuCrawlerR.add_command(label="Configurar...",command=self.AbrirVentanaConfiguracionCrawler)
 
 
@@ -104,9 +102,6 @@ class VentanaPrincipal():
         ventanaCrawler = VentanaCrawler()
         print ("Iniciando el crawler...")
 
-    def AbrirVentanaCrawlerR(self):
-        ventanaCrawlerR = VentanaCrawlerR()
-        print ("Crawler Remoto")
 
     def AbrirVentanaClasificador(self):
         ventanaClasificador = VentanaClasificador()
