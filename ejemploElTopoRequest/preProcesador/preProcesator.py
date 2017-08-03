@@ -9,7 +9,7 @@ class Preprocesator:
         self.path = Path
         self.outputWPInfo = []
         self.finalPath = FinalPath
-
+        self.finalArray = []
 
     def process(self):
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
@@ -27,19 +27,20 @@ class Preprocesator:
         luego solo hay que recorrer el array final que tienes que crear, y crear los ficheros tal y como tienes abajo.
 
         '''
-
+        self.mergeLists(allObjects)
+        self.mergeLists(self.outputWPInfo)
         ##PRUEBA
-        for webPageInfoObject in allObjects:
+        for webPageInfoObject in self.finalArray:
             hostname = webPageInfoObject.getDomain()
-            path = self.finalPath+"prueba/" + hostname + ".json"
+            path = self.finalPath + hostname + ".json"
             print("DOMINIO: " + hostname + " FICHERO: "+ path)
             self.writeFile(path, webPageInfoObject)
 
-        for element in self.outputWPInfo:
+        '''for element in self.outputWPInfo:
             hostname = element.getDomain()
             path = self.finalPath + hostname + ".json"
             print("DOMINIO: " + hostname + " FICHERO: "+ path)
-            self.writeFile(path, element)
+            self.writeFile(path, element)'''
         ##FIN PRUEBA
 
     ##Metodo para escribir los json con la informacion necesaria
@@ -81,3 +82,16 @@ class Preprocesator:
                 self.outputWPInfo.append(webPageInfo(dictionary=elementoHijoAPadre))
 
 
+    def mergeLists(self, allObjects):
+
+        for wpiObject in allObjects:
+           if not self.finalArray:
+               self.finalArray.append(wpiObject)
+           else:
+               for existObject in self.finalArray:
+                   if wpiObject.getDomain() == existObject.getDomain():
+                       print("DOMINIO YA EXISTE")
+                       existObject.getChildren().append(wpiObject)
+                   else:
+                       print("DOminio no existe")
+                       self.finalArray.append(wpiObject)
