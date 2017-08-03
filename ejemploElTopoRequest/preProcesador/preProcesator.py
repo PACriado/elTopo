@@ -14,8 +14,14 @@ class Preprocesator:
     def process(self):
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         for webPageInfoObject in allObjects:
-            resultList = self.splitter(webPageInfoObject)
-
+            self.splitter(webPageInfoObject)
+        ##PRUEBA
+        for webPageInfoObject in allObjects:
+            hostname = webPageInfoObject.getDomain()
+            path = self.finalPath+"prueba/" + hostname + ".json"
+            print("DOMINIO: " + hostname + " FICHERO: "+ path)
+            self.writeFile(path, webPageInfoObject)
+        ##FIN PRUEBA
         for element in self.outputWPInfo:
             hostname = element.getDomain()
             path = self.finalPath + hostname + ".json"
