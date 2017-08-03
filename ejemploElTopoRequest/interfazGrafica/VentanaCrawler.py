@@ -9,13 +9,12 @@ class VentanaCrawler():
     def __init__(self):
 
         self.ventana = Tk()
-        self.ventana.title('Crawler')
+        self.ventana.title('Crawler Local')
         toolbar = Frame(self.ventana)
         toolbar.pack(side="top", fill="x")
-        b1 = Button(self.ventana, text="Iniciar", command=self.print_stdout)
+        BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)
 
-        b1.pack(in_=toolbar, side="left")
-        #b2.pack(in_=toolbar, side="left")
+        BTN_Iniciar.pack(in_=toolbar, side="left")
         self.text = Text(self.ventana, wrap="word")
         self.text.pack(side="top", fill="both", expand=True)
         self.text.tag_configure("stderr", foreground="#b22222")
@@ -26,7 +25,7 @@ class VentanaCrawler():
         theSpyder = spyder(rutaConfig= "./configElTopo/config.json")
         theSpyder.launch()
         #print ("this is stdout")
-   # def print_stderr(self):
+        # def print_stderr(self):
        # sys.stderr.write("this is stderr\n")
 
 class TextRedirector(object):

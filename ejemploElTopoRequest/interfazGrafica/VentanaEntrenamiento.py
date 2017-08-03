@@ -6,21 +6,21 @@ import sys
 from tkinter.filedialog import askdirectory
 
 
-class VentanaClasificador():
+class VentanaEntrenamiento():
 
     def __init__(self):
 
-        self.ventana = Tk()
-        self.ventana.title('Clasificador')
-        self.toolbar = Frame(self.ventana)
+        self.ventanaE = Tk()
+        self.ventanaE.title('Entrenamiento')
+        self.toolbar = Frame(self.ventanaE)
         self.toolbar.pack(side="top", fill="x")
 
 
-        BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)
+        BTN_Iniciar = Button(self.ventanaE, text="Iniciar", command=self.print_stdout)
 
 
-        BTN_Abrirdir = Button(self.ventana, text="Abrir directorio",command=self.ruta_text)
-        self.url = Entry(self.ventana,width = 80)
+        BTN_Abrirdir = Button(self.ventanaE, text="Abrir directorio",command=self.ruta_text)
+        self.url = Entry(self.ventanaE,width = 80)
 
 
 
@@ -29,7 +29,7 @@ class VentanaClasificador():
         BTN_Abrirdir.pack(in_=self.toolbar, side="left")
         self.url.pack(in_=self.toolbar,side = "left")
 
-        self.text = Text(self.ventana, wrap="word")
+        self.text = Text(self.ventanaE, wrap="word")
         self.text.pack(side="top", fill="both", expand=True)
         self.text.tag_configure("stderr", foreground="#b22222")
         sys.stdout = TextRedirector(self.text, "stdout")

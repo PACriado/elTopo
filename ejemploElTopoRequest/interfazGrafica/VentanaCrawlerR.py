@@ -3,51 +3,31 @@ from tkinter import ttk
 from spyder.spyder import spyder
 import os
 import sys
-from tkinter.filedialog import askdirectory
 
-
-class VentanaClasificador():
+class VentanaCrawlerR():
 
     def __init__(self):
 
         self.ventana = Tk()
-        self.ventana.title('Clasificador')
-        self.toolbar = Frame(self.ventana)
-        self.toolbar.pack(side="top", fill="x")
-
-
+        self.ventana.title('Crawler Remoto')
+        toolbar = Frame(self.ventana)
+        toolbar.pack(side="top", fill="x")
         BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)
 
-
-        BTN_Abrirdir = Button(self.ventana, text="Abrir directorio",command=self.ruta_text)
-        self.url = Entry(self.ventana,width = 80)
-
-
-
-
-        BTN_Iniciar.pack(in_=self.toolbar, side="left")
-        BTN_Abrirdir.pack(in_=self.toolbar, side="left")
-        self.url.pack(in_=self.toolbar,side = "left")
-
+        BTN_Iniciar.pack(in_=toolbar, side="left")
+        #b2.pack(in_=toolbar, side="left")
         self.text = Text(self.ventana, wrap="word")
         self.text.pack(side="top", fill="both", expand=True)
         self.text.tag_configure("stderr", foreground="#b22222")
         sys.stdout = TextRedirector(self.text, "stdout")
+       # sys.stderr = TextRedirector(self.text, "stderr")
 
     def print_stdout(self):
         theSpyder = spyder(rutaConfig= "./configElTopo/config.json")
         theSpyder.launch()
         #print ("this is stdout")
-
-    def ruta_text(self):
-
-        result = askdirectory()
-        self.url.delete(0,'end')
-        self.url.insert(0,result)
-        self.url.pack(in_=self.toolbar,side = "left")
-
-
-
+   # def print_stderr(self):
+       # sys.stderr.write("this is stderr\n")
 
 class TextRedirector(object):
     def __init__(self, widget, tag="stdout"):

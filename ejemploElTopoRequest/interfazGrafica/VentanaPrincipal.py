@@ -2,9 +2,13 @@ from tkinter import *
 from tkinter.filedialog import askopenfilename,askdirectory
 from PIL import Image, ImageTk
 from interfazGrafica.VentanaConfig import VentanaConfig
+from interfazGrafica.VentanaConfigCrawler import VentanaConfigCrawler
 from interfazGrafica.VentanaTerminal import VentanaTerminal
 from interfazGrafica.VentanaCrawler import VentanaCrawler
 from interfazGrafica.VentanaClasificador import VentanaClasificador
+from interfazGrafica.VentanaCrawlerR import VentanaCrawlerR
+from interfazGrafica.VentanaEntrenamiento import VentanaEntrenamiento
+
 import sys,os
 
 
@@ -46,7 +50,7 @@ class VentanaPrincipal():
         #MENU CRAWLER
 
         self.MenuCrawler = Menu(self.menu)
-        self.SubMenu = Menu(self.menu)
+        #self.SubMenu = Menu(self.menu)
         self.SubMenuCrawlerL = Menu(self.menu)
         self.SubMenuCrawlerR = Menu(self.menu)
 
@@ -54,15 +58,17 @@ class VentanaPrincipal():
         self.MenuCrawler.add_cascade(label="Local",menu=self.SubMenuCrawlerL)
         self.MenuCrawler.add_cascade(label="Remoto",menu=self.SubMenuCrawlerR)
         self.SubMenuCrawlerL.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
-        self.SubMenuCrawlerR.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
-        self.SubMenuCrawlerR.add_command(label="Configurar...",command=self.AbrirVentanaConfiguracion)
+        self.SubMenuCrawlerR.add_command(label="Abrir...",command=self.AbrirVentanaCrawlerR)
+        self.SubMenuCrawlerR.add_command(label="Configurar...",command=self.AbrirVentanaConfiguracionCrawler)
 
 
 
         #MENU CLASIFICADOR
         self.MenuClasificador = Menu(self.menu)
+
         self.menu.add_cascade(label="Clasificador",menu=self.MenuClasificador)
         self.MenuClasificador.add_command(label="Abrir...",command=self.AbrirVentanaClasificador)
+        self.MenuClasificador.add_command(label="Entrenar...",command=self.AbrirVentanaEntrenamiento)
        # self.MenuClasificador.add_command(label="Prueba Dir...", command=self.OpenDirectory)
 
         #MENU AYUDA
@@ -90,13 +96,24 @@ class VentanaPrincipal():
         ventanaConfig = VentanaConfig()
         print ("Abriendo la ventana de configuracion")
 
+    def AbrirVentanaConfiguracionCrawler(self):
+        ventanaConfig = VentanaConfigCrawler()
+        print ("Configuración del crawler")
+
     def AbrirVentanaCrawler(self):
         ventanaCrawler = VentanaCrawler()
         print ("Iniciando el crawler...")
 
+    def AbrirVentanaCrawlerR(self):
+        ventanaCrawlerR = VentanaCrawlerR()
+        print ("Crawler Remoto")
+
     def AbrirVentanaClasificador(self):
         ventanaClasificador = VentanaClasificador()
         print ("Iniciando el clasificador...")
+
+    def AbrirVentanaEntrenamiento(self):
+        ventanaEntrenamiento = VentanaEntrenamiento()
 
     def AbrirVentanaTerminal(self):
         ventanaTerminal = VentanaTerminal()
