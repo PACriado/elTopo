@@ -21,9 +21,7 @@ class Preprocesator:
             resultList = self.splitter(webPageInfoObject)
 
         for element in self.outputWPInfo:
-            domain = element.getUrl()
-            hostname = urlparse(domain).hostname.split(".")
-            hostname = ".".join(len(hostname[-2]) < 4 and hostname[-3:] or hostname[-2:])
+            hostname = element.getDomain()
             path = self.finalPath + hostname + ".json"
             print("DOMINIO: " + hostname + " FICHERO: "+ path)
             self.writeFile(path, element)
@@ -36,9 +34,7 @@ class Preprocesator:
 
     ##Metodo para dividir y clasificar en diferentes json, dependiendo del dominio
     def splitter(self, WebPageInfoObject):
-        currentUrl = WebPageInfoObject.getUrl()
-        currentDomain = urlparse(currentUrl).hostname.split(".")
-        currentDomain = ".".join(len(currentDomain[-2]) < 4 and currentDomain[-3:] or currentDomain[-2:])
+        currentDomain = WebPageInfoObject.getDomain()
 
         if (not WebPageInfoObject.getChildren()) :
             print(WebPageInfoObject.getUrl() + " No tiene hijos")
@@ -49,9 +45,7 @@ class Preprocesator:
             arrayChildrens = WebPageInfoObject.getChildren()
             for i in range(0,len(arrayChildrens)):
                 elementChildWPInfo = webPageInfo(dictionary=arrayChildrens[i])
-                childUrl = elementChildWPInfo.getUrl()
-                elementChildDomain = urlparse(childUrl).hostname.split(".")
-                elementChildDomain = ".".join(len(elementChildDomain[-2]) < 4 and elementChildDomain[-3:] or elementChildDomain[-2:])
+                elementChildDomain = elementChildWPInfo.getDomain()
                 if (elementChildDomain == currentDomain):
                     print("Dominios iguales hijo: " + elementChildDomain + " Padre: " + currentDomain)
                     ##recursiva a splitter

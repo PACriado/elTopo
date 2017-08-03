@@ -1,4 +1,5 @@
 import json
+from urllib.parse import urlparse
 
 
 class webPageInfo:
@@ -36,6 +37,12 @@ class webPageInfo:
 
     def getUrl(self):
         return self.url
+
+    def getDomain(self):
+        currentUrl = self.url
+        currentDomain = urlparse(currentUrl).hostname.split(".")
+        currentDomain = ".".join(len(currentDomain[-2]) < 4 and currentDomain[-3:] or currentDomain[-2:])
+        return currentDomain
 
     def setTitle(self, title):
         self.title = title
