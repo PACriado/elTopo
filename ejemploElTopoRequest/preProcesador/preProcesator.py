@@ -25,12 +25,20 @@ class Preprocesator:
         for elementCopy in self.copyList:
             self.outputWPInfo.append(elementCopy)
 
+    ##borrar son pruebas
+    def metodo3(self):
+        for e in self.copyList:
+            self.outputWPInfo.pop()
+            index = self.outputWPInfo.index(e)
+            self.copyList.pop(index)
+
     def process(self):
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         for webPageInfoObject in allObjects:
             resultList = self.splitter(webPageInfoObject)
-            self.metodo(webPageInfoObject)
-            self.metodo2()
+            ##self.metodo(webPageInfoObject)
+            ##self.metodo2()
+            self.metodo3()
         for element in self.outputWPInfo:
             domain = element.getUrl()
             hostname = urlparse(domain).hostname.split(".")
@@ -61,7 +69,7 @@ class Preprocesator:
             for elementChild in WebPageInfoObject.getChildren():
                 elementChildWPInfo = webPageInfo(dictionary=elementChild)
                 childUrl = elementChildWPInfo.getUrl()
-                self.copyList.append(elementChildWPInfo)
+                self.outputWPInfo.append(elementChildWPInfo)
                 elementChildDomain = urlparse(childUrl).hostname.split(".")
                 elementChildDomain = ".".join(len(elementChildDomain[-2]) < 4 and elementChildDomain[-3:] or elementChildDomain[-2:])
                 if (elementChildDomain == currentDomain):
@@ -71,7 +79,6 @@ class Preprocesator:
                 else:
                     print("Dominios diferentes hijo: " + elementChildDomain + " Padre: " + currentDomain)
                     ##quitar el elemento child de la lista getCHildren que recorremos, meterle a la lista final dicho objeto,
-                    ##self.outputWPInfo.append(elementChildWPInfo)
                     self.copyList.append(elementChildWPInfo)
 
 
