@@ -1,10 +1,16 @@
 from tkinter import *
 from tkinter import ttk
 from spyder.spyder import spyder
+from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
+from EntidadesRest.SpyderRequest import SpyderRequest
 import os
 import sys
 
+
 class VentanaCrawlerR():
+
+   # def flush(self):
+    #  pass
 
     def __init__(self):
 
@@ -12,28 +18,24 @@ class VentanaCrawlerR():
         self.ventana.title('Crawler Remoto')
         toolbar = Frame(self.ventana)
         toolbar.pack(side="top", fill="x")
-        BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)
-
+        BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.main)
         BTN_Iniciar.pack(in_=toolbar, side="left")
         #b2.pack(in_=toolbar, side="left")
         self.text = Text(self.ventana, wrap="word")
         self.text.pack(side="top", fill="both", expand=True)
-        self.text.tag_configure("stderr", foreground="#b22222")
-        sys.stdout = TextRedirector(self.text, "stdout")
-       # sys.stderr = TextRedirector(self.text, "stderr")
+        sys.stdout = StdoutRedirector(self.text)
+        self.ventana.mainloop()
 
-    def print_stdout(self):
-        theSpyder = spyder(rutaConfig= "./configElTopo/config.json")
-        theSpyder.launch()
-        #print ("this is stdout")
-   # def print_stderr(self):
-       # sys.stderr.write("this is stderr\n")
 
-class TextRedirector(object):
-    def __init__(self, widget, tag="stdout"):
-        self.widget = widget
-        self.tag = tag
+
+    def main(self):
+       os.system('pwd')
+       os.system("python ./interfazGrafica/Multihilo.py")
+
+class StdoutRedirector(object):
+    def __init__(self, text_area):
+        self.text_area = text_area
+
     def write(self, str):
-        self.widget.configure(state="normal")
-        self.widget.insert("end", str, (self.tag,))
-        self.widget.configure(state="disabled")
+        self.text_area.insert('end', str)
+        self.text_area.see('end')
