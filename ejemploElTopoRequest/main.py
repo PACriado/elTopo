@@ -2,21 +2,26 @@ from spyder.spyder import spyder
 from clasificador.classificator import classificator
 from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
 from EntidadesRest.SpyderRequest import SpyderRequest
+from preProcesador.preProcesator import Preprocesator
+from configElTopo.config import config
 
 testRestService = False
 testListRestService = False
 crawlerOrClassificator = True
 
+
+configuracion = config("./configElTopo/config.json")
+
 if(not testRestService):
     if(crawlerOrClassificator == False):
         theSpyder = spyder()
-        theSpyder.launch()
-
+        rutaSalidaSpyder = theSpyder.launch()
+        procesador = Preprocesator(rutaSalidaSpyder+"onLine/", configuracion.getRutaSalidaPreProcesador())
+        procesador.process()
     else:
-        trainOrClassify = True
+        trainOrClassify = False
         ##meter parametros
-        rutaSalidaprepro = "/home/usertfm/SalidaJSON/1501699966925/onLine/"
-        ejemplo = classificator('./clasificatorData/training.json', './clasificatorData/entrenamiento.txt', rutaSalidaprepro, './clasificatorData/train.json')
+        ejemplo = classificator('./clasificatorData/training.json', './clasificatorData/entrenamiento.txt', configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
         if(trainOrClassify == True):
             ejemplo.training()
         else:

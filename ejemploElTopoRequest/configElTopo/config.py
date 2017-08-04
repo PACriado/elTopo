@@ -18,6 +18,7 @@ class config:
             self.RenovarSiempreCircuitoTor=False
             self.DelayIntentoRenovacionCircuitoTor=2
             self.RutaServidoresSpyderRest=""
+            self.RutaSalidaPreProcesador=""
             self.url=[]
         self.Route = route
 
@@ -26,6 +27,12 @@ class config:
 
     def getRutaSalida(self):
         return self.RutaSalida
+
+    def setRutaSalidaPreProcesador(self, rutaSalidaPreProcesador):
+        self.RutaSalidaPreProcesador = rutaSalidaPreProcesador
+
+    def getRutaSalidaPreProcesador(self):
+        return self.RutaSalidaPreProcesador
 
     def setRutaServidoresSpyderRest(self, rutaServidoresSpyderRest):
         self.RutaServidoresSpyderRest = rutaServidoresSpyderRest

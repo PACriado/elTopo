@@ -1,10 +1,11 @@
 {
     "DelayIntentoRenovacionCircuitoTor": 10,
-    "MaxDepth": 2,
+    "MaxDepth": 1,
     "RenovarSiempreCircuitoTor": false,
     "Route": "./configElTopo/config.json",
     "RutaDiccionario": "./configElTopo/diccionario.txt",
     "RutaSalida": "/home/usertfm/SalidaJSON/",
+    "RutaSalidaPreProcesador": "/home/usertfm/SalidaJSON/Preproc/",
     "RutaServidoresSpyderRest": "./configElTopo/servidoresSpyder.txt",
     "UsarDiccionario": false,
     "UsarSiempreTor": false,
