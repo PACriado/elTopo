@@ -21,16 +21,27 @@ if(not testRestService):
     else:
         trainOrClassify = True
         ##meter parametros
-        ejemplo = classificator('./clasificatorData/training.json', configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
+        ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
+        ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
+        casificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         if(trainOrClassify == True):
-            ejemplo.training()
-        else:
-            classifier = ejemplo.getClasifier()
-            print(classifier.classify("tumadre"))
-            ejemplo.generateJsonUrlData()
+            #aqui se usa el ficheroParaEntrenamiento
+            #Aqui abria que añadir unos if para generar "ficheroParaEntrenamientoGeneradoParaEntrenamiento"
+            # para las urls, para headers, o para todos (si es que se puede)
+            '''ejemplo.generateJsonUrlData()
             ejemplo.generateJsonSpanData()
             ejemplo.generateJsonHeaderData()
-            ejemplo.generateJsonParagraphData()
+            ejemplo.generateJsonParagraphData()'''
+            #fin de los ifs
+
+            casificatorObject.training()
+
+        else:
+            classifier = casificatorObject.getClasifier()
+            #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
+            #pasar al classify allUrls, allSpans etc etc
+            print(classifier.classify("tumadre"))
+
 else:
     if(testListRestService):
         caller = SpyderRestCaller()

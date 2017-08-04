@@ -26,7 +26,9 @@ class VentanaClasificador():
 
     def print_stdout(self):
         configuracion = config("./configElTopo/config.json")
-        casificatorObject = classificator('./clasificatorData/training.json', configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
+        ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
+        ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
+        casificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classifier = casificatorObject.getClasifier()
         print(classifier.classify("tumadre"))
     def ruta_text(self):

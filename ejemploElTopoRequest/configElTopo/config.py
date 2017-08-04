@@ -20,6 +20,8 @@ class config:
             self.RutaServidoresSpyderRest=""
             self.RutaSalidaPreProcesador=""
             self.RutaFicheroEntrenamientoPersistente=""
+            self.FicheroParaEntrenamiento=""
+            self.FicheroParaEntrenamientoGeneradoParaEntrenamiento=""
             self.url=[]
         self.Route = route
 
@@ -28,6 +30,18 @@ class config:
 
     def getRutaSalida(self):
         return self.RutaSalida
+
+    def setFicheroParaEntrenamiento(self, ficheroParaEntrenamiento):
+        self.FicheroParaEntrenamiento = ficheroParaEntrenamiento
+
+    def getFicheroParaEntrenamiento(self):
+        return self.FicheroParaEntrenamiento
+
+    def setFicheroParaEntrenamientoGeneradoParaEntrenamiento(self, ficheroParaEntrenamientoGeneradoParaEntrenamiento):
+        self.FicheroParaEntrenamientoGeneradoParaEntrenamiento = ficheroParaEntrenamientoGeneradoParaEntrenamiento
+
+    def getFicheroParaEntrenamientoGeneradoParaEntrenamiento(self):
+        return self.FicheroParaEntrenamientoGeneradoParaEntrenamiento
 
     def setRutaFicheroEntrenamientoPersistente(self, rutaFicheroEntrenamientoPersistente):
         self.RutaFicheroEntrenamientoPersistente = rutaFicheroEntrenamientoPersistente
