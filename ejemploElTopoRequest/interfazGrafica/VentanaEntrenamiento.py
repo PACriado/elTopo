@@ -1,7 +1,6 @@
 from tkinter import *
 import sys
 from tkinter.filedialog import askdirectory
-from preProcesador.preProcesator import Preprocesator
 from configElTopo.config import config
 from clasificador.classificator import classificator
 
@@ -28,9 +27,8 @@ class VentanaEntrenamiento():
 
     def print_stdout(self):
         configuracion = config("./configElTopo/config.json")
-        ejemplo = classificator('./clasificatorData/training.json', configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
-        ejemplo.training()
-        #print ("this is stdout")
+        casificatorObject = classificator('./clasificatorData/training.json', configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
+        casificatorObject.training()
 
     def ruta_text(self):
         result = askdirectory()
