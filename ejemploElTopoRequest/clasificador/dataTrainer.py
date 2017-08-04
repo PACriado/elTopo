@@ -36,14 +36,12 @@ class dataTrainer:
             for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
                 classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
-                print(entitiesArray.createJsonString())
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
         outfile.close()
 
     def generateFileUrl(self, finalPath):
-        print("Generating URLs JSON")
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
         entitiesArray = EntitiesArray()
         outfile = open(finalPath, 'w')
@@ -52,7 +50,6 @@ class dataTrainer:
         for webPageInfoObjectInArray in allObjects:
             classifyEntity = ClassifyEntity(webPageInfoObjectInArray.getUrl(), webPageInfoObjectInArray.getLabel())
             entitiesArray.add(classifyEntity)
-
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
         outfile.close()

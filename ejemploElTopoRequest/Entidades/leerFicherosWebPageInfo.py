@@ -4,6 +4,7 @@ class leerFicherosWebPageInfo:
 
 
     def readAllFilesInDirectory(route):
+        print(route)
         arrayWebPageInfos = []
         ficheros = glob.glob(route + "*.json")
         for webPageInfoFile in ficheros:

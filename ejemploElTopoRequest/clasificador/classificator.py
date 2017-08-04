@@ -7,39 +7,47 @@ classifier = NaiveBayesClassifier
 class classificator:
 
 
-
+    def __init__(self, trainingJSONPath, persistantWritepath, persistantReadpath, results):
+        self.trainingJsonPath = trainingJSONPath
+        self.persistantWriteFile = persistantWritepath
+        self.persistantReadFile = persistantReadpath
+        self.result = results
+        print("hey")
+   ##pasarlos pos parametros
     def training(self):
-        object = dataTrainer('/home/usertfm/Escritorio/prueba/training.json')
+        object = dataTrainer(self.trainingJsonPath)
         object.train()
-        object.persistantWrite('/home/usertfm/Escritorio/testo/testin.txt')
+        object.persistantWrite(self.persistantWriteFile)
 
     def getClasifier(self):
-        object = dataTrainer('/home/usertfm/Escritorio/prueba/training.json')
+        object = dataTrainer(self.trainingJsonPath)
         object.train()
-        classifier = object.persistantRead('/home/usertfm/Escritorio/testo/testin.txt')
+        classifier = object.persistantRead(self.persistantReadFile)
         return classifier
 
     ##TODO cambiar los path a las diferentes rutas
     def generateJsonParagraphData(self):
-        trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-        trainer.generateFileParagraphs('/home/usertfm/Escritorio/prueba/train.json')
+        trainer = dataTrainer(self.trainingJsonPath)
+        trainer.generateFileParagraphs(self.result)
 
     def generateJsonUrlData(self):
-        trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-        trainer.generateFileUrl('/home/usertfm/Escritorio/prueba/train.json')
+        print("hola")
+        print(self.trainingJsonPath)
+        trainer = dataTrainer(self.trainingJsonPath)
+        trainer.generateFileUrl(self.result)
 
     def generateJsonTitleData(self):
-        trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-        trainer.generateFileTitle('/home/usertfm/Escritorio/prueba/train.json')
+        trainer = dataTrainer(self.trainingJsonPath)
+        trainer.generateFileTitle(self.result)
 
     def generateJsonHeaderData(self):
-        trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-        trainer.generateFileHeader('/home/usertfm/Escritorio/prueba/train.json')
+        trainer = dataTrainer(self.trainingJsonPath)
+        trainer.generateFileHeader(self.result)
 
     def generateJsonMetaData(self):
-        trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-        trainer.generateFileMeta('/home/usertfm/Escritorio/prueba/train.json')
+        trainer = dataTrainer(self.trainingJsonPath)
+        trainer.generateFileMeta(self.result)
 
     def generateJsonSpanData(self):
-        trainer = dataTrainer("/home/usertfm/SalidaJSON/1500546733904/onLine/")
-        trainer.generateFileSpan('/home/usertfm/Escritorio/prueba/train.json')
+        trainer = dataTrainer(self.trainingJsonPath)
+        trainer.generateFileSpan(self.result)
