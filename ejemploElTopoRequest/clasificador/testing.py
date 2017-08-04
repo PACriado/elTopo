@@ -14,7 +14,7 @@ from urllib.parse import urlparse
 #ASI SE LEEN TODOS LOS FICHEROS QUE HAY DENTRO DE UN DIRECTORIO Y TE RETORNA UN ARRAY DE OBJETOS
 ##todosLosObjetos = leerFicherosWebPageInfo.readAllFilesInDirectory("/home/usertfm/SalidaJSON/1501436636356/onLine/")
 
-procesador = Preprocesator("/home/usertfm/SalidaJSON/1501695829930/onLine/", "/home/usertfm/SalidaJSON/Preproc/")
+procesador = Preprocesator("/home/usertfm/SalidaJSON/1501692415916/onLine/", "/home/usertfm/SalidaJSON/Preproc/")
 procesador.process()
 
 

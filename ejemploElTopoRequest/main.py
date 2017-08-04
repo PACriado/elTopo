@@ -13,10 +13,10 @@ if(not testRestService):
         theSpyder.launch()
 
     else:
-        trainOrClassify = False
+        trainOrClassify = True
         ##meter parametros
         rutaSalidaprepro = "/home/usertfm/SalidaJSON/1501699966925/onLine/"
-        ejemplo = classificator('/home/usertfm/Escritorio/prueba/training.json', '/home/usertfm/Escritorio/testo/testin.txt', rutaSalidaprepro, '/home/usertfm/Escritorio/prueba/train.json')
+        ejemplo = classificator('./clasificatorData/training.json', './clasificatorData/entrenamiento.txt', rutaSalidaprepro, './clasificatorData/train.json')
         if(trainOrClassify == True):
             ejemplo.training()
         else:
