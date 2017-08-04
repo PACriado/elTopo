@@ -14,6 +14,9 @@ class dataTrainer:
         with open(self.path, 'r') as fp:
             self.cl = NaiveBayesClassifier(fp, format="json")
 
+    def accuracy(self, jsonFile):
+        return self.cl.accuracy(jsonFile)
+
     def persistantWrite(self, PathToLoad):
         object = self.cl
         file = open(PathToLoad,'wb')
