@@ -19,9 +19,9 @@ if(not testRestService):
         procesador = Preprocesator(rutaSalidaSpyder+"onLine/", configuracion.getRutaSalidaPreProcesador())
         procesador.process()
     else:
-        trainOrClassify = False
+        trainOrClassify = True
         ##meter parametros
-        ejemplo = classificator('./clasificatorData/training.json', './clasificatorData/entrenamiento.txt', configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
+        ejemplo = classificator('./clasificatorData/training.json', configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), './clasificatorData/train.json')
         if(trainOrClassify == True):
             ejemplo.training()
         else:

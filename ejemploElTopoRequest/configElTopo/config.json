@@ -7,6 +7,7 @@
     "RutaSalida": "/home/usertfm/SalidaJSON/",
     "RutaSalidaPreProcesador": "/home/usertfm/SalidaJSON/Preproc/",
     "RutaServidoresSpyderRest": "./configElTopo/servidoresSpyder.txt",
+    "RutaFicheroEntrenamientoPersistente": "./clasificatorData/entrenamiento.txt",
     "UsarDiccionario": false,
     "UsarSiempreTor": false,
     "url": [
