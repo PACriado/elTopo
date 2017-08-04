@@ -15,9 +15,11 @@ class classificator:
         self.result = results
    ##pasarlos pos parametros
     def training(self):
+        print("Iniciando entrenamiento")
         object = dataTrainer(self.trainingJsonPath)
         object.train()
         object.persistantWrite(self.persistantWriteFile)
+        print("El entrenamiento es persistente")
 
     def getClasifier(self):
         object = dataTrainer(self.trainingJsonPath)
