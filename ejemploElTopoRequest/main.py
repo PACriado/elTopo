@@ -15,7 +15,8 @@ if(not testRestService):
     else:
         trainOrClassify = False
         ##meter parametros
-        ejemplo = classificator('/home/usertfm/Escritorio/prueba/training.json', '/home/usertfm/Escritorio/testo/testin.txt', "/home/usertfm/SalidaJSON/1501699966925/onLine/", '/home/usertfm/Escritorio/prueba/train.json')
+        rutaSalidaprepro = "/home/usertfm/SalidaJSON/1501699966925/onLine/"
+        ejemplo = classificator('/home/usertfm/Escritorio/prueba/training.json', '/home/usertfm/Escritorio/testo/testin.txt', rutaSalidaprepro, '/home/usertfm/Escritorio/prueba/train.json')
         if(trainOrClassify == True):
             ejemplo.training()
         else:
