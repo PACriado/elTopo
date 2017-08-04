@@ -3,6 +3,8 @@ from tkinter import ttk
 from spyder.spyder import spyder
 import os
 import sys
+from preProcesador.preProcesator import Preprocesator
+from configElTopo.config import config
 
 class VentanaCrawler():
 
@@ -22,8 +24,11 @@ class VentanaCrawler():
        # sys.stderr = TextRedirector(self.text, "stderr")
 
     def print_stdout(self):
+        configuracion = config("./configElTopo/config.json")
         theSpyder = spyder(rutaConfig= "./configElTopo/config.json")
-        theSpyder.launch()
+        rutaSalidaSpyder = theSpyder.launch()
+        procesador = Preprocesator(rutaSalidaSpyder+"onLine/", configuracion.getRutaSalidaPreProcesador())
+        procesador.process()
         #print ("this is stdout")
         # def print_stderr(self):
        # sys.stderr.write("this is stderr\n")
