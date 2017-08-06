@@ -9,13 +9,13 @@ testRestService = False
 testListRestService = False
 crawlerOrClassificator = True
 
-##clasificator booleans
+##clasificator booleans poner a true el que se quiera lanzar
 header = True
-url = True
-paragraph = True
-metadata = True
-span = True
-title = True
+url = False
+paragraph = False
+metadata = False
+span = False
+title = False
 
 configuracion = config("./configElTopo/config.json")
 
