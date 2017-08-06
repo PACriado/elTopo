@@ -13,7 +13,7 @@ class classificator:
         self.persistantReadFile = persistantWritepath
         self.readJsonDataFile = JsonGenericData
         self.result = results
-   ##pasarlos pos parametros
+
     def training(self):
         print("Iniciando entrenamiento")
         object = dataTrainer(self.trainingJsonPath)
@@ -27,7 +27,6 @@ class classificator:
         classifier = object.persistantRead(self.persistantReadFile)
         return classifier
 
-    ##TODO cambiar los path a las diferentes rutas
     def generateJsonParagraphData(self):
         trainer = dataTrainer(self.readJsonDataFile)
         trainer.generateFileParagraphs(self.result)

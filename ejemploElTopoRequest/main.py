@@ -9,6 +9,13 @@ testRestService = False
 testListRestService = False
 crawlerOrClassificator = True
 
+##clasificator booleans
+header = True
+url = True
+paragraph = True
+metadata = True
+span = True
+title = True
 
 configuracion = config("./configElTopo/config.json")
 
@@ -23,21 +30,28 @@ if(not testRestService):
         ##meter parametros
         ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
         ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-        casificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         if(trainOrClassify == True):
-            #aqui se usa el ficheroParaEntrenamiento
-            #Aqui abria que añadir unos if para generar "ficheroParaEntrenamientoGeneradoParaEntrenamiento"
-            # para las urls, para headers, o para todos (si es que se puede)
-            '''ejemplo.generateJsonUrlData()
-            ejemplo.generateJsonSpanData()
-            ejemplo.generateJsonHeaderData()
-            ejemplo.generateJsonParagraphData()'''
+
+            if header == True:
+                classificatorObject.generateJsonHeaderData()
+            if url == True:
+                classificatorObject.generateJsonUrlData()
+            if paragraph == True:
+                classificatorObject.generateJsonParagraphData()
+            if metadata == True:
+                classificatorObject.generateJsonMetaData()
+            if span == True:
+                classificatorObject.generateJsonSpanData()
+            if title == True:
+                classificatorObject.generateJsonTitleData()
+            ##if de todos   TODO
             #fin de los ifs
 
-            casificatorObject.training()
+            classificatorObject.training()
 
         else:
-            classifier = casificatorObject.getClasifier()
+            classifier = classificatorObject.getClasifier()
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
             print(classifier.classify("tumadre"))
