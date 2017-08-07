@@ -22,8 +22,15 @@ class config:
             self.RutaFicheroEntrenamientoPersistente=""
             self.FicheroParaEntrenamiento=""
             self.FicheroParaEntrenamientoGeneradoParaEntrenamiento=""
+            self.RutaJSONTraining=""
             self.url=[]
         self.Route = route
+
+    def setRutaJSONTraining(self, rutaJSONTraining):
+        self.RutaJSONTraining = rutaJSONTraining
+
+    def getRutaJSONTraining(self):
+        return self.RutaJSONTraining
 
     def setRutaSalida(self, rutaSalida):
         self.RutaSalida = rutaSalida

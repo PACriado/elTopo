@@ -10,6 +10,7 @@
     "RutaFicheroEntrenamientoPersistente": "./clasificatorData/entrenamiento.txt",
     "FicheroParaEntrenamiento": "./clasificatorData/training.json",
     "FicheroParaEntrenamientoGeneradoParaEntrenamiento":"./clasificatorData/training.json",
+    "RutaJSONTraining":"./JSONTraining/",
     "UsarDiccionario": false,
     "UsarSiempreTor": false,
     "url": [
