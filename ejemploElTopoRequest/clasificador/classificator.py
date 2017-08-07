@@ -50,3 +50,7 @@ class classificator:
     def generateJsonSpanData(self):
         trainer = dataTrainer(self.readJsonDataFile)
         trainer.generateFileSpan(self.result)
+
+    def generateJsonWithAllData(self):
+        trainer = dataTrainer(self.readJsonDataFile)
+        trainer.generateFileAllTypes(self.result)

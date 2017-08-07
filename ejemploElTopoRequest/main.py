@@ -10,12 +10,13 @@ testListRestService = False
 crawlerOrClassificator = True
 
 ##clasificator booleans poner a true el que se quiera lanzar
-header = True
+header = False
 url = False
 paragraph = False
 metadata = False
 span = False
 title = False
+allData = True
 
 configuracion = config("./configElTopo/config.json")
 
@@ -45,6 +46,8 @@ if(not testRestService):
                 classificatorObject.generateJsonSpanData()
             if title == True:
                 classificatorObject.generateJsonTitleData()
+            if allData == True:
+                classificatorObject.generateJsonWithAllData()
             ##if de todos   TODO
             #fin de los ifs
 

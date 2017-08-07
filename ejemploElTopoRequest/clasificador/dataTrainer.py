@@ -121,3 +121,34 @@ class dataTrainer:
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
         outfile.close()
+
+    def generateFileAllTypes(self, finalPath):
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
+        entitiesArray = EntitiesArray()
+        outfile = open(finalPath, 'w')
+        outfile.write("[")
+
+        for webPageInfoObjectInArray in allObjects:
+            for cadenaSpan in webPageInfoObjectInArray.getSpan():
+                classifyEntity = ClassifyEntity(cadenaSpan, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+            for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
+                classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+            for cadenaMeta in webPageInfoObjectInArray.getMetadata():
+                classifyEntity = ClassifyEntity(cadenaMeta, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+            for cadenaHeader in webPageInfoObjectInArray.getHeader():
+                classifyEntity = ClassifyEntity(cadenaHeader, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+            for cadenaTitle in webPageInfoObjectInArray.getTitle():
+                classifyEntity = ClassifyEntity(cadenaTitle, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+            for cadenaUrl in webPageInfoObjectInArray.getUrl():
+                classifyEntity = ClassifyEntity(cadenaUrl, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+
+
+        outfile.write(entitiesArray.createJsonString().replace("'", '"'))
+        outfile.write("]")
+        outfile.close()
