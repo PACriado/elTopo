@@ -27,7 +27,7 @@ if(not testRestService):
         procesador = Preprocesator(rutaSalidaSpyder+"onLine/", configuracion.getRutaSalidaPreProcesador())
         procesador.process()
     else:
-        trainOrClassify = True
+        trainOrClassify = False
         ##meter parametros
         ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
         ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
@@ -57,7 +57,7 @@ if(not testRestService):
             classifier = classificatorObject.getClasifier()
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
-            print(classifier.classify("tumadre"))
+            print(classifier.classify("clasificameESTO"))
 
 else:
     if(testListRestService):
