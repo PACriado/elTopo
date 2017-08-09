@@ -11,12 +11,12 @@ crawlerOrClassificator = True
 
 ##clasificator booleans poner a true el que se quiera lanzar
 header = False
-url = False
+url = True
 paragraph = False
 metadata = False
 span = False
 title = False
-allData = True
+allData = False
 
 configuracion = config("./configElTopo/config.json")
 
@@ -30,8 +30,14 @@ if(not testRestService):
         trainOrClassify = False
         ##meter parametros
         ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
+
+        ##cambiar el nombre de esto... TODO
         ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-        classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+        print("hola")
+        print(configuracion.getRutaSalidaPreProcesador())
+
+        classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         if(trainOrClassify == True):
 
             if header == True:

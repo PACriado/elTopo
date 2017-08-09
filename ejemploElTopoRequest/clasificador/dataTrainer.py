@@ -127,13 +127,16 @@ class dataTrainer:
         entitiesArray = EntitiesArray()
         outfile = open(finalPath, 'w')
         outfile.write("[")
-
         for webPageInfoObjectInArray in allObjects:
-            for cadenaSpan in webPageInfoObjectInArray.getSpan():
-                classifyEntity = ClassifyEntity(cadenaSpan, webPageInfoObjectInArray.getLabel())
-                entitiesArray.add(classifyEntity)
+            classifyEntity = ClassifyEntity(webPageInfoObjectInArray.getUrl(), webPageInfoObjectInArray.getLabel())
+            entitiesArray.add(classifyEntity)
+        for webPageInfoObjectInArray in allObjects:
+
             for cadenaParrafo in webPageInfoObjectInArray.getParrafo():
                 classifyEntity = ClassifyEntity(cadenaParrafo, webPageInfoObjectInArray.getLabel())
+                entitiesArray.add(classifyEntity)
+            for cadenaSpan in webPageInfoObjectInArray.getSpan():
+                classifyEntity = ClassifyEntity(cadenaSpan, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
             for cadenaMeta in webPageInfoObjectInArray.getMetadata():
                 classifyEntity = ClassifyEntity(cadenaMeta, webPageInfoObjectInArray.getLabel())
@@ -144,9 +147,7 @@ class dataTrainer:
             for cadenaTitle in webPageInfoObjectInArray.getTitle():
                 classifyEntity = ClassifyEntity(cadenaTitle, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
-            for cadenaUrl in webPageInfoObjectInArray.getUrl():
-                classifyEntity = ClassifyEntity(cadenaUrl, webPageInfoObjectInArray.getLabel())
-                entitiesArray.add(classifyEntity)
+
 
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
