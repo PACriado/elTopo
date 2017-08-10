@@ -13,6 +13,7 @@
     "RutaJSONTraining":"./JSONTraining/",
     "UsarDiccionario": false,
     "UsarSiempreTor": false,
+    "WebPageInfoToClassify": "/home/usertfm/salidasTrain/advertisercommunity.com.json",
     "url": [
         "http://www.google.es",
         "http://webquenoexisteyestaoffline.com",

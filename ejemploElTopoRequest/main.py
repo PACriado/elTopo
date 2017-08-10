@@ -4,6 +4,8 @@ from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
 from EntidadesRest.SpyderRequest import SpyderRequest
 from preProcesador.preProcesator import Preprocesator
 from configElTopo.config import config
+from clasificador.dataClasificator import dataClasificator
+from Entidades.webPageInfo import webPageInfo
 
 testRestService = False
 testListRestService = False
@@ -11,9 +13,9 @@ crawlerOrClassificator = True
 
 ##clasificator booleans poner a true el que se quiera lanzar
 header = False
-url = True
+url = False
 paragraph = False
-metadata = False
+metadata = True
 span = False
 title = False
 allData = False
@@ -28,18 +30,12 @@ if(not testRestService):
         procesador.process()
     else:
         trainOrClassify = False
-        ##meter parametros
         ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
 
         ##cambiar el nombre de esto... TODO
         ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-
-        print("hola")
-        print(configuracion.getRutaSalidaPreProcesador())
-
         classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         if(trainOrClassify == True):
-
             if header == True:
                 classificatorObject.generateJsonHeaderData()
             if url == True:
@@ -60,11 +56,29 @@ if(not testRestService):
             classificatorObject.training()
 
         else:
+            classifyMeta = True
+            classifyParrafo = False
+            classifyHeader = False
+            classifySpan = False
+            classifyUrl = False
+            classifyTitle = False
             classifier = classificatorObject.getClasifier()
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
-            print(classifier.classify("clasificameESTO"))
-
+            webPageInfoObject = webPageInfo(route= configuracion.getWebPageInfoToClassify())
+            miClass = dataClasificator( webPageInfoObject, classifier)
+            if classifyMeta == True:
+                print(miClass.classifyAllMeta())
+            if classifyParrafo == True:
+                print(miClass.classifyAllParrafos())
+            if classifyHeader == True:
+                print(miClass.classifyAllHeaders())
+            if classifySpan == True:
+                print(miClass.classifyAllSpan())
+            if classifyUrl == True:
+                print(miClass.classifyAllUrl())
+            if classifyTitle == True:
+                print(miClass.classifyAllTitles())
 else:
     if(testListRestService):
         caller = SpyderRestCaller()

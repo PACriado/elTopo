@@ -23,8 +23,15 @@ class config:
             self.FicheroParaEntrenamiento=""
             self.FicheroParaEntrenamientoGeneradoParaEntrenamiento=""
             self.RutaJSONTraining=""
+            self.WebPageInfoToClassify = ""
             self.url=[]
         self.Route = route
+
+    def setWebPageInfoToClassify(self, rutaWpInfo):
+        self.WebPageInfoToClassify = rutaWpInfo
+
+    def getWebPageInfoToClassify(self):
+        return self.WebPageInfoToClassify
 
     def setRutaJSONTraining(self, rutaJSONTraining):
         self.RutaJSONTraining = rutaJSONTraining
