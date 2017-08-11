@@ -6,6 +6,8 @@ from EntidadesRest.SpyderRequest import SpyderRequest
 from preProcesador.preProcesator import Preprocesator
 from configElTopo.config import config
 from spyderRest import spyderRest
+from random import randint
+from asciimatics.screen import Screen
 
 acciones_menu = {}
 acciones_submenu = {}
@@ -15,8 +17,25 @@ acciones_submenuCrawlerR = {}
 boolSpyder = False
 
 
+
+def letrasInicio(screen):
+    while True:
+        screen.print_at('El topo',
+                        randint(0, screen.width), randint(0, screen.height),
+                        colour=randint(0, screen.colours - 1),
+                        bg=randint(0, screen.colours - 1))
+        ev = screen.get_key()
+        if ev in (ord('Q'), ord('q')):
+            return
+        screen.refresh()
+
+
+
 def menu_principal():
     os.system('clear')
+
+    Screen.wrapper(letrasInicio)
+
 
     print("===============================")
     print(" MENU PRINCIPAL: EL TOPO       ")
