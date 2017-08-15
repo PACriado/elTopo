@@ -65,7 +65,7 @@ class VentanaPrincipal():
         self.MenuClasificador = Menu(self.menu)
 
         self.menu.add_cascade(label="Clasificador",menu=self.MenuClasificador)
-        self.MenuClasificador.add_command(label="Abrir...",command=self.AbrirVentanaClasificador)
+        self.MenuClasificador.add_command(label="Clasificar...",command=self.AbrirVentanaClasificador)
         self.MenuClasificador.add_command(label="Entrenar...",command=self.AbrirVentanaEntrenamiento)
        # self.MenuClasificador.add_command(label="Prueba Dir...", command=self.OpenDirectory)
 

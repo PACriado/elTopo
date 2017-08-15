@@ -3,6 +3,8 @@ import sys
 from tkinter.filedialog import askdirectory
 from configElTopo.config import config
 from clasificador.classificator import classificator
+from clasificador.dataClasificator import dataClasificator
+from Entidades.webPageInfo import webPageInfo
 
 
 class VentanaClasificador():
@@ -15,23 +17,33 @@ class VentanaClasificador():
         self.toolbar.pack(side="top", fill="x")
 
         self.configuracion = config("./configElTopo/config.json")
+
+
         self.ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
+
+
         self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
+        self.classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
         self.classificatorObject = classificator(self.ficheroParaEntrenamiento,
                                                  self.configuracion.getRutaFicheroEntrenamientoPersistente(),
                                                  self.configuracion.getRutaSalidaPreProcesador(),
                                                  self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
 
+        self.classifier = self.classificatorObject.getClasifier()
+        self.webPageInfoObject = webPageInfo(route= self.configuracion.getWebPageInfoToClassify())
+        self.miClass = dataClasificator(self.webPageInfoObject,self.classifier)
+
 
         BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)
         BTN_Abrirdir = Button(self.ventana, text="Abrir directorio",command=self.ruta_text)
-        BTN_Header = Button(self.ventana, text="Header data", command=self.generate_header)
-        BTN_Url = Button(self.ventana, text="Url data", command=self.generate_url)
-        BTN_Paragraph = Button(self.ventana, text="Paragraph data", command=self.generate_paragraph)
-        BTN_Metadata = Button(self.ventana, text="Meta data", command=self.generate_metadata)
-        BTN_Span = Button(self.ventana, text="Span data", command=self.generate_span)
-        BTN_Title = Button(self.ventana, text="Title data", command=self.generate_title)
-        BTN_All = Button(self.ventana, text="All data", command=self.generate_paragraph)
+        BTN_Header = Button(self.ventana, text="Header data", command=self.classificator_header)
+        BTN_Url = Button(self.ventana, text="Url data", command=self.classificator_url)
+        BTN_Paragraph = Button(self.ventana, text="Paragraph data", command=self.classificator_paragraph)
+        BTN_Metadata = Button(self.ventana, text="Meta data", command=self.classificator_metadata)
+        BTN_Span = Button(self.ventana, text="Span data", command=self.classificator_span)
+        BTN_Title = Button(self.ventana, text="Title data", command=self.classificator_title)
+        BTN_All = Button(self.ventana, text="All data", command=self.classificator_paragraph)
         self.url = Entry(self.ventana,width = 80)
 
         BTN_Iniciar.pack(in_=self.toolbar, side="left")
@@ -54,8 +66,9 @@ class VentanaClasificador():
         #ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
         #ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
         #casificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-        classifier = self.classificatorObject.getClasifier()
-        print(classifier.classify("tumadre"))
+        self.miClass.classifyTitle()
+
+        #print(classifier.classify("tumadre"))
 
     def ruta_text(self):
 
@@ -64,24 +77,26 @@ class VentanaClasificador():
         self.url.insert(0,result)
         self.url.pack(in_=self.toolbar,side = "left")
 
-    def generate_header(self):
-        self.classificatorObject.generateJsonHeaderData()
+    def classificator_header(self):
 
-    def generate_url(self):
-        self.classificatorObject.generateJsonUrlData()
+        self.miClass.classifyAllHeaders()
 
-    def generate_paragraph(self):
-        self.classificatorObject.generateJsonParagraphData()
+    def classificator_url(self):
 
-    def generate_metadata(self):
-        self.classificatorObject.generateJsonMetaData()
+        self.miClass.classifyAllUrl()
 
-    def generate_span(self):
-        self.classificatorObject.generateJsonSpanData()
+    def classificator_paragraph(self):
+        self.miClass.classifyAllParrafos()
 
-    def generate_title(self):
-        self.classificatorObject.generateJsonTitleData()
+    def classificator_metadata(self):
+        self.miClass.classifyAllMeta()
 
+
+    def classificator_span(self):
+        self.miClass.classifyAllSpan()
+
+    def classificator_title(self):
+        self.miClass.classifyAllTitles()
 
 
 class TextRedirector(object):
