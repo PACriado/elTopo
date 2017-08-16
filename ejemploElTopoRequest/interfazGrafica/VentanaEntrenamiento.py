@@ -19,7 +19,7 @@ class VentanaEntrenamiento():
                                                  self.configuracion.getRutaSalidaPreProcesador(),
                                                  self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
 
-        BTN_Iniciar = Button(self.ventanaE, text="Iniciar", command=self.print_stdout)
+        BTN_Iniciar = Button(self.ventanaE, text="Entrenar", command=self.print_stdout)
         BTN_Abrirdir = Button(self.ventanaE, text="Abrir directorio", command=self.ruta_text)
         BTN_Header = Button(self.ventanaE, text="Header data", command=self.generate_header)
         BTN_Url = Button(self.ventanaE, text="Url data", command=self.generate_url)
