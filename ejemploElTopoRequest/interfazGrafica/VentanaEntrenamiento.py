@@ -19,27 +19,10 @@ class VentanaEntrenamiento():
                                                  self.configuracion.getRutaSalidaPreProcesador(),
                                                  self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
 
-        BTN_Iniciar = Button(self.ventanaE, text="Entrenar", command=self.print_stdout)
-        BTN_Abrirdir = Button(self.ventanaE, text="Abrir directorio", command=self.ruta_text)
-        BTN_Header = Button(self.ventanaE, text="Header data", command=self.generate_header)
-        BTN_Url = Button(self.ventanaE, text="Url data", command=self.generate_url)
-        BTN_Paragraph = Button(self.ventanaE, text="Paragraph data", command=self.generate_paragraph)
-        BTN_Metadata = Button(self.ventanaE, text="Meta data", command=self.generate_metadata)
-        BTN_Span = Button(self.ventanaE, text="Span data", command=self.generate_span)
-        BTN_Title = Button(self.ventanaE, text="Title data", command=self.generate_title)
-        BTN_All = Button(self.ventanaE, text="All data", command=self.generate_paragraph)
+        BTN_Entrenar = Button(self.ventanaE, text="Entrenar", command=self.print_stdout)
 
-        self.url = Entry(self.ventanaE, width=80)
-        BTN_Iniciar.pack(in_=self.toolbar, side="left")
-        BTN_Abrirdir.pack(in_=self.toolbar, side="left")
-        self.url.pack(in_=self.toolbar, side="left")
-        BTN_Header.pack(in_=self.toolbar, side="bottom")
-        BTN_Url.pack(in_=self.toolbar, side="bottom")
-        BTN_Paragraph.pack(in_=self.toolbar, side="bottom")
-        BTN_Metadata.pack(in_=self.toolbar, side="bottom")
-        BTN_Span.pack(in_=self.toolbar, side="bottom")
-        BTN_Title.pack(in_=self.toolbar, side="bottom")
-        BTN_All.pack(in_=self.toolbar, side="bottom")
+
+        BTN_Entrenar.pack(in_=self.toolbar, side="left")
 
         self.text = Text(self.ventanaE, wrap="word")
         self.text.pack(side="top", fill="both", expand=True)
@@ -59,24 +42,6 @@ class VentanaEntrenamiento():
         self.url.delete(0, 'end')
         self.url.insert(0, result)
         self.url.pack(in_=self.toolbar, side="left")
-
-    def generate_header(self):
-        self.classificatorObject.generateJsonHeaderData()
-
-    def generate_url(self):
-        self.classificatorObject.generateJsonUrlData()
-
-    def generate_paragraph(self):
-        self.classificatorObject.generateJsonParagraphData()
-
-    def generate_metadata(self):
-        self.classificatorObject.generateJsonMetaData()
-
-    def generate_span(self):
-        self.classificatorObject.generateJsonSpanData()
-
-    def generate_title(self):
-        self.classificatorObject.generateJsonTitleData()
 
 
 class TextRedirector(object):
