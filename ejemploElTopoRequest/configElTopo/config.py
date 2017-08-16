@@ -20,12 +20,55 @@ class config:
             self.RutaServidoresSpyderRest=""
             self.RutaSalidaPreProcesador=""
             self.RutaFicheroEntrenamientoPersistente=""
+            self.RutaFicheroEntrenamientoPersistenteHeaderData=""
+            self.RutaFicheroEntrenamientoPersistenteUrlData=""
+            self.RutaFicheroEntrenamientoPersistenteParagraphData=""
+            self.RutaFicheroEntrenamientoPersistenteMetaData=""
+            self.RutaFicheroEntrenamientoPersistenteSpanData=""
+            self.RutaFicheroEntrenamientoPersistenteTitle=""
             self.FicheroParaEntrenamiento=""
             self.FicheroParaEntrenamientoGeneradoParaEntrenamiento=""
             self.RutaJSONTraining=""
             self.WebPageInfoToClassify = ""
             self.url=[]
         self.Route = route
+
+
+    def setRutaFicheroEntrenamientoPersistenteHeaderData(self, rutaFicheroEntrenamientoPersistenteHeaderData):
+        self.RutaFicheroEntrenamientoPersistenteHeaderData = rutaFicheroEntrenamientoPersistenteHeaderData
+
+    def getRutaFicheroEntrenamientoPersistenteHeaderData(self):
+        return self.RutaFicheroEntrenamientoPersistenteHeaderData
+
+    def setRutaFicheroEntrenamientoPersistenteUrlData(self, rutaFicheroEntrenamientoPersistenteUrlData):
+        self.RutaFicheroEntrenamientoPersistenteUrlData = rutaFicheroEntrenamientoPersistenteUrlData
+
+    def getRutaFicheroEntrenamientoPersistenteUrlData(self):
+        return self.RutaFicheroEntrenamientoPersistenteUrlData
+
+    def setRutaFicheroEntrenamientoPersistenteParagraphData(self, rutaFicheroEntrenamientoPersistenteParagraphData):
+        self.RutaFicheroEntrenamientoPersistenteParagraphData = rutaFicheroEntrenamientoPersistenteParagraphData
+
+    def getRutaFicheroEntrenamientoPersistenteParagraphData(self):
+        return self.RutaFicheroEntrenamientoPersistenteParagraphData
+
+    def setRutaFicheroEntrenamientoPersistenteMetaData(self, rutaFicheroEntrenamientoPersistenteMetaData):
+        self.RutaFicheroEntrenamientoPersistenteMetaData = rutaFicheroEntrenamientoPersistenteMetaData
+
+    def getRutaFicheroEntrenamientoPersistenteMetaData(self):
+        return self.RutaFicheroEntrenamientoPersistenteMetaData
+
+    def setRutaFicheroEntrenamientoPersistenteSpanData(self, rutaFicheroEntrenamientoPersistenteSpanData):
+        self.RutaFicheroEntrenamientoPersistenteSpanData = rutaFicheroEntrenamientoPersistenteSpanData
+
+    def getRutaFicheroEntrenamientoPersistenteSpanData(self):
+        return self.RutaFicheroEntrenamientoPersistenteSpanData
+
+    def setRutaFicheroEntrenamientoPersistenteTitle(self, rutaFicheroEntrenamientoPersistenteTitle):
+        self.RutaFicheroEntrenamientoPersistenteTitle = rutaFicheroEntrenamientoPersistenteTitle
+
+    def getRutaFicheroEntrenamientoPersistenteTitle(self):
+        return self.RutaFicheroEntrenamientoPersistenteTitle
 
     def setWebPageInfoToClassify(self, rutaWpInfo):
         self.WebPageInfoToClassify = rutaWpInfo

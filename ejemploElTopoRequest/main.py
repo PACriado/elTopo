@@ -12,13 +12,8 @@ testListRestService = False
 crawlerOrClassificator = True
 
 ##clasificator booleans poner a true el que se quiera lanzar
-header = False
-url = False
-paragraph = False
-metadata = True
-span = False
-title = False
 allData = False
+paragraph = False
 
 configuracion = config("./configElTopo/config.json")
 
@@ -34,26 +29,39 @@ if(not testRestService):
 
         ##cambiar el nombre de esto... TODO
         ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-        classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
         if(trainOrClassify == True):
-            if header == True:
-                classificatorObject.generateJsonHeaderData()
-            if url == True:
-                classificatorObject.generateJsonUrlData()
+            #Entrenamos con todas las posibilidades y generamos los ficheros correspondientes de entrenamiento persistente
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonHeaderData()
+            classificatorObject.training()
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonUrlData()
+            classificatorObject.training()
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonMetaData()
+            classificatorObject.training()
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonSpanData()
+            classificatorObject.training()
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonTitleData()
+            classificatorObject.training()
+            #El entrenamiento de allData le activamos a mano, porque todabia no funciona fino
+
             if paragraph == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classificatorObject.generateJsonParagraphData()
-            if metadata == True:
-                classificatorObject.generateJsonMetaData()
-            if span == True:
-                classificatorObject.generateJsonSpanData()
-            if title == True:
-                classificatorObject.generateJsonTitleData()
+                classificatorObject.training()
+
             if allData == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classificatorObject.generateJsonWithAllData()
+                classificatorObject.training()
             ##if de todos   TODO
             #fin de los ifs
 
-            classificatorObject.training()
+
 
         else:
             classifyMeta = True
@@ -62,22 +70,40 @@ if(not testRestService):
             classifySpan = False
             classifyUrl = False
             classifyTitle = False
-            classifier = classificatorObject.getClasifier()
+
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
-            webPageInfoObject = webPageInfo(route= configuracion.getWebPageInfoToClassify())
-            miClass = dataClasificator( webPageInfoObject, classifier)
+            webPageInfoObject = webPageInfo(route= '/home/usertfm/SalidaJSON/Preproc/google.es.json')
+
             if classifyMeta == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                classifier = classificatorObject.getClasifier()
+                miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllMeta())
             if classifyParrafo == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                classifier = classificatorObject.getClasifier()
+                miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllParrafos())
             if classifyHeader == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                classifier = classificatorObject.getClasifier()
+                miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllHeaders())
             if classifySpan == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                classifier = classificatorObject.getClasifier()
+                miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllSpan())
             if classifyUrl == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                classifier = classificatorObject.getClasifier()
+                miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllUrl())
             if classifyTitle == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                classifier = classificatorObject.getClasifier()
+                miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllTitles())
 else:
     if(testListRestService):
