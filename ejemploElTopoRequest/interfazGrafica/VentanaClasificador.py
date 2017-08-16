@@ -31,7 +31,7 @@ class VentanaClasificador():
                                                  self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
 
         self.classifier = self.classificatorObject.getClasifier()
-        self.webPageInfoObject = webPageInfo(route= self.configuracion.getWebPageInfoToClassify())
+        self.webPageInfoObject = webPageInfo(route= '/home/usertfm/SalidaJSON/Preproc/google.es.json')
         self.miClass = dataClasificator(self.webPageInfoObject,self.classifier)
 
 
@@ -66,37 +66,34 @@ class VentanaClasificador():
         #ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
         #ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
         #casificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-        self.miClass.classifyTitle()
+        print(self.miClass.classifyTitle())
+        print("AQUI SI QUE ENTRA")
 
         #print(classifier.classify("tumadre"))
 
     def ruta_text(self):
-
         result = askdirectory()
         self.url.delete(0,'end')
         self.url.insert(0,result)
         self.url.pack(in_=self.toolbar,side = "left")
 
     def classificator_header(self):
-
-        self.miClass.classifyAllHeaders()
+        print(self.miClass.classifyAllHeaders())
 
     def classificator_url(self):
-
-        self.miClass.classifyAllUrl()
+        print(self.miClass.classifyAllUrl())
 
     def classificator_paragraph(self):
-        self.miClass.classifyAllParrafos()
+        print(self.miClass.classifyAllParrafos())
 
     def classificator_metadata(self):
-        self.miClass.classifyAllMeta()
-
+        print(self.miClass.classifyAllMeta())
 
     def classificator_span(self):
-        self.miClass.classifyAllSpan()
+        print(self.miClass.classifyAllSpan())
 
     def classificator_title(self):
-        self.miClass.classifyAllTitles()
+        print(self.miClass.classifyAllTitles())
 
 
 class TextRedirector(object):
