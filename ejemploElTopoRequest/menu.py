@@ -48,8 +48,6 @@ def letrasInicio(screen):
 def menu_principal():
     os.system('clear')
 
-    Screen.wrapper(letrasInicio)
-
     print("===============================")
     print(" MENU PRINCIPAL: EL TOPO       ")
     print("===============================")
@@ -221,7 +219,7 @@ def Clasificador():
 
 def Configurar():
     print("Editar el fichero.json")
-    time.sleep(5)
+    input('Pulse Enter para continuar...')
     menu_principal()
 
 
@@ -231,7 +229,7 @@ def IniciarCrawlerL():
     rutaSalidaSpyder = theSpyder.launch()
     procesador = Preprocesator(rutaSalidaSpyder + "onLine/", configuracion.getRutaSalidaPreProcesador())
     procesador.process()
-    time.sleep(7)
+    input('Pulse Enter para continuar...')
     menu_principal()
 
 
@@ -240,7 +238,7 @@ def IniciarCrawlerR():
     caller = SpyderRestCaller()
     paths = caller.callList()
     print(paths)
-    time.sleep(15)
+    input('Pulse Enter para continuar...')
     menu_principal()
 
 
@@ -248,42 +246,52 @@ def Entrenador():
     # Menu de botones
 
     print("Iniciando Entrenamiento...")
-    time.sleep(3)
+    input('Pulse Enter para continuar...')
     menu_principal()
     # Llamada al método de entrenamiento
 
 
 def Alldata():
     print(miClass.classifyAllHeaders())
-    time.sleep(3)
-    sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
 
 def Titledata():
     print(miClass.classifyAllTitles())
-    time.sleep(3)
-sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
+
 def Spandata():
     print(miClass.classifyAllSpan())
-    time.sleep(3)
-sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
+
 def Metadata():
     print(miClass.classifyAllMeta())
-    time.sleep(3)
-    sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
 
 def Paragraphdata():
     print(miClass.classifyAllParrafos())
-    time.sleep(3)
-sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
 
 def Urldata():
     print(miClass.classifyAllUrl())
-    time.sleep(3)
-sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
+
 def Headerdata():
     print(miClass.classifyAllHeaders())
-    time.sleep(3)
-    sub_menuClasificador()
+    input('Pulse Enter para volver al menu...')
+    Clasificador()
+
 
 def back():
     acciones_menu['main_menu']()
@@ -337,4 +345,6 @@ acciones_submenuClasificador = {
 }
 
 if __name__ == "__main__":
+    os.system('clear')
+    Screen.wrapper(letrasInicio)
     menu_principal()
