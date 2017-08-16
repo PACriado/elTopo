@@ -19,15 +19,16 @@ boolSpyder = False
 
 
 def letrasInicio(screen):
-    while True:
+    x = 0
+    while x<1000:
         screen.print_at('El topo',
                         randint(0, screen.width), randint(0, screen.height),
                         colour=randint(0, screen.colours - 1),
                         bg=randint(0, screen.colours - 1))
         ev = screen.get_key()
-        if ev in (ord('Q'), ord('q')):
-            return
         screen.refresh()
+        x+=1
+
 
 
 
