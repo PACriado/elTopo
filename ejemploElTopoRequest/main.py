@@ -64,7 +64,7 @@ if(not testRestService):
         else:
             classifyMeta = True
             classifyParrafo = False
-            classifyHeader = False
+            classifyHeader = False #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
             classifySpan = False
             classifyUrl = False
             classifyTitle = False
@@ -75,37 +75,49 @@ if(not testRestService):
 
             if classifyMeta == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargado Classifier Meta...")
                 classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllMeta())
                 print(miClass.accuracyAll("META", "Armas"))
             if classifyParrafo == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargado Classifier Parragraph...")
                 classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllParrafos())
                 print(miClass.accuracyAll("PARRAFO", "Armas"))
             if classifyHeader == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargado Classifier Headers...")
                 classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllHeaders())
                 print(miClass.accuracyAll("HEADER", "Armas"))
             if classifySpan == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargado Classifier Spans...")
                 classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllSpan())
                 print(miClass.accuracyAll("SPAN", "Armas"))
             if classifyUrl == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargado Classifier URL...")
                 classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllUrl())
                 print(miClass.accuracyAll("URL", "Armas"))
             if classifyTitle == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargado Classifier Title...")
                 classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllTitles())
                 print(miClass.accuracyAll("TITLE", "Armas"))
