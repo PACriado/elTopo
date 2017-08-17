@@ -80,31 +80,38 @@ if(not testRestService):
                 classifier = classificatorObject.getClasifier()
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllMeta())
+                print(miClass.accuracyAll("META", "Armas"))
             if classifyParrafo == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classifier = classificatorObject.getClasifier()
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllParrafos())
+                print(miClass.accuracyAll("PARRAFO", "Armas"))
             if classifyHeader == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classifier = classificatorObject.getClasifier()
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllHeaders())
+                print(miClass.accuracyAll("HEADER", "Armas"))
             if classifySpan == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classifier = classificatorObject.getClasifier()
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllSpan())
+                print(miClass.accuracyAll("SPAN", "Armas"))
             if classifyUrl == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classifier = classificatorObject.getClasifier()
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllUrl())
+                print(miClass.accuracyAll("URL", "Armas"))
             if classifyTitle == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 classifier = classificatorObject.getClasifier()
                 miClass = dataClasificator( webPageInfoObject, classifier)
                 print(miClass.classifyAllTitles())
+                print(miClass.accuracyAll("TITLE", "Armas"))
+
 else:
     if(testListRestService):
         caller = SpyderRestCaller()
