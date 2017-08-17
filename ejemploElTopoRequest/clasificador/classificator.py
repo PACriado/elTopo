@@ -22,9 +22,9 @@ class classificator:
         print("El entrenamiento es persistente")
 
     def getClasifier(self):
-        object = dataTrainer(self.trainingJsonPath)
-        object.train()
-        classifier = object.persistantRead(self.persistantReadFile)
+        objecto = dataTrainer(self.trainingJsonPath)
+        #objecto.train()
+        classifier = objecto.persistantRead(self.persistantReadFile)
         return classifier
 
     def generateJsonParagraphData(self):
