@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import ttk
 import sys
-from tkinter.filedialog import askdirectory,askopenfile
+from tkinter.filedialog import askdirectory
+from tkinter.filedialog import askopenfilename
 from configElTopo.config import config
 from clasificador.classificator import classificator
 from clasificador.dataClasificator import dataClasificator
@@ -51,40 +52,48 @@ class VentanaClasificador():
         BTN_Abrirdir.grid(row=0,column=0)
         self.url.grid(row=0,column=1)
 
-        # Fila 2 :
-        BTN_Header.grid(row=1,column=0)
-        BTN_Paragraph.grid(row=1,column=1)
-        BTN_Span.grid(row=1,column=2)
-        BTN_Url.grid(row=1,column=3)
+        # Fila 3 :
+        BTN_Header.grid(row=2,column=0)
+        BTN_Paragraph.grid(row=2,column=1)
+        BTN_Span.grid(row=2,column=2)
+        BTN_Url.grid(row=2,column=3)
 
 
-        #Fila 3 :
-        BTN_Title.grid(row=2,column=0)
-        BTN_All.grid(row=2,column=1)
-        BTN_Metadata.grid(row=2,column=2)
-
-        # Fila 5 :
-
-        BTN_Abrirfich.grid(row=4,column=0)
-        self.urlfich.grid(row=4,column=1)
+        #Fila 4 :
+        BTN_Title.grid(row=3,column=0)
+        BTN_All.grid(row=3,column=1)
+        BTN_Metadata.grid(row=3,column=2)
 
         # Fila 6 :
-        BTN_Headerfich.grid(row=5,column=0)
-        BTN_Paragraphfich.grid(row=5,column=1)
-        BTN_Spanfich.grid(row=5,column=2)
-        BTN_Urlfich.grid(row=5,column=3)
+
+        BTN_Abrirfich.grid(row=5,column=0)
+        self.urlfich.grid(row=5,column=1)
+
+        # Fila 8 :
+        BTN_Headerfich.grid(row=7,column=0)
+        BTN_Paragraphfich.grid(row=7,column=1)
+        BTN_Spanfich.grid(row=7,column=2)
+        BTN_Urlfich.grid(row=7,column=3)
 
 
-        #Fila 7 :
-        BTN_Titlefich.grid(row=6,column=0)
-        BTN_Allfich.grid(row=6,column=1)
-        BTN_Metadatafich.grid(row=6,column=2)
+        #Fila 10 :
+        BTN_Titlefich.grid(row=9,column=0)
+        BTN_Allfich.grid(row=9,column=1)
+        BTN_Metadatafich.grid(row=9,column=2)
 
-        #Fila 10
+        #Fila 11:
+        self.text = Text(self.marco, wrap="word")
+        #self.text.pack(side="top", fill="both", expand=True)
+        self.text.grid(row=10,column=1)
+        self.text.tag_configure("stderr", foreground="#b22222")
+        sys.stdout = TextRedirector(self.text, "stdout")
+
+
+        #Fila 13
         BTN_ClasificarFich = ttk.Button(self.marco, text="Clasificar fichero", command=self.ruta_textfich)
         BTN_ClasificarDir = ttk.Button(self.marco, text="Clasificar directorio", command=self.classificator_header)
-        BTN_ClasificarDir.grid(row=9,column=0)
-        BTN_ClasificarFich.grid(row=9,column=1)
+        BTN_ClasificarDir.grid(row=12,column=0)
+        BTN_ClasificarFich.grid(row=12,column=1)
 
 
 
@@ -101,18 +110,8 @@ class VentanaClasificador():
         #BTN_Title.pack(in_=self.toolbar, side="bottom")
         #BTN_All.pack(in_=self.toolbar, side="bottom")
 
-        self.text = Text(self.marco, wrap="word")
-        #self.text.pack(side="top", fill="both", expand=True)
-        self.text.grid(row=3,column=1)
-        self.text.tag_configure("stderr", foreground="#b22222")
-        sys.stdout = TextRedirector(self.text, "stdout")
 
 
-        self.textfich = Text(self.marco, wrap="word")
-        #self.text.pack(side="top", fill="both", expand=True)
-        self.textfich.grid(row=7,column=1)
-        self.textfich.tag_configure("stderr", foreground="#b22222")
-        sys.stdout = TextRedirector(self.textfich, "stdout")
 
 
     def print_stdout(self):
@@ -130,14 +129,14 @@ class VentanaClasificador():
         self.url.delete(0, 'end')
         self.url.insert(0, result)
         #self.url.pack(in_=self.marco, side="left")
-        self.url.grid(row=3,column=1)
+        self.url.grid(row=0,column=1)
 
     def ruta_textfich(self):
-        result = askopenfile()
-        self.url.delete(0, 'end')
-        self.url.insert(0, result)
+        result = askopenfilename()
+        self.urlfich.delete(0, 'end')
+        self.urlfich.insert(0, result)
         #self.url.pack(in_=self.marco, side="left")
-        self.url.grid(row=7,column=1)
+        self.urlfich.grid(row=5,column=1)
 
 
     def classificator_header(self):

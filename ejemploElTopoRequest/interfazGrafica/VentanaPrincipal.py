@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter.filedialog import askopenfilename,askdirectory
+from tkinter.filedialog import askopenfilename
 from PIL import Image, ImageTk
 from interfazGrafica.VentanaConfig import VentanaConfig
 from interfazGrafica.VentanaConfigCrawler import VentanaConfigCrawler
@@ -105,7 +105,7 @@ class VentanaPrincipal():
 
     def AbrirVentanaClasificador(self):
         ventanaClasificador = VentanaClasificador()
-        print("Iniciando el clasificador...")
+        #print("Iniciando el clasificador...")
 
     def AbrirVentanaEntrenamiento(self):
         ventanaEntrenamiento = VentanaEntrenamiento()
