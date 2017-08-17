@@ -1,6 +1,7 @@
 from tkinter import *
+from tkinter import ttk
 import sys
-from tkinter.filedialog import askdirectory
+from tkinter.filedialog import askdirectory,askopenfile
 from configElTopo.config import config
 from clasificador.classificator import classificator
 from clasificador.dataClasificator import dataClasificator
@@ -11,47 +12,114 @@ class VentanaClasificador():
     def __init__(self):
         self.ventana = Tk()
         self.ventana.title('Clasificador')
-        self.toolbar = Frame(self.ventana)
-        self.toolbar.pack(side="top", fill="x")
+        #self.toolbar = Frame(self.ventana)
+        #self.toolbar.pack(side="top", fill="x")
 
+        self.marco = ttk.Frame(self.ventana, borderwidth=1)
+        self.marco.grid(row=0,column=0)
 
         self.configuracion = config("./configElTopo/config.json")
+        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
+        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
+        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
 
-        BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)
-        BTN_Abrirdir = Button(self.ventana, text="Abrir directorio", command=self.ruta_text)
-        BTN_Header = Button(self.ventana, text="Header data", command=self.classificator_header)
-        BTN_Url = Button(self.ventana, text="Url data", command=self.classificator_url)
-        BTN_Paragraph = Button(self.ventana, text="Paragraph data", command=self.classificator_paragraph)
-        BTN_Metadata = Button(self.ventana, text="Meta data", command=self.classificator_metadata)
-        BTN_Span = Button(self.ventana, text="Span data", command=self.classificator_span)
-        BTN_Title = Button(self.ventana, text="Title data", command=self.classificator_title)
-        BTN_All = Button(self.ventana, text="All data", command=self.classificator_paragraph)
-        self.url = Entry(self.ventana, width=80)
+        BTN_Abrirdir = ttk.Button(self.marco, text="Abrir directorio", command=self.ruta_text)
+        BTN_Header = ttk.Button(self.marco, text="Header data", command=self.classificator_header)
+        BTN_Url = ttk.Button(self.marco, text="Url data", command=self.classificator_url)
+        BTN_Paragraph = ttk.Button(self.marco, text="Paragraph data", command=self.classificator_paragraph)
+        BTN_Metadata = ttk.Button(self.marco, text="Meta data", command=self.classificator_metadata)
+        BTN_Span = ttk.Button(self.marco, text="Span data", command=self.classificator_span)
+        BTN_Title = ttk.Button(self.marco, text="Title data", command=self.classificator_title)
+        BTN_All = ttk.Button(self.marco, text="All data", command=self.classificator_paragraph)
+        self.url = ttk.Entry(self.marco, width=80)
 
-        BTN_Iniciar.pack(in_=self.toolbar, side="left")
-        BTN_Abrirdir.pack(in_=self.toolbar, side="left")
-        self.url.pack(in_=self.toolbar, side="left")
-        BTN_Header.pack(in_=self.toolbar, side="bottom")
-        BTN_Url.pack(in_=self.toolbar, side="bottom")
-        BTN_Paragraph.pack(in_=self.toolbar, side="bottom")
-        BTN_Metadata.pack(in_=self.toolbar, side="bottom")
-        BTN_Span.pack(in_=self.toolbar, side="bottom")
-        BTN_Title.pack(in_=self.toolbar, side="bottom")
-        BTN_All.pack(in_=self.toolbar, side="bottom")
-        self.text = Text(self.ventana, wrap="word")
-        self.text.pack(side="top", fill="both", expand=True)
+
+        BTN_Abrirfich = ttk.Button(self.marco, text="Abrir fichero", command=self.ruta_textfich)
+        BTN_Headerfich = ttk.Button(self.marco, text="Header data", command=self.classificator_header)
+        BTN_Urlfich = ttk.Button(self.marco, text="Url data", command=self.classificator_url)
+        BTN_Paragraphfich = ttk.Button(self.marco, text="Paragraph data", command=self.classificator_paragraph)
+        BTN_Metadatafich = ttk.Button(self.marco, text="Meta data", command=self.classificator_metadata)
+        BTN_Spanfich = ttk.Button(self.marco, text="Span data", command=self.classificator_span)
+        BTN_Titlefich = ttk.Button(self.marco, text="Title data", command=self.classificator_title)
+        BTN_Allfich = ttk.Button(self.marco, text="All data", command=self.classificator_paragraph)
+        self.urlfich = ttk.Entry(self.marco, width=80)
+
+
+       # Fila 1 :
+
+        BTN_Abrirdir.grid(row=0,column=0)
+        self.url.grid(row=0,column=1)
+
+        # Fila 2 :
+        BTN_Header.grid(row=1,column=0)
+        BTN_Paragraph.grid(row=1,column=1)
+        BTN_Span.grid(row=1,column=2)
+        BTN_Url.grid(row=1,column=3)
+
+
+        #Fila 3 :
+        BTN_Title.grid(row=2,column=0)
+        BTN_All.grid(row=2,column=1)
+        BTN_Metadata.grid(row=2,column=2)
+
+        # Fila 5 :
+
+        BTN_Abrirfich.grid(row=4,column=0)
+        self.urlfich.grid(row=4,column=1)
+
+        # Fila 6 :
+        BTN_Headerfich.grid(row=5,column=0)
+        BTN_Paragraphfich.grid(row=5,column=1)
+        BTN_Spanfich.grid(row=5,column=2)
+        BTN_Urlfich.grid(row=5,column=3)
+
+
+        #Fila 7 :
+        BTN_Titlefich.grid(row=6,column=0)
+        BTN_Allfich.grid(row=6,column=1)
+        BTN_Metadatafich.grid(row=6,column=2)
+
+        #Fila 10
+        BTN_ClasificarFich = ttk.Button(self.marco, text="Clasificar fichero", command=self.ruta_textfich)
+        BTN_ClasificarDir = ttk.Button(self.marco, text="Clasificar directorio", command=self.classificator_header)
+        BTN_ClasificarDir.grid(row=9,column=0)
+        BTN_ClasificarFich.grid(row=9,column=1)
+
+
+
+
+
+       # BTN_Iniciar.pack(in_=self.toolbar, side="left")
+        #BTN_Abrirdir.(in_=self.toolbar, side="left")
+        #self.url.pack(in_=self.toolbar, side="left")
+        #BTN_Header.pack(in_=self.toolbar, side="bottom")
+        #BTN_Url.pack(in_=self.toolbar, side="bottom")
+        #BTN_Paragraph.pack(in_=self.toolbar, side="bottom")
+        #BTN_Metadata.pack(in_=self.toolbar, side="bottom")
+        #BTN_Span.pack(in_=self.toolbar, side="bottom")
+        #BTN_Title.pack(in_=self.toolbar, side="bottom")
+        #BTN_All.pack(in_=self.toolbar, side="bottom")
+
+        self.text = Text(self.marco, wrap="word")
+        #self.text.pack(side="top", fill="both", expand=True)
+        self.text.grid(row=3,column=1)
         self.text.tag_configure("stderr", foreground="#b22222")
         sys.stdout = TextRedirector(self.text, "stdout")
+
+
+        self.textfich = Text(self.marco, wrap="word")
+        #self.text.pack(side="top", fill="both", expand=True)
+        self.textfich.grid(row=7,column=1)
+        self.textfich.tag_configure("stderr", foreground="#b22222")
+        sys.stdout = TextRedirector(self.textfich, "stdout")
+
 
     def print_stdout(self):
         # configuracion = config("./configElTopo/config.json")
         # ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
         # ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
         # casificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
         print("AQUI SI QUE ENTRA")
 
@@ -61,13 +129,19 @@ class VentanaClasificador():
         result = askdirectory()
         self.url.delete(0, 'end')
         self.url.insert(0, result)
-        self.url.pack(in_=self.toolbar, side="left")
+        #self.url.pack(in_=self.marco, side="left")
+        self.url.grid(row=3,column=1)
+
+    def ruta_textfich(self):
+        result = askopenfile()
+        self.url.delete(0, 'end')
+        self.url.insert(0, result)
+        #self.url.pack(in_=self.marco, side="left")
+        self.url.grid(row=7,column=1)
+
 
     def classificator_header(self):
 
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
         classificatorObject = classificator(self.ficheroParaEntrenamiento,
                                             self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
@@ -81,86 +155,66 @@ class VentanaClasificador():
 
     def classificator_url(self):
 
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-
-
         classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
                                             self.configuracion.getRutaJSONTraining(),
                                             self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject,classifier)
+        miClass = dataClasificator(self.webPageInfoObject, classifier)
 
         print(miClass.classifyAllUrl())
 
 
+
     def classificator_paragraph(self):
 
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-
-
         classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
                                             self.configuracion.getRutaJSONTraining(),
                                             self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject,classifier)
+        miClass = dataClasificator(self.webPageInfoObject, classifier)
 
         print(miClass.classifyAllParrafos())
 
 
+
     def classificator_metadata(self):
 
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
         classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
                                             self.configuracion.getRutaJSONTraining(),
                                             self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject,classifier)
-
+        miClass = dataClasificator(self.webPageInfoObject, classifier)
         print(miClass.classifyAllMeta())
 
 
     def classificator_span(self):
 
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
-
-
         classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
                                             self.configuracion.getRutaJSONTraining(),
                                             self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-        classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject,classifier)
 
+        classifier = classificatorObject.getClasifier()
+
+        miClass = dataClasificator(self.webPageInfoObject, classifier)
         print(miClass.classifyAllSpan())
+
 
 
     def classificator_title(self):
 
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-        self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
-        self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
         classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
                                             self.configuracion.getRutaJSONTraining(),
                                             self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject,classifier)
-
+        miClass = dataClasificator(self.webPageInfoObject, classifier)
         print(miClass.classifyAllTitles())
-
 
 class TextRedirector(object):
 
