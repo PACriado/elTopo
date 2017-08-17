@@ -2,7 +2,7 @@
     "children": [
         {
             "children": [],
-            "headers": [],
+            "headers": ["Every header is useful"],
             "images": 0.0,
             "isOnline": true,
             "label": "Armas",
@@ -26,7 +26,7 @@
         },
         {
             "children": [],
-            "headers": [],
+            "headers": ["Jeff header grimes"],
             "images": 14.0,
             "isOnline": true,
             "label": "Drogas",

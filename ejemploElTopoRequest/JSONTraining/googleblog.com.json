@@ -1,6 +1,6 @@
 {
     "children": [],
-    "headers": [],
+    "headers": ["Oh my header"],
     "images": 23.0,
     "isOnline": true,
     "label": "Armas",

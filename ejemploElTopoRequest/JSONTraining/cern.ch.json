@@ -2,7 +2,7 @@
     "children": [
         {
             "children": [],
-            "headers": [],
+            "headers": ["EL laboratorio de ginebra es el cern"],
             "images": 0.0,
             "isOnline": true,
             "label": "Drogas",
@@ -24,7 +24,7 @@
         },
         {
             "children": [],
-            "headers": [],
+            "headers": ["Otro header mas por aqui"],
             "images": 0.0,
             "isOnline": true,
             "label": "Porno",
@@ -48,7 +48,7 @@
         },
         {
             "children": [],
-            "headers": [],
+            "headers": ["Palabras sdfsjajsfr4adaerg cern indirectly"],
             "images": 2.0,
             "isOnline": true,
             "label": "Armas",
@@ -113,7 +113,7 @@
         },
         {
             "children": [],
-            "headers": [],
+            "headers": ["Mucho header para el CERN deriver french"],
             "images": 0.0,
             "isOnline": true,
             "label": "Drogas",

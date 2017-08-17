@@ -1,6 +1,6 @@
 {
     "children": [],
-    "headers": [],
+    "headers": ["ALl the headder now"],
     "images": 10.0,
     "isOnline": true,
     "label": "Drogas",

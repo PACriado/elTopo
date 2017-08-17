@@ -48,9 +48,11 @@ class dataClasificator:
     def classifyAllHeaders(self):
         all = []
         headerList  = self.webPageInfo.getAllHeaders()
+
         for header in headerList:
             ##for e in header:
                 ##add = self.classifier.classify(e)
+            print(header)
             all.append(self.classifier.classify(header))
         return all
 
@@ -68,7 +70,7 @@ class dataClasificator:
         all = []
         parrafosList  = self.webPageInfo.getAllParrafos()
         for parrafo in parrafosList:
-            ##print(parrafo)
+            print(parrafo)
             ##for e in parrafo:
             all.append(self.classifier.classify(parrafo))
         return all

@@ -35,6 +35,7 @@ if(not testRestService):
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonHeaderData()
             classificatorObject.training()
+            '''
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonUrlData()
             classificatorObject.training()
@@ -55,16 +56,16 @@ if(not testRestService):
 
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonWithAllData()
-            classificatorObject.training()
+            classificatorObject.training() '''
             ##if de todos   TODO
             #fin de los ifs
 
 
 
         else:
-            classifyMeta = True
+            classifyMeta = False
             classifyParrafo = False
-            classifyHeader = False #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
+            classifyHeader = True #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
             classifySpan = False
             classifyUrl = False
             classifyTitle = False

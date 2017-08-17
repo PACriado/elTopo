@@ -2,7 +2,7 @@
     "children": [
         {
             "children": [],
-            "headers": [],
+            "headers": ["Hey header"],
             "images": 2.0,
             "isOnline": true,
             "label": "Drogas",
@@ -149,7 +149,7 @@
             "videos": 0.0
         }
     ],
-    "headers": [],
+    "headers": ["Don't let me header"],
     "images": 2.0,
     "isOnline": true,
     "label": "Porno",

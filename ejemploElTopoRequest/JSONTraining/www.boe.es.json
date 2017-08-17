@@ -2,7 +2,7 @@
     "children": [
         {
             "children": [],
-            "headers": [],
+            "headers": ["Header in the sky with diamonds"],
             "images": 0.0,
             "isOnline": true,
             "label": "Porno",
@@ -27,7 +27,7 @@
             "videos": 0.0
         }
     ],
-    "headers": [],
+    "headers": ["Across the header"],
     "images": 0.0,
     "isOnline": true,
     "label": "Drogas",
