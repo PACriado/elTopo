@@ -41,23 +41,21 @@ if(not testRestService):
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonMetaData()
             classificatorObject.training()
-            '''classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonSpanData()
-            classificatorObject.training()'''
+            classificatorObject.training()
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonTitleData()
             classificatorObject.training()
             #El entrenamiento de allData le activamos a mano, porque todabia no funciona fino
 
-            if paragraph == True:
-                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                classificatorObject.generateJsonParagraphData()
-                classificatorObject.training()
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonParagraphData()
+            classificatorObject.training()
 
-            if allData == True:
-                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                classificatorObject.generateJsonWithAllData()
-                classificatorObject.training()
+            classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            classificatorObject.generateJsonWithAllData()
+            classificatorObject.training()
             ##if de todos   TODO
             #fin de los ifs
 
