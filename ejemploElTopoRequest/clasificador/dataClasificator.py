@@ -49,8 +49,9 @@ class dataClasificator:
         all = []
         headerList  = self.webPageInfo.getAllHeaders()
         for header in headerList:
-            for e in header:
-                add = self.classifier.classify(e)
+            ##for e in header:
+                ##add = self.classifier.classify(e)
+            all.append(self.classifier.classify(header))
         return all
 
     def classifyAllTitles(self):
@@ -58,8 +59,9 @@ class dataClasificator:
         titleList  = self.webPageInfo.getAllTitles()
         for titles in titleList:
             print(titles)
-            for e in titles:
-                all.append(self.classifier.classify(e))
+            ##for e in titles:
+
+            all.append(self.classifier.classify(titles))
         return all
 
     def classifyAllParrafos(self):
@@ -67,8 +69,8 @@ class dataClasificator:
         parrafosList  = self.webPageInfo.getAllParrafos()
         for parrafo in parrafosList:
             ##print(parrafo)
-            for e in parrafo:
-                all.append(self.classifier.classify(e))
+            ##for e in parrafo:
+            all.append(self.classifier.classify(parrafo))
         return all
 
     def classifyAllSpan(self):
@@ -76,9 +78,9 @@ class dataClasificator:
         spanList  = self.webPageInfo.getAllSpans()
         ##print(spanList)
         for span in spanList:
-            for e in span:
+            ##for e in span:
             ##return self.classifier.classify(span)
-                all.append(self.classifier.classify(e))
+            all.append(self.classifier.classify(span))
         return all
 
     def classifyAllMeta(self):
@@ -87,6 +89,7 @@ class dataClasificator:
         ##print(metaList)
         for meta in metaList:
             ##for e in meta:
+
             ##return self.classifier.classify(span)
             all.append(self.classifier.classify(meta))
         return all
