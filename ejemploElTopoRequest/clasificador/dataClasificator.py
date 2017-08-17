@@ -40,9 +40,9 @@ class dataClasificator:
     def classifyAllUrl(self):
         all = []
         urlList  = self.webPageInfo.getAllUrls()
-        for url in urlList:
+        ##for url in urlList:
             ##pprint("************" + url + self.classifier.classify(url))
-            all.append(self.classifier.classify(urlList))
+        all.append(self.classifier.classify(urlList))
         return all
 
     def classifyAllHeaders(self):
@@ -57,6 +57,7 @@ class dataClasificator:
         all = []
         titleList  = self.webPageInfo.getAllTitles()
         for titles in titleList:
+            print(titles)
             for e in titles:
                 all.append(self.classifier.classify(e))
         return all
@@ -88,4 +89,41 @@ class dataClasificator:
             ##for e in meta:
             ##return self.classifier.classify(span)
             all.append(self.classifier.classify(meta))
+        return all
+
+    ##Metodos
+    def accuracyAll(self, classifierType, probType):
+        all = []
+        lists = []
+        if (classifierType == "URL"):
+            lists = self.webPageInfo.getAllUrls()
+            prob_dist = self.classifier.prob_classify(lists)
+            all.append((prob_dist.prob(probType)))
+        if (classifierType == "TITLE"):
+            lists = self.webPageInfo.getAllTitles()
+            for title in lists:
+                print(title)
+                prob_dist = self.classifier.prob_classify(title)
+                all.append((prob_dist.prob(probType)))
+        if (classifierType == "SPAN"):
+            lists = self.webPageInfo.getAllSpans()
+            for span in lists:
+                prob_dist = self.classifier.prob_classify(span)
+                all.append((prob_dist.prob(probType)))
+        if (classifierType == "HEADER"):
+            lists = self.webPageInfo.getAllHeaders()
+            for header in lists:
+                prob_dist = self.classifier.prob_classify(header)
+                all.append((prob_dist.prob(probType)))
+        if (classifierType == "PARRAFO"):
+            lists = self.webPageInfo.getAllParrafos()
+            for parrafo in lists:
+                prob_dist = self.classifier.prob_classify(parrafo)
+                all.append((prob_dist.prob(probType)))
+        if (classifierType == "META"):
+            lists = self.webPageInfo.getAllMetadatas()
+            for meta in lists:
+
+                prob_dist = self.classifier.prob_classify(meta)
+                all.append((prob_dist.prob(probType)))
         return all
