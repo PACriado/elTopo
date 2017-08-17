@@ -64,12 +64,12 @@ if(not testRestService):
 
 
         else:
-            classifyMeta = True
+            classifyMeta = False
             classifyParrafo = False
             classifyHeader = False
             classifySpan = False
             classifyUrl = False
-            classifyTitle = False
+            classifyTitle = True
 
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
