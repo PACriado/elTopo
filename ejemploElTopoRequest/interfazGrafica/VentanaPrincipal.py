@@ -104,8 +104,9 @@ class VentanaPrincipal():
 
 
     def AbrirVentanaClasificador(self):
+        print("Entro aquiiii")
         ventanaClasificador = VentanaClasificador()
-        print ("Iniciando el clasificador...")
+        print("Iniciando el clasificador...")
 
     def AbrirVentanaEntrenamiento(self):
         ventanaEntrenamiento = VentanaEntrenamiento()
