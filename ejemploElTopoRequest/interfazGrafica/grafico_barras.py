@@ -23,16 +23,16 @@ texto = ["porno", "drogas", "armas", "rusas", "pepinillos"]
 for x, y in enumerate(datos):
 
     x0 = x * x_stretch + x * x_width + x_gap  # Top left coordinates
-    print(x0)
+
     y0 = c_height - (y * y_stretch + y_gap)
-    print(y0)
+
 
     # Bottom right coordinates
     x1 = x * x_stretch + x * x_width + x_width + x_gap
-    print(x1)
+
     # Top right coordinates
     y1 = c_height - y_gap  # c.create_rectangle(x0, y0, x1, y1, fill="red")  # Draw the bar
-    print(y1)
+
     c.create_rectangle(x0, y0, x1, y1, fill="red")
     c.create_text(x0 -2 , 340, anchor=SW, text=texto[x])
 
