@@ -49,7 +49,6 @@ if(not testRestService):
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonTitleData()
             classificatorObject.training()
-            #El entrenamiento de allData le activamos a mano, porque todabia no funciona fino
 
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonParagraphData()
@@ -67,9 +66,9 @@ if(not testRestService):
             classifyMeta = False
             classifyParrafo = False
             classifyHeader = False #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
-            classifySpan = True
+            classifySpan = False
             classifyUrl = False
-            classifyTitle = False
+            classifyTitle = True
 
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
@@ -81,16 +80,24 @@ if(not testRestService):
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
-                print(clasificator.classifyAllMeta())
-                print(clasificator.accuracyAll("META", "Armas"))
+                #print(clasificator.classifyAllMeta())
+                #print(clasificator.accuracyAll("META", "Armas"))
+                estadisticas = clasificator.accuracyAllByCategory("META",configuracion.getRutaFicheroCategorias())
+                for estadistica in estadisticas:
+                    print(estadistica.getcategory())
+                    print(estadistica.getstatistic())
             if classifyParrafo == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Parragraph...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
-                print(clasificator.classifyAllParrafos())
-                print(clasificator.accuracyAll("PARRAFO", "Armas"))
+                #print(clasificator.classifyAllParrafos())
+                #print(clasificator.accuracyAll("PARRAFO", "Armas"))
+                estadisticas = clasificator.accuracyAllByCategory("PARRAFO",configuracion.getRutaFicheroCategorias())
+                for estadistica in estadisticas:
+                    print(estadistica.getcategory())
+                    print(estadistica.getstatistic())
             if classifyHeader == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Headers...")
@@ -99,6 +106,10 @@ if(not testRestService):
                 clasificator = dataClasificator( webPageInfoObject, classifier)
                 print(clasificator.classifyAllHeaders())
                 print(clasificator.accuracyAll("HEADER", "Armas"))
+                '''estadisticas = clasificator.accuracyAllByCategory("HEADER",configuracion.getRutaFicheroCategorias())
+                for estadistica in estadisticas:
+                    print(estadistica.getcategory())
+                    print(estadistica.getstatistic())'''
             if classifySpan == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Spans...")
@@ -121,16 +132,24 @@ if(not testRestService):
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
-                print(clasificator.classifyAllUrl())
-                print(clasificator.accuracyAll("URL", "Armas"))
+                #print(clasificator.classifyAllUrl())
+                #print(clasificator.accuracyAll("URL", "Armas"))
+                estadisticas = clasificator.accuracyAllByCategory("URL",configuracion.getRutaFicheroCategorias())
+                for estadistica in estadisticas:
+                    print(estadistica.getcategory())
+                    print(estadistica.getstatistic())
             if classifyTitle == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Title...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
-                print(clasificator.classifyAllTitles())
-                print(clasificator.accuracyAll("TITLE", "Armas"))
+                #print(clasificator.classifyAllTitles())
+                #print(clasificator.accuracyAll("TITLE", "Armas"))
+                estadisticas = clasificator.accuracyAllByCategory("TITLE",configuracion.getRutaFicheroCategorias())
+                for estadistica in estadisticas:
+                    print(estadistica.getcategory())
+                    print(estadistica.getstatistic())
 
 else:
     if(testListRestService):

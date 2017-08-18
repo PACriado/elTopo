@@ -109,7 +109,7 @@ class dataClasificator:
         if (classifierType == "TITLE"):
             lists = self.webPageInfo.getAllTitles()
             for title in lists:
-                print(title)
+                #print(title)
                 prob_dist = self.classifier.prob_classify(title)
                 all.append((prob_dist.prob(probType)))
         if (classifierType == "SPAN"):
