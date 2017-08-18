@@ -36,7 +36,6 @@ if(not testRestService):
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonHeaderData()
             classificatorObject.training()
-            '''
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonUrlData()
             classificatorObject.training()
@@ -49,14 +48,12 @@ if(not testRestService):
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonTitleData()
             classificatorObject.training()
-
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonParagraphData()
             classificatorObject.training()
-
             classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
             classificatorObject.generateJsonWithAllData()
-            classificatorObject.training() '''
+            classificatorObject.training()
             ##if de todos   TODO
             #fin de los ifs
 
