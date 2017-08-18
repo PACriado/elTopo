@@ -7,6 +7,7 @@
     "RutaSalida": "/home/usertfm/SalidaJSON/",
     "RutaSalidaPreProcesador": "/home/usertfm/SalidaJSON/Preproc/",
     "RutaServidoresSpyderRest": "./configElTopo/servidoresSpyder.txt",
+    "RutaFicheroCategorias": "./configElTopo/categorias.txt",
     "RutaFicheroEntrenamientoPersistente": "./clasificatorData/entrenamiento.txt",
     "RutaFicheroEntrenamientoPersistenteHeaderData": "./clasificatorData/entrenamientoHeaderData.txt",
     "RutaFicheroEntrenamientoPersistenteUrlData": "./clasificatorData/entrenamientoUrlData.txt",

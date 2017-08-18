@@ -27,12 +27,18 @@ class config:
             self.RutaFicheroEntrenamientoPersistenteSpanData=""
             self.RutaFicheroEntrenamientoPersistenteTitle=""
             self.FicheroParaEntrenamiento=""
+            self.RutaFicheroCategorias=""
             self.FicheroParaEntrenamientoGeneradoParaEntrenamiento=""
             self.RutaJSONTraining=""
             self.WebPageInfoToClassify = ""
             self.url=[]
         self.Route = route
 
+    def setRutaFicheroCategorias(self, rutaFicheroCategorias):
+        self.RutaFicheroCategorias = rutaFicheroCategorias
+
+    def getRutaFicheroCategorias(self):
+        return self.RutaFicheroCategorias
 
     def setRutaFicheroEntrenamientoPersistenteHeaderData(self, rutaFicheroEntrenamientoPersistenteHeaderData):
         self.RutaFicheroEntrenamientoPersistenteHeaderData = rutaFicheroEntrenamientoPersistenteHeaderData

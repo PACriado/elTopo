@@ -65,8 +65,8 @@ if(not testRestService):
         else:
             classifyMeta = False
             classifyParrafo = False
-            classifyHeader = True #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
-            classifySpan = False
+            classifyHeader = False #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
+            classifySpan = True
             classifyUrl = False
             classifyTitle = False
 
@@ -104,7 +104,10 @@ if(not testRestService):
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 miClass = dataClasificator( webPageInfoObject, classifier)
-                print(miClass.classifyAllSpan())
+                allClasifyElements = miClass.classifyAllSpan()
+                allClasifyElementsUnique = list(set(allClasifyElements)) #ESTO ELIMINA LOS ELEMENTOS DUPLICADOS EN EL ARRAY
+                print(allClasifyElements)
+                print(allClasifyElementsUnique)
                 print(miClass.accuracyAll("SPAN", "Armas"))
             if classifyUrl == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
