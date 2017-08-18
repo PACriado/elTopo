@@ -7,6 +7,7 @@ from configElTopo.config import config
 from clasificador.classificator import classificator
 from clasificador.dataClasificator import dataClasificator
 from Entidades.webPageInfo import webPageInfo
+from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 
 
 class VentanaClasificador():
@@ -26,13 +27,13 @@ class VentanaClasificador():
 
 
         BTN_Abrirdir = ttk.Button(self.marco, text="Abrir directorio", command=self.ruta_text)
-        BTN_Header = ttk.Button(self.marco, text="Header data", command=self.classificator_header)
-        BTN_Url = ttk.Button(self.marco, text="Url data", command=self.classificator_url)
-        BTN_Paragraph = ttk.Button(self.marco, text="Paragraph data", command=self.classificator_paragraph)
-        BTN_Metadata = ttk.Button(self.marco, text="Meta data", command=self.classificator_metadata)
-        BTN_Span = ttk.Button(self.marco, text="Span data", command=self.classificator_span)
-        BTN_Title = ttk.Button(self.marco, text="Title data", command=self.classificator_title)
-        BTN_All = ttk.Button(self.marco, text="All data", command=self.classificator_paragraph)
+        BTN_Header = ttk.Button(self.marco, text="Header data", command=self.classificator_header_directory)
+        BTN_Url = ttk.Button(self.marco, text="Url data", command=self.classificator_url_directory)
+        BTN_Paragraph = ttk.Button(self.marco, text="Paragraph data", command=self.classificator_paragraph_directory)
+        BTN_Metadata = ttk.Button(self.marco, text="Meta data", command=self.classificator_metadata_directory)
+        BTN_Span = ttk.Button(self.marco, text="Span data", command=self.classificator_span_directory)
+        BTN_Title = ttk.Button(self.marco, text="Title data", command=self.classificator_title_directory)
+        BTN_All = ttk.Button(self.marco, text="All data", command=self.classificator_paragraph_directory)
         self.url = ttk.Entry(self.marco, width=80)
 
 
@@ -90,10 +91,10 @@ class VentanaClasificador():
 
 
         #Fila 13
-        BTN_ClasificarFich = ttk.Button(self.marco, text="Clasificar fichero", command=self.ruta_textfich)
+        '''BTN_ClasificarFich = ttk.Button(self.marco, text="Clasificar fichero", command=self.ruta_textfich)
         BTN_ClasificarDir = ttk.Button(self.marco, text="Clasificar directorio", command=self.classificator_header)
         BTN_ClasificarDir.grid(row=12,column=0)
-        BTN_ClasificarFich.grid(row=12,column=1)
+        BTN_ClasificarFich.grid(row=12,column=1)'''
 
 
 
@@ -114,7 +115,7 @@ class VentanaClasificador():
 
 
 
-    def print_stdout(self):
+    '''def print_stdout(self):
         # configuracion = config("./configElTopo/config.json")
         # ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
         # ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
@@ -122,7 +123,7 @@ class VentanaClasificador():
 
         print("AQUI SI QUE ENTRA")
 
-        # print(classifier.classify("tumadre"))
+        # print(classifier.classify("tumadre"))'''
 
     def ruta_text(self):
         result = askdirectory()
@@ -149,10 +150,11 @@ class VentanaClasificador():
         #print(clasificator.classifyAllHeaders())
         #print(clasificator.accuracyAll("HEADER", "Armas"))
         estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
-
+        self.dibujarSeparador()
 
 
 
@@ -166,10 +168,11 @@ class VentanaClasificador():
         #print(clasificator.classifyAllUrl())
         #print(clasificator.accuracyAll("URL", "Armas"))
         estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
-
+        self.dibujarSeparador()
     def classificator_paragraph(self):
         webPageInfoObject = webPageInfo(route=self.urlfich.get())
         classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
@@ -180,10 +183,11 @@ class VentanaClasificador():
         #print(clasificator.classifyAllParrafos())
         #print(clasificator.accuracyAll("PARRAFO", "Armas"))
         estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
-
+        self.dibujarSeparador()
 
 
 
@@ -197,10 +201,11 @@ class VentanaClasificador():
         #print(clasificator.classifyAllMeta())
         #print(clasificator.accuracyAll("META", "Armas"))
         estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
-
+        self.dibujarSeparador()
 
     def classificator_span(self):
         webPageInfoObject = webPageInfo(route=self.urlfich.get())
@@ -215,10 +220,11 @@ class VentanaClasificador():
         #print(allClasifyElementsUnique)
         #print(clasificator.accuracyAll("SPAN", "Armas"))
         estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
-
+        self.dibujarSeparador()
 
 
     def classificator_title(self):
@@ -231,9 +237,129 @@ class VentanaClasificador():
         #print(clasificator.classifyAllTitles())
         #print(clasificator.accuracyAll("TITLE", "Armas"))
         estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
+        self.dibujarSeparador()
+
+    def classificator_header_directory(self):
+        path = self.url.get()
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(path+"/")
+        for webPageInfoObject in allObjects:
+            classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            print("Cargado Classifier Headers...")
+            classifier = classificatorObject.getClasifier()
+            print("Classifier Cargado")
+            clasificator = dataClasificator( webPageInfoObject, classifier)
+            #print(clasificator.classifyAllHeaders())
+            #print(clasificator.accuracyAll("HEADER", "Armas"))
+            estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias())
+            print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+            for estadistica in estadisticas:
+                print(estadistica.getcategory())
+                print(estadistica.getstatistic())
+        self.dibujarSeparador()
+
+
+
+    def classificator_url_directory(self):
+        path = self.url.get()
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(path+"/")
+        for webPageInfoObject in allObjects:
+            classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            print("Cargado Classifier URL...")
+            classifier = classificatorObject.getClasifier()
+            print("Classifier Cargado")
+            clasificator = dataClasificator( webPageInfoObject, classifier)
+            #print(clasificator.classifyAllUrl())
+            #print(clasificator.accuracyAll("URL", "Armas"))
+            estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias())
+            print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+            for estadistica in estadisticas:
+                print(estadistica.getcategory())
+                print(estadistica.getstatistic())
+        self.dibujarSeparador()
+    def classificator_paragraph_directory(self):
+        path = self.url.get()
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(path+"/")
+        for webPageInfoObject in allObjects:
+            classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            print("Cargado Classifier Parragraph...")
+            classifier = classificatorObject.getClasifier()
+            print("Classifier Cargado")
+            clasificator = dataClasificator( webPageInfoObject, classifier)
+            #print(clasificator.classifyAllParrafos())
+            #print(clasificator.accuracyAll("PARRAFO", "Armas"))
+            estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias())
+            print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+            for estadistica in estadisticas:
+                print(estadistica.getcategory())
+                print(estadistica.getstatistic())
+        self.dibujarSeparador()
+
+
+
+    def classificator_metadata_directory(self):
+        path = self.url.get()
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(path+"/")
+        for webPageInfoObject in allObjects:
+            classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            print("Cargado Classifier Meta...")
+            classifier = classificatorObject.getClasifier()
+            print("Classifier Cargado")
+            clasificator = dataClasificator( webPageInfoObject, classifier)
+            #print(clasificator.classifyAllMeta())
+            #print(clasificator.accuracyAll("META", "Armas"))
+            estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias())
+            print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+            for estadistica in estadisticas:
+                print(estadistica.getcategory())
+                print(estadistica.getstatistic())
+        self.dibujarSeparador()
+
+    def classificator_span_directory(self):
+        path = self.url.get()
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(path+"/")
+        for webPageInfoObject in allObjects:
+            classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            print("Cargado Classifier Spans...")
+            classifier = classificatorObject.getClasifier()
+            print("Classifier Cargado")
+            clasificator = dataClasificator( webPageInfoObject, classifier)
+            #allClasifyElements = clasificator.classifyAllSpan()
+            #allClasifyElementsUnique = list(set(allClasifyElements)) #ESTO ELIMINA LOS ELEMENTOS DUPLICADOS EN EL ARRAY
+            #print(allClasifyElements)
+            #print(allClasifyElementsUnique)
+            #print(clasificator.accuracyAll("SPAN", "Armas"))
+            estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias())
+            print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+            for estadistica in estadisticas:
+                print(estadistica.getcategory())
+                print(estadistica.getstatistic())
+        self.dibujarSeparador()
+
+
+    def classificator_title_directory(self):
+        path = self.url.get()
+        allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(path+"/")
+        for webPageInfoObject in allObjects:
+            classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+            print("Cargado Classifier Title...")
+            classifier = classificatorObject.getClasifier()
+            print("Classifier Cargado")
+            clasificator = dataClasificator( webPageInfoObject, classifier)
+            #print(clasificator.classifyAllTitles())
+            #print(clasificator.accuracyAll("TITLE", "Armas"))
+            estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias())
+            print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+            for estadistica in estadisticas:
+                print(estadistica.getcategory())
+                print(estadistica.getstatistic())
+        self.dibujarSeparador()
+    def dibujarSeparador(self):
+        print("-----------------------------------\n\n")
+
 
 
 class TextRedirector(object):
@@ -246,3 +372,5 @@ class TextRedirector(object):
         self.widget.configure(state="normal")
         self.widget.insert("end", str, (self.tag,))
         self.widget.configure(state="disabled")
+    def flush(self):
+        pass
