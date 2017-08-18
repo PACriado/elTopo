@@ -20,7 +20,7 @@ class VentanaClasificador():
         self.marco.grid(row=0,column=0)
 
         self.configuracion = config("./configElTopo/config.json")
-        self.webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
+
         self.ficheroParaEntrenamiento =self.configuracion.getFicheroParaEntrenamiento()
         self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
@@ -140,80 +140,101 @@ class VentanaClasificador():
 
 
     def classificator_header(self):
-
-
-        classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        webPageInfoObject = webPageInfo(route=self.urlfich.get())
+        classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        print("Cargado Classifier Headers...")
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject,classifier)
+        print("Classifier Cargado")
+        clasificator = dataClasificator( webPageInfoObject, classifier)
+        #print(clasificator.classifyAllHeaders())
+        #print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias())
+        for estadistica in estadisticas:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
-        print(miClass.classifyAllHeaders())
+
 
 
     def classificator_url(self):
-
-        classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        webPageInfoObject = webPageInfo(route=self.urlfich.get())
+        classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        print("Cargado Classifier URL...")
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject, classifier)
-
-        print(miClass.classifyAllUrl())
-
-
+        print("Classifier Cargado")
+        clasificator = dataClasificator( webPageInfoObject, classifier)
+        #print(clasificator.classifyAllUrl())
+        #print(clasificator.accuracyAll("URL", "Armas"))
+        estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias())
+        for estadistica in estadisticas:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
     def classificator_paragraph(self):
-
-        classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        webPageInfoObject = webPageInfo(route=self.urlfich.get())
+        classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        print("Cargado Classifier Parragraph...")
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject, classifier)
+        print("Classifier Cargado")
+        clasificator = dataClasificator( webPageInfoObject, classifier)
+        #print(clasificator.classifyAllParrafos())
+        #print(clasificator.accuracyAll("PARRAFO", "Armas"))
+        estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias())
+        for estadistica in estadisticas:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
-        print(miClass.classifyAllParrafos())
 
 
 
     def classificator_metadata(self):
-
-
-        classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        webPageInfoObject = webPageInfo(route=self.urlfich.get())
+        classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        print("Cargado Classifier Meta...")
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject, classifier)
-        print(miClass.classifyAllMeta())
+        print("Classifier Cargado")
+        clasificator = dataClasificator( webPageInfoObject, classifier)
+        #print(clasificator.classifyAllMeta())
+        #print(clasificator.accuracyAll("META", "Armas"))
+        estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias())
+        for estadistica in estadisticas:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
 
     def classificator_span(self):
-
-        classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-
+        webPageInfoObject = webPageInfo(route=self.urlfich.get())
+        classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        print("Cargado Classifier Spans...")
         classifier = classificatorObject.getClasifier()
-
-        miClass = dataClasificator(self.webPageInfoObject, classifier)
-        print(miClass.classifyAllSpan())
+        print("Classifier Cargado")
+        clasificator = dataClasificator( webPageInfoObject, classifier)
+        #allClasifyElements = clasificator.classifyAllSpan()
+        #allClasifyElementsUnique = list(set(allClasifyElements)) #ESTO ELIMINA LOS ELEMENTOS DUPLICADOS EN EL ARRAY
+        #print(allClasifyElements)
+        #print(allClasifyElementsUnique)
+        #print(clasificator.accuracyAll("SPAN", "Armas"))
+        estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias())
+        for estadistica in estadisticas:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
 
 
     def classificator_title(self):
-
-
-        classificatorObject = classificator(self.ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        webPageInfoObject = webPageInfo(route=self.urlfich.get())
+        classificatorObject = classificator(self.ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), self.configuracion.getRutaJSONTraining(), self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        print("Cargado Classifier Title...")
         classifier = classificatorObject.getClasifier()
-        miClass = dataClasificator(self.webPageInfoObject, classifier)
-        print(miClass.classifyAllTitles())
+        print("Classifier Cargado")
+        clasificator = dataClasificator( webPageInfoObject, classifier)
+        #print(clasificator.classifyAllTitles())
+        #print(clasificator.accuracyAll("TITLE", "Armas"))
+        estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias())
+        for estadistica in estadisticas:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
+
 
 class TextRedirector(object):
 
