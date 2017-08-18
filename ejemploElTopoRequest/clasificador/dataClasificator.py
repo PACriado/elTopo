@@ -145,7 +145,7 @@ class dataClasificator:
         infile.close()
         return categorias
 
-    def accuracyAllByCategory(self, classifierType, categoriesPath):
+    def accuracyAllByCategory(self, classifierType, categoriesPath,URL=""):
         estadisticaDeCategorias = []
         categorias = self.leerCategorias(categoriesPath)
         sumatorioEstadisticaCategoria=0
@@ -155,7 +155,7 @@ class dataClasificator:
                 sumatorioEstadisticaCategoria+=stadistica
             numeroElementos = len(Statistics)
             estadisticaCategoria = sumatorioEstadisticaCategoria/numeroElementos
-            estadisticaDeCategorias.append(categoryStatistic(categoria,estadisticaCategoria))
+            estadisticaDeCategorias.append(categoryStatistic(categoria,estadisticaCategoria,URL=URL))
             sumatorioEstadisticaCategoria=0
         return estadisticaDeCategorias
 

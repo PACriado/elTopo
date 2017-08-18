@@ -195,7 +195,7 @@ class VentanaClasificador():
         clasificator = dataClasificator( webPageInfoObject, classifier)
         #print(clasificator.classifyAllHeaders())
         #print(clasificator.accuracyAll("HEADER", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias())
+        estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
@@ -213,7 +213,7 @@ class VentanaClasificador():
         clasificator = dataClasificator( webPageInfoObject, classifier)
         #print(clasificator.classifyAllUrl())
         #print(clasificator.accuracyAll("URL", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias())
+        estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
@@ -228,7 +228,7 @@ class VentanaClasificador():
         clasificator = dataClasificator( webPageInfoObject, classifier)
         #print(clasificator.classifyAllParrafos())
         #print(clasificator.accuracyAll("PARRAFO", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias())
+        estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
@@ -246,7 +246,7 @@ class VentanaClasificador():
         clasificator = dataClasificator( webPageInfoObject, classifier)
         #print(clasificator.classifyAllMeta())
         #print(clasificator.accuracyAll("META", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias())
+        estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
@@ -265,7 +265,7 @@ class VentanaClasificador():
         #print(allClasifyElements)
         #print(allClasifyElementsUnique)
         #print(clasificator.accuracyAll("SPAN", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias())
+        estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
@@ -282,7 +282,7 @@ class VentanaClasificador():
         clasificator = dataClasificator( webPageInfoObject, classifier)
         #print(clasificator.classifyAllTitles())
         #print(clasificator.accuracyAll("TITLE", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias())
+        estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
         for estadistica in estadisticas:
             print(estadistica.getcategory())
@@ -300,7 +300,7 @@ class VentanaClasificador():
             clasificator = dataClasificator( webPageInfoObject, classifier)
             #print(clasificator.classifyAllHeaders())
             #print(clasificator.accuracyAll("HEADER", "Armas"))
-            estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias())
+            estadisticas = clasificator.accuracyAllByCategory("HEADER",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             for estadistica in estadisticas:
                 print(estadistica.getcategory())
@@ -320,7 +320,7 @@ class VentanaClasificador():
             clasificator = dataClasificator( webPageInfoObject, classifier)
             #print(clasificator.classifyAllUrl())
             #print(clasificator.accuracyAll("URL", "Armas"))
-            estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias())
+            estadisticas = clasificator.accuracyAllByCategory("URL",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             for estadistica in estadisticas:
                 print(estadistica.getcategory())
@@ -337,7 +337,7 @@ class VentanaClasificador():
             clasificator = dataClasificator( webPageInfoObject, classifier)
             #print(clasificator.classifyAllParrafos())
             #print(clasificator.accuracyAll("PARRAFO", "Armas"))
-            estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias())
+            estadisticas = clasificator.accuracyAllByCategory("PARRAFO",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             for estadistica in estadisticas:
                 print(estadistica.getcategory())
@@ -357,7 +357,7 @@ class VentanaClasificador():
             clasificator = dataClasificator( webPageInfoObject, classifier)
             #print(clasificator.classifyAllMeta())
             #print(clasificator.accuracyAll("META", "Armas"))
-            estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias())
+            estadisticas = clasificator.accuracyAllByCategory("META",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             for estadistica in estadisticas:
                 print(estadistica.getcategory())
@@ -378,7 +378,7 @@ class VentanaClasificador():
             #print(allClasifyElements)
             #print(allClasifyElementsUnique)
             #print(clasificator.accuracyAll("SPAN", "Armas"))
-            estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias())
+            estadisticas = clasificator.accuracyAllByCategory("SPAN",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             for estadistica in estadisticas:
                 print(estadistica.getcategory())
@@ -397,7 +397,7 @@ class VentanaClasificador():
             clasificator = dataClasificator( webPageInfoObject, classifier)
             #print(clasificator.classifyAllTitles())
             #print(clasificator.accuracyAll("TITLE", "Armas"))
-            estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias())
+            estadisticas = clasificator.accuracyAllByCategory("TITLE",self.configuracion.getRutaFicheroCategorias(),URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             for estadistica in estadisticas:
                 print(estadistica.getcategory())
