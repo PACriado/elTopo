@@ -65,10 +65,10 @@ if(not testRestService):
         else:
             classifyMeta = False
             classifyParrafo = False
-            classifyHeader = False #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
+            classifyHeader = True #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
             classifySpan = False
             classifyUrl = False
-            classifyTitle = True
+            classifyTitle = False
 
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
@@ -104,12 +104,12 @@ if(not testRestService):
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
-                print(clasificator.classifyAllHeaders())
-                print(clasificator.accuracyAll("HEADER", "Armas"))
-                '''estadisticas = clasificator.accuracyAllByCategory("HEADER",configuracion.getRutaFicheroCategorias())
+                #print(clasificator.classifyAllHeaders())
+                #print(clasificator.accuracyAll("HEADER", "Armas"))
+                estadisticas = clasificator.accuracyAllByCategory("HEADER",configuracion.getRutaFicheroCategorias())
                 for estadistica in estadisticas:
                     print(estadistica.getcategory())
-                    print(estadistica.getstatistic())'''
+                    print(estadistica.getstatistic())
             if classifySpan == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Spans...")
