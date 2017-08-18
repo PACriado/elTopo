@@ -3,6 +3,8 @@ from Entidades.webPageInfo import webPageInfo
 from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 import pickle
 from pprint import pprint
+from clasificador.entities.categoryStatistic import categoryStatistic
+
 #Class that classifies all the data depending of the tag selected.
 class dataClasificator:
 
@@ -132,3 +134,29 @@ class dataClasificator:
                 prob_dist = self.classifier.prob_classify(meta)
                 all.append((prob_dist.prob(probType)))
         return all
+
+
+    def leerCategorias(self,ruta):
+        categorias = []
+        infile = open(ruta, 'r')
+        for line in infile:
+            line = line.replace("\n", "")
+            categorias.append(line)
+        infile.close()
+        return categorias
+
+    def accuracyAllByCategory(self, classifierType, categoriesPath):
+        estadisticaDeCategorias = []
+        categorias = self.leerCategorias(categoriesPath)
+        sumatorioEstadisticaCategoria=0
+        for categoria in categorias:
+            Statistics = self.accuracyAll(classifierType, categoria)
+            for stadistica in Statistics:
+                sumatorioEstadisticaCategoria+=stadistica
+            numeroElementos = len(Statistics)
+            estadisticaCategoria = sumatorioEstadisticaCategoria/numeroElementos
+            estadisticaDeCategorias.append(categoryStatistic(categoria,estadisticaCategoria))
+            sumatorioEstadisticaCategoria=0
+        return estadisticaDeCategorias
+
+

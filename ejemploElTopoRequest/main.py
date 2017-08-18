@@ -6,6 +6,7 @@ from preProcesador.preProcesator import Preprocesator
 from configElTopo.config import config
 from clasificador.dataClasificator import dataClasificator
 from Entidades.webPageInfo import webPageInfo
+from clasificador.entities.categoryStatistic import categoryStatistic
 
 testRestService = False
 testListRestService = False
@@ -79,52 +80,57 @@ if(not testRestService):
                 print("Cargado Classifier Meta...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
-                miClass = dataClasificator( webPageInfoObject, classifier)
-                print(miClass.classifyAllMeta())
-                print(miClass.accuracyAll("META", "Armas"))
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                print(clasificator.classifyAllMeta())
+                print(clasificator.accuracyAll("META", "Armas"))
             if classifyParrafo == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Parragraph...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
-                miClass = dataClasificator( webPageInfoObject, classifier)
-                print(miClass.classifyAllParrafos())
-                print(miClass.accuracyAll("PARRAFO", "Armas"))
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                print(clasificator.classifyAllParrafos())
+                print(clasificator.accuracyAll("PARRAFO", "Armas"))
             if classifyHeader == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Headers...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
-                miClass = dataClasificator( webPageInfoObject, classifier)
-                print(miClass.classifyAllHeaders())
-                print(miClass.accuracyAll("HEADER", "Armas"))
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                print(clasificator.classifyAllHeaders())
+                print(clasificator.accuracyAll("HEADER", "Armas"))
             if classifySpan == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Spans...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
-                miClass = dataClasificator( webPageInfoObject, classifier)
-                allClasifyElements = miClass.classifyAllSpan()
-                allClasifyElementsUnique = list(set(allClasifyElements)) #ESTO ELIMINA LOS ELEMENTOS DUPLICADOS EN EL ARRAY
-                print(allClasifyElements)
-                print(allClasifyElementsUnique)
-                print(miClass.accuracyAll("SPAN", "Armas"))
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                #allClasifyElements = clasificator.classifyAllSpan()
+                #allClasifyElementsUnique = list(set(allClasifyElements)) #ESTO ELIMINA LOS ELEMENTOS DUPLICADOS EN EL ARRAY
+                #print(allClasifyElements)
+                #print(allClasifyElementsUnique)
+                #print(clasificator.accuracyAll("SPAN", "Armas"))
+                estadisticas = clasificator.accuracyAllByCategory("SPAN",configuracion.getRutaFicheroCategorias())
+                for estadistica in estadisticas:
+                    print(estadistica.getcategory())
+                    print(estadistica.getstatistic())
+
             if classifyUrl == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier URL...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
-                miClass = dataClasificator( webPageInfoObject, classifier)
-                print(miClass.classifyAllUrl())
-                print(miClass.accuracyAll("URL", "Armas"))
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                print(clasificator.classifyAllUrl())
+                print(clasificator.accuracyAll("URL", "Armas"))
             if classifyTitle == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
                 print("Cargado Classifier Title...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
-                miClass = dataClasificator( webPageInfoObject, classifier)
-                print(miClass.classifyAllTitles())
-                print(miClass.accuracyAll("TITLE", "Armas"))
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                print(clasificator.classifyAllTitles())
+                print(clasificator.accuracyAll("TITLE", "Armas"))
 
 else:
     if(testListRestService):
