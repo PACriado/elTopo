@@ -34,37 +34,27 @@ class VentanaEntrenamiento():
         ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
         # casificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaSalidaPreProcesador(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         # casificatorObject.training()
-
         # Entrenamos con todas las posibilidades y generamos cada uno de los ficheros de entrenamiento persistente
-        classificatorObject = classificator(ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classificatorObject.generateJsonHeaderData()
         classificatorObject.training()
-        classificatorObject = classificator(ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classificatorObject.generateJsonUrlData()
         classificatorObject.training()
-        classificatorObject = classificator(ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classificatorObject.generateJsonMetaData()
         classificatorObject.training()
-        classificatorObject = classificator(ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classificatorObject.generateJsonSpanData()
         classificatorObject.training()
-        classificatorObject = classificator(ficheroParaEntrenamiento,
-                                            self.configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
-                                            self.configuracion.getRutaJSONTraining(),
-                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
         classificatorObject.generateJsonTitleData()
+        classificatorObject.training()
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject.generateJsonParagraphData()
+        classificatorObject.training()
+        classificatorObject = classificator(ficheroParaEntrenamiento, self.configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+        classificatorObject.generateJsonWithAllData()
         classificatorObject.training()
 
 
