@@ -18,8 +18,6 @@ acciones_submenuCrawler = {}
 acciones_submenuCrawlerR = {}
 boolSpyder = False
 
-
-
 configuracion = config("./configElTopo/config.json")
 ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
 ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
@@ -33,8 +31,7 @@ classificatorObject = classificator(ficheroParaEntrenamiento,
                                     ficheroParaEntrenamientoGeneradoParaEntrenamiento)
 
 classifier = classificatorObject.getClasifier()
-webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
-miClass = dataClasificator(webPageInfoObject, classifier)
+#webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
 
 
 def letrasInicio(screen):
@@ -108,6 +105,11 @@ def sub_menuClasificador():
     print("Menu Clasificador")
 
 
+def sub_menuOpcionesClasificador():
+    os.system('clear')
+    print("Menu Opciones de Clasificación")
+
+
 def exec_menu(eleccion):
     os.system('clear')
     ch = eleccion.lower()
@@ -173,6 +175,20 @@ def exec_submenuClasificador(eleccion):
             print("Opcion no válida.Seleccionar otra opcion.\n")
             acciones_submenuClasificador['sub_menuClasificador']()
 
+def exec_submenuOpcionesClasificador(eleccion):
+    os.system('clear')
+    ch = eleccion.lower()
+    if ch == '':
+        acciones_submenuOpcionesClasificador[ch]()
+    else:
+        try:
+            acciones_submenuOpcionesClasificador[ch]()
+        except KeyError:
+            print("Opcion no válida.Seleccionar otra opcion.\n")
+            acciones_submenuOpcionesClasificador['sub_menuOpcionesClasificador']()
+
+
+
 
 def Configuracion():
     print("Menu Configuracion\n")
@@ -206,6 +222,18 @@ def CrawlerR():
 
 def Clasificador():
     print("Menu Clasificador\n")
+    print("1. Pedir Fichero")
+    print("2. Pedir Directorio ")
+    print("9. Volver")
+    print("0. Salir")
+    eleccion = input(" >>  ")
+
+    exec_submenuClasificador(eleccion)
+    return
+
+
+def OpcionesClasificador():
+    print("Seleccione un tipo de clasificación:\n")
     print("1. All data")
     print("2. Title data ")
     print("3. Span data")
@@ -217,12 +245,27 @@ def Clasificador():
     print("0. Salir")
     eleccion = input(" >>  ")
 
-    exec_submenuClasificador(eleccion)
+    exec_submenuOpcionesClasificador(eleccion)
     return
 
 
 def Configurar():
     print("Editar el fichero.json")
+    input('Pulse Enter para continuar...')
+    menu_principal()
+
+
+def PedirFich():
+    ruta_fich = input("Introducir ruta del fichero: ")
+    assert os.path.exists(ruta_fich), "No se ha encontrado el fichero en, " + str(ruta_fich)
+    print("Funcionando")
+    OpcionesClasificador()
+    return ruta_fich
+
+
+def PedirDir():
+    rutafichero = PedirFich()
+    print(rutafichero)
     input('Pulse Enter para continuar...')
     menu_principal()
 
@@ -248,27 +291,48 @@ def IniciarCrawlerR():
 
 def Entrenador():
     # Menu de botones
-    #print("Iniciando Entrenamiento...")
+    # print("Iniciando Entrenamiento...")
 
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonHeaderData()
     classificatorObject.training()
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonUrlData()
     classificatorObject.training()
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonMetaData()
     classificatorObject.training()
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonSpanData()
     classificatorObject.training()
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonTitleData()
     classificatorObject.training()
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonParagraphData()
     classificatorObject.training()
-    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistente(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
     classificatorObject.generateJsonWithAllData()
     classificatorObject.training()
     input('Pulse Enter para continuar...')
@@ -277,45 +341,66 @@ def Entrenador():
 
 
 def Alldata():
-    print(miClass.classifyAllHeaders())
+    ruta = PedirFich()
+    f = open(ruta, 'r+')
+    print("Funcionando")
+    webPageInfoObject = webPageInfo(route=ruta)
+    f.close()
+    #print(miClass.classifyAllHeaders())
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def Titledata():
-    print(miClass.classifyAllTitles())
+    #print(miClass.classifyAllTitles())
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def Spandata():
-    print(miClass.classifyAllSpan())
+    #print(miClass.classifyAllSpan())
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def Metadata():
-    print(miClass.classifyAllMeta())
+    print("EEEEEEEEY AQUI")
+    ruta = PedirFich()
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    print("Cargado Classifier Meta...")
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    print("Funcionando")
+    webPageInfoObject = webPageInfo(route=ruta)
+    clasificator = dataClasificator(webPageInfoObject, classifier)
+    estadisticas = clasificator.accuracyAllByCategory("META", configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def Paragraphdata():
-    print(miClass.classifyAllParrafos())
+    #print(miClass.classifyAllParrafos())
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def Urldata():
-    print(miClass.classifyAllUrl())
+    #print(miClass.classifyAllUrl())
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def Headerdata():
-    print(miClass.classifyAllHeaders())
+    #print(miClass.classifyAllHeaders())
     input('Pulse Enter para volver al menu...')
-    Clasificador()
+    #Clasificador()
 
 
 def back():
@@ -357,12 +442,20 @@ acciones_submenuCrawlerR = {
     '9': back,
     '0': exit
 }
+
 acciones_submenuClasificador = {
     'sub_menuClasificador': sub_menuClasificador,
+    '1': PedirFich,
+    '2': PedirDir,
+    '9': back,
+    '0': exit
+}
+acciones_submenuOpcionesClasificador = {
+    'sub_menuClasificador': sub_menuOpcionesClasificador,
     '1': Alldata,
     '2': Titledata,
-    '3': Metadata,
-    '4': Spandata,
+    '3': Spandata,
+    '4': Metadata,
     '5': Urldata,
     '6': Headerdata,
     '9': back,
@@ -371,5 +464,5 @@ acciones_submenuClasificador = {
 
 if __name__ == "__main__":
     os.system('clear')
-    Screen.wrapper(letrasInicio)
+   # Screen.wrapper(letrasInicio)
     menu_principal()
