@@ -6,7 +6,7 @@ class grafico_barras():
     def __init__(self, estadisticasCategoria):
 
         ventana = Tk()
-        ventana.title("Grafico de barras")
+        ventana.title("Grafico de barras " + estadisticasCategoria[0].geturl())
 
         c_width = 400
         c_height = 350
@@ -28,8 +28,6 @@ class grafico_barras():
         texto = []
 
         for estadistica in estadisticasCategoria:
-            print(estadistica.getcategory())
-            print(estadistica.getstatistic())
             datos.append(estadistica.getstatistic()*10)
             texto.append(estadistica.getcategory())
 

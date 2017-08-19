@@ -141,6 +141,7 @@ class VentanaClasificador():
         # print(classifier.classify("tumadre"))'''
 
     def mostrarVentanaDatos(self):
+
         grafico_barras(self.estadisticasResultado)
 
     def ruta_text(self):
@@ -202,10 +203,10 @@ class VentanaClasificador():
         clasificator = dataClasificator(webPageInfoObject, classifier)
         # print(clasificator.classifyAllHeaders())
         # print(clasificator.accuracyAll("HEADER", "Armas"))
-        self.estadisticas = clasificator.accuracyAllByCategory("HEADER", self.configuracion.getRutaFicheroCategorias(),
+        self.estadisticasResultado = clasificator.accuracyAllByCategory("HEADER", self.configuracion.getRutaFicheroCategorias(),
                                                           URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
-        for estadistica in self.estadisticas:
+        for estadistica in self.estadisticasResultado:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
