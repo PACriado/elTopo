@@ -154,6 +154,8 @@ class dataClasificator:
             for stadistica in Statistics:
                 sumatorioEstadisticaCategoria+=stadistica
             numeroElementos = len(Statistics)
+            if numeroElementos==0:
+                numeroElementos=1
             estadisticaCategoria = sumatorioEstadisticaCategoria/numeroElementos
             estadisticaDeCategorias.append(categoryStatistic(categoria,estadisticaCategoria,URL=URL))
             sumatorioEstadisticaCategoria=0
