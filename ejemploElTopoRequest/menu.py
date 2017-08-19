@@ -17,9 +17,13 @@ acciones_submenuConfig = {}
 acciones_submenuCrawler = {}
 acciones_submenuCrawlerR = {}
 boolSpyder = False
+
+
+
 configuracion = config("./configElTopo/config.json")
 ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
 ficheroParaEntrenamientoGeneradoParaEntrenamiento = configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
+
 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(),
                                     configuracion.getRutaJSONTraining(),
                                     ficheroParaEntrenamientoGeneradoParaEntrenamiento)
@@ -244,8 +248,29 @@ def IniciarCrawlerR():
 
 def Entrenador():
     # Menu de botones
+    #print("Iniciando Entrenamiento...")
 
-    print("Iniciando Entrenamiento...")
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonHeaderData()
+    classificatorObject.training()
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonUrlData()
+    classificatorObject.training()
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonMetaData()
+    classificatorObject.training()
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonSpanData()
+    classificatorObject.training()
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonTitleData()
+    classificatorObject.training()
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonParagraphData()
+    classificatorObject.training()
+    classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistente(), self.configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    classificatorObject.generateJsonWithAllData()
+    classificatorObject.training()
     input('Pulse Enter para continuar...')
     menu_principal()
     # Llamada al método de entrenamiento
