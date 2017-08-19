@@ -8,6 +8,7 @@ from clasificador.classificator import classificator
 from clasificador.dataClasificator import dataClasificator
 from Entidades.webPageInfo import webPageInfo
 from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from interfazGrafica.grafico_barras import grafico_barras
 
 
 class VentanaClasificador():
@@ -35,6 +36,7 @@ class VentanaClasificador():
         self.BTN_Title = ttk.Button(self.marco, text="Title data", command=self.classificator_title_directory)
         self.BTN_All = ttk.Button(self.marco, text="All data", command=self.classificator_paragraph_directory)
         self.url = ttk.Entry(self.marco, width=80)
+        self.BTN_VerUltimosResultados = ttk.Button(self.marco,text="Ver ultimos resultados",command=grafico_barras)
 
 
         self.BTN_Abrirfich = ttk.Button(self.marco, text="Abrir fichero", command=self.ruta_textfich)
@@ -105,8 +107,12 @@ class VentanaClasificador():
         self.text.tag_configure("stderr", foreground="#b22222")
         sys.stdout = TextRedirector(self.text, "stdout")
 
-
+        self.separador1= ttk.Separator(self.marco,orient=HORIZONTAL)
+        self.separador1.grid(row=11,column=0)
         #Fila 13
+
+        self.BTN_VerUltimosResultados.grid(row=12,column=1)
+
         '''BTN_ClasificarFich = ttk.Button(self.marco, text="Clasificar fichero", command=self.ruta_textfich)
         BTN_ClasificarDir = ttk.Button(self.marco, text="Clasificar directorio", command=self.classificator_header)
         BTN_ClasificarDir.grid(row=12,column=0)
