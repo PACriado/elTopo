@@ -48,4 +48,4 @@ class grafico_barras():
 
             c.create_line(0, 330, c_width, 330)
 
-        ventana.mainloop()
+        #ventana.mainloop()
