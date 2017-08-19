@@ -1,8 +1,9 @@
 from tkinter import *
+from clasificador.entities.categoryStatistic import categoryStatistic
 
 
 class grafico_barras():
-    def __init__(self):
+    def __init__(self, estadisticasCategoria):
 
         ventana = Tk()
         ventana.title("Grafico de barras")
