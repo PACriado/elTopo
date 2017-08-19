@@ -202,10 +202,10 @@ class VentanaClasificador():
         clasificator = dataClasificator(webPageInfoObject, classifier)
         # print(clasificator.classifyAllHeaders())
         # print(clasificator.accuracyAll("HEADER", "Armas"))
-        estadisticas = clasificator.accuracyAllByCategory("HEADER", self.configuracion.getRutaFicheroCategorias(),
+        self.estadisticas = clasificator.accuracyAllByCategory("HEADER", self.configuracion.getRutaFicheroCategorias(),
                                                           URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
-        for estadistica in estadisticas:
+        for estadistica in self.estadisticas:
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()

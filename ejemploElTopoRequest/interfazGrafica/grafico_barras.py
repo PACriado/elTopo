@@ -21,10 +21,18 @@ class grafico_barras():
         x_width = 20  # ANCHO X
         x_gap = 20  # POSICION VERTICAL
 
-    # Multiplicamos las frecuencias * 10 para que sea más visible
+        # Multiplicamos las frecuencias * 10 para que sea más visible
 
-        datos = [2, 1, 3, 4, 5]
-        texto = ["porno", "drogas", "armas", "rusas", "pepinillos"]
+
+        datos = []
+        texto = []
+
+        for estadistica in estadisticasCategoria:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
+            datos.append(estadistica.getstatistic()*10)
+            texto.append(estadistica.getcategory())
+
 
         for x, y in enumerate(datos):
             x0 = x * x_stretch + x * x_width + x_gap
