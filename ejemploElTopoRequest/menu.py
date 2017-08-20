@@ -260,6 +260,7 @@ def Configurar():
 
 
 def PedirFich():
+    global ruta_fich
     ruta_fich = input("Introducir ruta del fichero: ")
     assert os.path.exists(ruta_fich), "No se ha encontrado el fichero en, " + str(ruta_fich)
     print("Funcionando")
