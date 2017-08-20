@@ -17,6 +17,8 @@ acciones_submenuConfig = {}
 acciones_submenuCrawler = {}
 acciones_submenuCrawlerR = {}
 boolSpyder = False
+ruta_fich = ""
+ruta_dir = ""
 
 configuracion = config("./configElTopo/config.json")
 ficheroParaEntrenamiento = configuracion.getFicheroParaEntrenamiento()
@@ -171,6 +173,7 @@ def exec_submenuClasificador(eleccion):
     else:
         try:
             acciones_submenuClasificador[ch]()
+
         except KeyError:
             print("Opcion no válida.Seleccionar otra opcion.\n")
             acciones_submenuClasificador['sub_menuClasificador']()
@@ -233,6 +236,7 @@ def Clasificador():
 
 
 def OpcionesClasificador():
+    print("La ruta es: "+ruta_fich)
     print("Seleccione un tipo de clasificación:\n")
     print("1. All data")
     print("2. Title data ")
@@ -341,31 +345,65 @@ def Entrenador():
 
 
 def Alldata():
-    ruta = PedirFich()
-    f = open(ruta, 'r+')
-    print("Funcionando")
-    webPageInfoObject = webPageInfo(route=ruta)
-    f.close()
+
+
+    #Falta este método por hacer en el main
+
     #print(miClass.classifyAllHeaders())
     input('Pulse Enter para volver al menu...')
-    #Clasificador()
+    OpcionesClasificador()
 
 
 def Titledata():
-    #print(miClass.classifyAllTitles())
+    print(ruta_fich)
+
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    print("Cargado Classifier Title...")
+    print(ruta_fich)
+
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    webPageInfoObject = webPageInfo(route=ruta_fich)
+    clasificator = dataClasificator( webPageInfoObject, classifier)
+    estadisticas = clasificator.accuracyAllByCategory("TITLE",configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
-    #Clasificador()
+    OpcionesClasificador()
 
 
 def Spandata():
-    #print(miClass.classifyAllSpan())
+    print(ruta_fich)
+
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    print("Cargado Classifier Spans...")
+    print(ruta_fich)
+
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    webPageInfoObject = webPageInfo(route=ruta_fich)
+    clasificator = dataClasificator( webPageInfoObject, classifier)
+
+    estadisticas = clasificator.accuracyAllByCategory("SPAN",configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
-    #Clasificador()
+    OpcionesClasificador()
 
 
 def Metadata():
-    print("EEEEEEEEY AQUI")
-    ruta = PedirFich()
+    print(ruta_fich)
+
     classificatorObject = classificator(ficheroParaEntrenamiento,
                                         configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
                                         configuracion.getRutaJSONTraining(),
@@ -374,7 +412,7 @@ def Metadata():
     classifier = classificatorObject.getClasifier()
     print("Classifier Cargado")
     print("Funcionando")
-    webPageInfoObject = webPageInfo(route=ruta)
+    webPageInfoObject = webPageInfo(route=ruta_fich)
     clasificator = dataClasificator(webPageInfoObject, classifier)
     estadisticas = clasificator.accuracyAllByCategory("META", configuracion.getRutaFicheroCategorias())
     for estadistica in estadisticas:
@@ -382,25 +420,73 @@ def Metadata():
         print(estadistica.getstatistic())
 
     input('Pulse Enter para volver al menu...')
-    #Clasificador()
+    OpcionesClasificador()
 
 
 def Paragraphdata():
-    #print(miClass.classifyAllParrafos())
+
+    print(ruta_fich)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    print("Cargado Classifier Paragraph...")
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    print("Funcionando")
+    webPageInfoObject = webPageInfo(route=ruta_fich)
+    clasificator = dataClasificator(webPageInfoObject, classifier)
+    estadisticas = clasificator.accuracyAllByCategory("PARRAFO", configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
-    #Clasificador()
+    OpcionesClasificador()
 
 
 def Urldata():
-    #print(miClass.classifyAllUrl())
-    input('Pulse Enter para volver al menu...')
-    #Clasificador()
 
+    print(ruta_fich)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    print("Cargado Classifier URL...")
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    print("Funcionando")
+    webPageInfoObject = webPageInfo(route=ruta_fich)
+    clasificator = dataClasificator(webPageInfoObject, classifier)
+    estadisticas = clasificator.accuracyAllByCategory("URL", configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
+    input('Pulse Enter para volver al menu...')
+    OpcionesClasificador()
 
 def Headerdata():
-    #print(miClass.classifyAllHeaders())
+
+    print(ruta_fich)
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+    print("Cargado Classifier Header...")
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    print("Funcionando")
+    webPageInfoObject = webPageInfo(route=ruta_fich)
+    clasificator = dataClasificator(webPageInfoObject, classifier)
+    estadisticas = clasificator.accuracyAllByCategory("HEADER", configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
-    #Clasificador()
+    OpcionesClasificador()
 
 
 def back():
