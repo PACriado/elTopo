@@ -432,7 +432,7 @@ class VentanaClasificador():
                                                 self.configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
                                                 self.configuracion.getRutaJSONTraining(),
                                                 self.ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-            print("Cargado Classifier Parragraph...")
+            print("Cargado Classifier Paragraph...")
             classifier = classificatorObject.getClasifier()
             print("Classifier Cargado")
             clasificator = dataClasificator(webPageInfoObject, classifier)

@@ -76,7 +76,7 @@ def sub_menuConfig():
     os.system('clear')
     print("Menu Configuracion\n")
     print("1.Configurar")
-    print("9. Volver")
+    print("9. Volver al menu principal")
     print("0. Salir")
     eleccion = input(" >>  ")
     exec_submenuConfig(eleccion)
@@ -87,7 +87,7 @@ def sub_menuCrawler():
     os.system('clear')
     print("Menu Crawler Local\n")
     print("1.Iniciar")
-    print("9. Volver")
+    print("9. Volver al menu principal")
     print("0. Salir")
     eleccion = input(" >>  ")
     exec_submenuCrawler(eleccion)
@@ -98,7 +98,7 @@ def sub_menuCrawlerR():
     os.system('clear')
     print("Menu Crawler Remoto\n")
     print("1.Iniciar")
-    print("9. Volver")
+    print("9. Volver al menu principal")
     print("0. Salir")
     eleccion = input(" >>  ")
     exec_submenuCrawlerR(eleccion)
@@ -392,11 +392,26 @@ def Entrenador():
 
 
 def Alldata():
-    # Falta este método por hacer en el main
 
-    # print(miClass.classifyAllHeaders())
+    classificatorObject = classificator(ficheroParaEntrenamiento,
+                                        configuracion.getRutaFicheroEntrenamientoPersistente(),
+                                        configuracion.getRutaJSONTraining(),
+                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+    print("Cargado Classifier All data...")
+
+    classifier = classificatorObject.getClasifier()
+    print("Classifier Cargado")
+    webPageInfoObject = webPageInfo(route=ruta_fich)
+    clasificator = dataClasificator(webPageInfoObject, classifier)
+    estadisticas = clasificator.accuracyAllByCategory("ALL", configuracion.getRutaFicheroCategorias())
+    for estadistica in estadisticas:
+        print(estadistica.getcategory())
+        print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
     OpcionesClasificador()
+
+
 
 
 def Titledata():
@@ -524,112 +539,173 @@ def Headerdata():
 def AlldataDir():
     # Falta este método por hacer en el main
 
-    # print(miClass.classifyAllHeaders())
+
+    allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
+    for webPageInfoObject in allObjects:
+        classificatorObject = classificator(ficheroParaEntrenamiento,
+                                            configuracion.getRutaFicheroEntrenamientoPersistente(),
+                                            configuracion.getRutaJSONTraining(),
+                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+        print("Cargado Classifier All data...")
+        classifier = classificatorObject.getClasifier()
+        print("Classifier Cargado")
+        clasificator = dataClasificator(webPageInfoObject, classifier)
+        # print(clasificator.classifyAllHeaders())
+        # print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticasResultado = clasificator.accuracyAllByCategory("ALL",
+                                                                   configuracion.getRutaFicheroCategorias(),
+                                                                   URL=webPageInfoObject.getUrl())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+        for estadistica in estadisticasResultado:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
+
     input('Pulse Enter para volver al menu...')
-    OpcionesClasificador()
+    OpcionesClasificadorDir()
 
 
 def TitledataDir():
-    classificatorObject = classificator(ficheroParaEntrenamiento,
-                                        configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
-                                        configuracion.getRutaJSONTraining(),
-                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-    print("Cargado Classifier Title...")
 
-    classifier = classificatorObject.getClasifier()
-    print("Classifier Cargado")
-    webPageInfoObject = webPageInfo(route=ruta_fich)
-    clasificator = dataClasificator(webPageInfoObject, classifier)
-    estadisticas = clasificator.accuracyAllByCategory("TITLE", configuracion.getRutaFicheroCategorias())
-    for estadistica in estadisticas:
-        print(estadistica.getcategory())
-        print(estadistica.getstatistic())
+
+    allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
+    for webPageInfoObject in allObjects:
+        classificatorObject = classificator(ficheroParaEntrenamiento,
+                                            configuracion.getRutaFicheroEntrenamientoPersistenteTitle(),
+                                            configuracion.getRutaJSONTraining(),
+                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+        print("Cargado Classifier Title...")
+        classifier = classificatorObject.getClasifier()
+        print("Classifier Cargado")
+        clasificator = dataClasificator(webPageInfoObject, classifier)
+        # print(clasificator.classifyAllHeaders())
+        # print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticasResultado = clasificator.accuracyAllByCategory("TITLE",
+                                                                   configuracion.getRutaFicheroCategorias(),
+                                                                   URL=webPageInfoObject.getUrl())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+        for estadistica in estadisticasResultado:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
     input('Pulse Enter para volver al menu...')
-    OpcionesClasificador()
+    OpcionesClasificadorDir()
 
 
 def SpandataDir():
-    classificatorObject = classificator(ficheroParaEntrenamiento,
-                                        configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
-                                        configuracion.getRutaJSONTraining(),
-                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-    print("Cargado Classifier Spans...")
 
-    classifier = classificatorObject.getClasifier()
-    print("Classifier Cargado")
-    webPageInfoObject = webPageInfo(route=ruta_fich)
-    clasificator = dataClasificator(webPageInfoObject, classifier)
+    allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
+    for webPageInfoObject in allObjects:
+        classificatorObject = classificator(ficheroParaEntrenamiento,
+                                            configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(),
+                                            configuracion.getRutaJSONTraining(),
+                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
 
-    estadisticas = clasificator.accuracyAllByCategory("SPAN", configuracion.getRutaFicheroCategorias())
-    for estadistica in estadisticas:
-        print(estadistica.getcategory())
-        print(estadistica.getstatistic())
+        print("Cargado Classifier Spans...")
+        classifier = classificatorObject.getClasifier()
+        print("Classifier Cargado")
+        clasificator = dataClasificator(webPageInfoObject, classifier)
+        # print(clasificator.classifyAllHeaders())
+        # print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticasResultado = clasificator.accuracyAllByCategory("SPAN",
+                                                                   configuracion.getRutaFicheroCategorias(),
+                                                                   URL=webPageInfoObject.getUrl())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+        for estadistica in estadisticasResultado:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
     input('Pulse Enter para volver al menu...')
-    OpcionesClasificador()
-
+    OpcionesClasificadorDir()
 
 def MetadataDir():
-    classificatorObject = classificator(ficheroParaEntrenamiento,
-                                        configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
-                                        configuracion.getRutaJSONTraining(),
-                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-    print("Cargado Classifier Meta...")
-    classifier = classificatorObject.getClasifier()
-    print("Classifier Cargado")
-    webPageInfoObject = webPageInfo(route=ruta_fich)
-    clasificator = dataClasificator(webPageInfoObject, classifier)
-    estadisticas = clasificator.accuracyAllByCategory("META", configuracion.getRutaFicheroCategorias())
-    for estadistica in estadisticas:
-        print(estadistica.getcategory())
-        print(estadistica.getstatistic())
+
+    allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
+    for webPageInfoObject in allObjects:
+        classificatorObject = classificator(ficheroParaEntrenamiento,
+                                            configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(),
+                                            configuracion.getRutaJSONTraining(),
+                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+        print("Cargado Classifier Meta...")
+        classifier = classificatorObject.getClasifier()
+        print("Classifier Cargado")
+        clasificator = dataClasificator(webPageInfoObject, classifier)
+        # print(clasificator.classifyAllHeaders())
+        # print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticasResultado = clasificator.accuracyAllByCategory("META",
+                                                                   configuracion.getRutaFicheroCategorias(),
+                                                                   URL=webPageInfoObject.getUrl())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+        for estadistica in estadisticasResultado:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
     input('Pulse Enter para volver al menu...')
-    OpcionesClasificador()
+    OpcionesClasificadorDir()
+
 
 
 def ParagraphdataDir():
-    classificatorObject = classificator(ficheroParaEntrenamiento,
-                                        configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
-                                        configuracion.getRutaJSONTraining(),
-                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-    print("Cargado Classifier Paragraph...")
-    classifier = classificatorObject.getClasifier()
-    print("Classifier Cargado")
-    webPageInfoObject = webPageInfo(route=ruta_fich)
-    clasificator = dataClasificator(webPageInfoObject, classifier)
-    estadisticas = clasificator.accuracyAllByCategory("PARRAFO", configuracion.getRutaFicheroCategorias())
-    for estadistica in estadisticas:
-        print(estadistica.getcategory())
-        print(estadistica.getstatistic())
+
+    allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
+    for webPageInfoObject in allObjects:
+        classificatorObject = classificator(ficheroParaEntrenamiento,
+                                            configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(),
+                                            configuracion.getRutaJSONTraining(),
+                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+        print("Cargado Classifier Paragrah...")
+        classifier = classificatorObject.getClasifier()
+        print("Classifier Cargado")
+        clasificator = dataClasificator(webPageInfoObject, classifier)
+        # print(clasificator.classifyAllHeaders())
+        # print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticasResultado = clasificator.accuracyAllByCategory("PARRAFO",
+                                                                   configuracion.getRutaFicheroCategorias(),
+                                                                   URL=webPageInfoObject.getUrl())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+        for estadistica in estadisticasResultado:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
     input('Pulse Enter para volver al menu...')
-    OpcionesClasificador()
+    OpcionesClasificadorDir()
+
 
 
 def UrldataDir():
-    classificatorObject = classificator(ficheroParaEntrenamiento,
-                                        configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
-                                        configuracion.getRutaJSONTraining(),
-                                        ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-    print("Cargado Classifier URL...")
-    classifier = classificatorObject.getClasifier()
-    print("Classifier Cargado")
-    webPageInfoObject = webPageInfo(route=ruta_fich)
-    clasificator = dataClasificator(webPageInfoObject, classifier)
-    estadisticas = clasificator.accuracyAllByCategory("URL", configuracion.getRutaFicheroCategorias())
-    for estadistica in estadisticas:
-        print(estadistica.getcategory())
-        print(estadistica.getstatistic())
+
+
+    allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
+    for webPageInfoObject in allObjects:
+        classificatorObject = classificator(ficheroParaEntrenamiento,
+                                            configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(),
+                                            configuracion.getRutaJSONTraining(),
+                                            ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+
+        print("Cargado Classifier URL...")
+        classifier = classificatorObject.getClasifier()
+        print("Classifier Cargado")
+        clasificator = dataClasificator(webPageInfoObject, classifier)
+        # print(clasificator.classifyAllHeaders())
+        # print(clasificator.accuracyAll("HEADER", "Armas"))
+        estadisticasResultado = clasificator.accuracyAllByCategory("URL",
+                                                                   configuracion.getRutaFicheroCategorias(),
+                                                                   URL=webPageInfoObject.getUrl())
+        print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
+        for estadistica in estadisticasResultado:
+            print(estadistica.getcategory())
+            print(estadistica.getstatistic())
 
     input('Pulse Enter para volver al menu...')
-    OpcionesClasificador()
+    OpcionesClasificadorDir()
 
 
 def HeaderdataDir():
 
-    print("Entro aquiiiiii")
+
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
