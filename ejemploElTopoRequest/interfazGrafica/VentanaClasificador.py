@@ -174,7 +174,7 @@ class VentanaClasificador():
         self.urlfich.delete(0, 'end')
         self.urlfich.insert(0, result)
         # self.url.pack(in_=self.marco, side="left")
-        self.urlfich.grid(row=5, column=1)
+        self.urlfich.grid(row=9, column=1)
         self.BTN_Header.config(state="disabled")
         self.BTN_Url.config(state="disabled")
         self.BTN_Paragraph.config(state="disabled")
