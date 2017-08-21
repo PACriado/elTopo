@@ -156,6 +156,7 @@ if(not testRestService):
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
                 print(clasificator.classifyAllData())
+                print(clasificator.accuracyAll("ALLDATA", "Armas"))
 else:
     if(testListRestService):
         caller = SpyderRestCaller()

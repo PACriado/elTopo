@@ -150,6 +150,19 @@ class dataClasificator:
 
                 prob_dist = self.classifier.prob_classify(meta)
                 all.append((prob_dist.prob(probType)))
+
+        if (classifierType == "ALLDATA"):
+            lists = self.webPageInfo.getAllMetadatas()
+            lists.append(self.webPageInfo.getAllUrls())
+            lists.append(self.webPageInfo.getAllParrafos())
+            lists.append(self.webPageInfo.getAllTitles())
+            lists.append(self.webPageInfo.getAllHeaders())
+            lists.append(self.webPageInfo.getAllSpans())
+            lists.append(self.webPageInfo.getAllTitles())
+            print(lists)
+            for data in lists:
+                prob_dist = self.classifier.prob_classify(data)
+                all.append((prob_dist.prob(probType)))
         return all
 
 
