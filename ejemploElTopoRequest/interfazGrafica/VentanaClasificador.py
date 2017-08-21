@@ -16,38 +16,39 @@ class VentanaClasificador():
         self.ventana = Tk()
         self.ventana.title('Clasificador')
         self.estadisticasResultado=[]
+
         # self.toolbar = Frame(self.ventana)
         # self.toolbar.pack(side="top", fill="x")
 
-        self.marco = ttk.Frame(self.ventana, borderwidth=1)
-        self.marco.grid(row=0, column=0)
+        #self.marco = ttk.Frame(self.ventana, borderwidth=1)
+        #self.marco.grid(row=0, column=0)
 
         self.configuracion = config("./configElTopo/config.json")
 
         self.ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
         self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
-        self.BTN_Abrirdir = ttk.Button(self.marco, text="Abrir directorio", command=self.ruta_text)
-        self.BTN_Header = ttk.Button(self.marco, text="Header data", command=self.classificator_header_directory)
-        self.BTN_Url = ttk.Button(self.marco, text="Url data", command=self.classificator_url_directory)
-        self.BTN_Paragraph = ttk.Button(self.marco, text="Paragraph data",
+        self.BTN_Abrirdir = ttk.Button(self.ventana, text="Abrir directorio", command=self.ruta_text)
+        self.BTN_Header = ttk.Button(self.ventana, text="Header data", command=self.classificator_header_directory)
+        self.BTN_Url = ttk.Button(self.ventana, text="Url data", command=self.classificator_url_directory)
+        self.BTN_Paragraph = ttk.Button(self.ventana, text="Paragraph data",
                                         command=self.classificator_paragraph_directory)
-        self.BTN_Metadata = ttk.Button(self.marco, text="Meta data", command=self.classificator_metadata_directory)
-        self.BTN_Span = ttk.Button(self.marco, text="Span data", command=self.classificator_span_directory)
-        self.BTN_Title = ttk.Button(self.marco, text="Title data", command=self.classificator_title_directory)
-        self.BTN_All = ttk.Button(self.marco, text="All data", command=self.classificator_alldata_directory)
-        self.url = ttk.Entry(self.marco, width=80)
-        self.BTN_VerUltimosResultados = ttk.Button(self.marco, text="Ver ultimos resultados", command=self.mostrarVentanaDatos)
+        self.BTN_Metadata = ttk.Button(self.ventana, text="Meta data", command=self.classificator_metadata_directory)
+        self.BTN_Span = ttk.Button(self.ventana, text="Span data", command=self.classificator_span_directory)
+        self.BTN_Title = ttk.Button(self.ventana, text="Title data", command=self.classificator_title_directory)
+        self.BTN_All = ttk.Button(self.ventana, text="All data", command=self.classificator_alldata_directory)
+        self.url = ttk.Entry(self.ventana, width=80)
+        self.BTN_VerUltimosResultados = ttk.Button(self.ventana, text="Ver ultimos resultados", command=self.mostrarVentanaDatos)
 
-        self.BTN_Abrirfich = ttk.Button(self.marco, text="Abrir fichero", command=self.ruta_textfich)
-        self.BTN_Headerfich = ttk.Button(self.marco, text="Header data", command=self.classificator_header)
-        self.BTN_Urlfich = ttk.Button(self.marco, text="Url data", command=self.classificator_url)
-        self.BTN_Paragraphfich = ttk.Button(self.marco, text="Paragraph data", command=self.classificator_paragraph)
-        self.BTN_Metadatafich = ttk.Button(self.marco, text="Meta data", command=self.classificator_metadata)
-        self.BTN_Spanfich = ttk.Button(self.marco, text="Span data", command=self.classificator_span)
-        self.BTN_Titlefich = ttk.Button(self.marco, text="Title data", command=self.classificator_title)
-        self.BTN_Allfich = ttk.Button(self.marco, text="All data", command=self.classificator_alldata)
-        self.urlfich = ttk.Entry(self.marco, width=80)
+        self.BTN_Abrirfich = ttk.Button(self.ventana, text="Abrir fichero", command=self.ruta_textfich)
+        self.BTN_Headerfich = ttk.Button(self.ventana, text="Header data", command=self.classificator_header)
+        self.BTN_Urlfich = ttk.Button(self.ventana, text="Url data", command=self.classificator_url)
+        self.BTN_Paragraphfich = ttk.Button(self.ventana, text="Paragraph data", command=self.classificator_paragraph)
+        self.BTN_Metadatafich = ttk.Button(self.ventana, text="Meta data", command=self.classificator_metadata)
+        self.BTN_Spanfich = ttk.Button(self.ventana, text="Span data", command=self.classificator_span)
+        self.BTN_Titlefich = ttk.Button(self.ventana, text="Title data", command=self.classificator_title)
+        self.BTN_Allfich = ttk.Button(self.ventana, text="All data", command=self.classificator_alldata)
+        self.urlfich = ttk.Entry(self.ventana, width=80)
 
         self.BTN_Header.config(state="disabled")
         self.BTN_Url.config(state="disabled")
@@ -65,50 +66,48 @@ class VentanaClasificador():
         self.BTN_Titlefich.config(state="disabled")
         self.BTN_Allfich.config(state="disabled")
         self.BTN_VerUltimosResultados.config(state="disabled")
+
         # Fila 1 :
 
         self.BTN_Abrirdir.grid(row=0, column=0)
         self.url.grid(row=0, column=1)
 
-        # Fila 3 :
-        self.BTN_Header.grid(row=2, column=0)
-        self.BTN_Paragraph.grid(row=2, column=1)
-        self.BTN_Span.grid(row=2, column=2)
-        self.BTN_Url.grid(row=2, column=3)
-
-        # Fila 4 :
-        self.BTN_Title.grid(row=3, column=0)
-        self.BTN_All.grid(row=3, column=1)
-        self.BTN_Metadata.grid(row=3, column=2)
-
-        # Fila 6 :
-
-        self.BTN_Abrirfich.grid(row=5, column=0)
-        self.urlfich.grid(row=5, column=1)
-
-        # Fila 8 :
-        self.BTN_Headerfich.grid(row=7, column=0)
-        self.BTN_Paragraphfich.grid(row=7, column=1)
-        self.BTN_Spanfich.grid(row=7, column=2)
-        self.BTN_Urlfich.grid(row=7, column=3)
+        # Filas 2-8 :
+        self.BTN_Header.grid(row=1, column=1,sticky=S+N+E+W)
+        self.BTN_Paragraph.grid(row=2, column=1,sticky=S+N+E+W)
+        self.BTN_Span.grid(row=3, column=1,sticky=S+N+E+W)
+        self.BTN_Url.grid(row=4, column=1,sticky=S+N+E+W)
+        self.BTN_Title.grid(row=5, column=1,sticky=S+N+E+W)
+        self.BTN_Metadata.grid(row=6, column=1, sticky=S+N+E+W)
+        self.BTN_All.grid(row=7, column=1,sticky=S+N+E+W)
 
         # Fila 10 :
-        self.BTN_Titlefich.grid(row=9, column=0)
-        self.BTN_Allfich.grid(row=9, column=1)
-        self.BTN_Metadatafich.grid(row=9, column=2)
 
-        # Fila 11:
-        self.text = Text(self.marco, wrap="word")
+        self.BTN_Abrirfich.grid(row=9, column=0)
+        self.urlfich.grid(row=9, column=1)
+
+        # Filas 11-17 :
+        self.BTN_Headerfich.grid(row=10, column=1,sticky=S+N+E+W)
+        self.BTN_Paragraphfich.grid(row=11, column=1,sticky=S+N+E+W)
+        self.BTN_Spanfich.grid(row=12, column=1,sticky=S+N+E+W)
+        self.BTN_Urlfich.grid(row=13, column=1,sticky=S+N+E+W)
+        self.BTN_Titlefich.grid(row=14, column=1,sticky=S+N+E+W)
+        self.BTN_Allfich.grid(row=15, column=1,sticky=S+N+E+W)
+        self.BTN_Metadatafich.grid(row=16, column=1,sticky=S+N+E+W)
+
+        # Fila 18:
+        self.text = Text(self.ventana, wrap="word")
         # self.text.pack(side="top", fill="both", expand=True)
-        self.text.grid(row=10, column=1)
+        self.text.grid(row=17, column=1)
         self.text.tag_configure("stderr", foreground="#b22222")
         sys.stdout = TextRedirector(self.text, "stdout")
 
-        self.separador1 = ttk.Separator(self.marco, orient=HORIZONTAL)
-        self.separador1.grid(row=11, column=0)
+        self.separador1 = ttk.Separator(self.ventana, orient=HORIZONTAL)
+        self.separador1.grid(row=17, column=0)
+
         # Fila 13
 
-        self.BTN_VerUltimosResultados.grid(row=12, column=1)
+        self.BTN_VerUltimosResultados.grid(row=19, column=1)
 
         '''BTN_ClasificarFich = ttk.Button(self.marco, text="Clasificar fichero", command=self.ruta_textfich)
         BTN_ClasificarDir = ttk.Button(self.marco, text="Clasificar directorio", command=self.classificator_header)
@@ -145,6 +144,7 @@ class VentanaClasificador():
             grafico_barras(dominio)
 
 
+
     def ruta_text(self):
         result = askdirectory()
         self.url.delete(0, 'end')
@@ -168,6 +168,7 @@ class VentanaClasificador():
         self.BTN_Titlefich.config(state="disabled")
         self.BTN_Allfich.config(state="disabled")
 
+
     def ruta_textfich(self):
         result = askopenfilename()
         self.urlfich.delete(0, 'end')
@@ -190,6 +191,9 @@ class VentanaClasificador():
         self.BTN_Titlefich.config(state="normal")
         self.BTN_Allfich.config(state="normal")
         self.BTN_VerUltimosResultados.config(state="normal")
+
+
+
     #  FICHERO
 
     def classificator_header(self):
