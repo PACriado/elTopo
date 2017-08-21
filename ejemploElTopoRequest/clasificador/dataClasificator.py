@@ -98,6 +98,23 @@ class dataClasificator:
             all.append(self.classifier.classify(meta))
         return all
 
+    def classifyAllData(self):
+        allData = []
+        metaDataArray = self.classifyAllMeta()
+        spanDataArray = self.classifyAllSpan()
+        paragraphDataArray = self.classifyAllParrafos()
+        titleDataArray = self.classifyAllTitles()
+        headerDataArray = self.classifyAllHeaders()
+        urlDatayArray = self.classifyAllUrl()
+
+        allData.append(metaDataArray)
+        allData.append(spanDataArray)
+        allData.append(paragraphDataArray)
+        allData.append(titleDataArray)
+        allData.append(headerDataArray)
+        allData.append(urlDatayArray)
+        return allData
+
     ##Metodos
     def accuracyAll(self, classifierType, probType):
         all = []
