@@ -55,9 +55,7 @@ class VentanaPrincipal():
 
         self.menu.add_cascade(label="Crawler",menu=self.MenuCrawler)
         self.MenuCrawler.add_cascade(label="Local",menu=self.SubMenuCrawlerL)
-        self.MenuCrawler.add_cascade(label="Remoto",menu=self.SubMenuCrawlerR)
         self.SubMenuCrawlerL.add_command(label="Abrir...",command=self.AbrirVentanaCrawler)
-        self.SubMenuCrawlerR.add_command(label="Configurar...",command=self.AbrirVentanaConfiguracionCrawler)
 
 
 
