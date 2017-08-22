@@ -7,6 +7,7 @@ class VentanaTerminal():
         self.ventanaT = Tk()
         self.ventanaT.geometry('600x600')
         self.ventanaT.title('Terminal')
+        self.ventanaT.resizable(0,0)
 
         #Inserción terminal
         termf = Frame(self.ventanaT,height = 400, width=500)

@@ -63,6 +63,7 @@ class VentanaPrincipal():
 
 
         self.ventana.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.ventana.resizable(0,0)
         self.ventana.mainloop()
 
     def on_closing(self):

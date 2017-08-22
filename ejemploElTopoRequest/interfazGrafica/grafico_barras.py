@@ -6,6 +6,7 @@ class grafico_barras():
     def __init__(self, estadisticasCategoria):
 
         ventana = Tk()
+        ventana.resizable(0,0)
         ventana.title("Grafico de barras " + estadisticasCategoria[0].geturl())
 
         c_width = 400

@@ -15,6 +15,7 @@ class VentanaClasificador():
     def __init__(self):
         self.ventana = Tk()
         self.ventana.title('Clasificar')
+        self.ventana.resizable(0,0)
         self.estadisticasResultado=[]
 
         # self.toolbar = Frame(self.ventana)

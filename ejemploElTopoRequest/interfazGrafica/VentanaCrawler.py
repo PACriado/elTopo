@@ -12,6 +12,7 @@ class VentanaCrawler():
 
         self.ventana = Tk()
         self.ventana.title('Crawler Local')
+        self.ventana.resizable(0,0)
         toolbar = Frame(self.ventana)
         toolbar.pack(side="top", fill="x")
         BTN_Iniciar = Button(self.ventana, text="Iniciar", command=self.print_stdout)

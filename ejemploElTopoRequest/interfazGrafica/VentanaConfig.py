@@ -12,7 +12,7 @@ class VentanaConfig():
 
         self.ventana = Tk()
         self.ventana.title('Configuracion')
-
+        self.ventana.resizable(0,0)
 
 
 
