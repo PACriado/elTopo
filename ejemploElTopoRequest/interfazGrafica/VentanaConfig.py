@@ -27,7 +27,7 @@ class VentanaConfig():
         self.TXTRutaSalida = ttk.Entry(self.marco,width=30)
         self.TXTRutaSalida.insert(0,rutaS_str)
         #TXTRutaSalida.pack()
-        self.TXTRutaSalida.grid(row=0,column=1)
+        self.TXTRutaSalida.grid(row=0,column=1,sticky=W)
 
 
         #row 2 : Segunda fila
@@ -36,7 +36,7 @@ class VentanaConfig():
         rutaD_str = self.configuracion.getRutaDiccionario()
         self.TXTRutaDiccionario = ttk.Entry(self.marco,width=30)
         self.TXTRutaDiccionario.insert(0,rutaD_str)
-        self.TXTRutaDiccionario.grid(row=1,column=1)
+        self.TXTRutaDiccionario.grid(row=1,column=1,sticky=W)
 
         #row 3 : Tercera fila
         self.LBLMaxDepth = ttk.Label(self.marco,text="Maxdepth:")
@@ -131,8 +131,8 @@ class VentanaConfig():
         self.TXTDelaysC = Scale(self.marco, from_=10, to=200, orient=HORIZONTAL)
         self.TXTDelaysC.grid(row=6,column=1,sticky=W)
 
-        self.separador1= ttk.Separator(self.marco,orient=HORIZONTAL)
-        self.separador1.grid(row=9,column=0)
+        #self.separador1= ttk.Separator(self.marco,orient=HORIZONTAL)
+        #self.separador1.grid(row=9,column=0)
 
 
         self.BTNGuardar = ttk.Button(self.marco,text="Guardar",command=self.salvarCambios)
@@ -141,13 +141,13 @@ class VentanaConfig():
 
         # row 8 :
         self.LBLURLs = ttk.Label(self.marco,text="Urls:")
-        self.LBLURLs.grid(row=9,column=0,sticky=W)
+        self.LBLURLs.grid(row=9,column=0,sticky=NW)
         urls_str = self.configuracion.geturl()
         self.TXTURLs = ScrolledText(self.marco,width=30)
         for url in urls_str:
             self.TXTURLs.insert(INSERT,url+"\n")
         #TXTRutaSalida.pack()
-        self.TXTURLs.grid(row=8,column=1)
+        self.TXTURLs.grid(row=9,column=1)
 
 
         #self.BTNGuardar = ttk.Button(self.ventana, text = 'Guardar', command = self.guardarConfig)
