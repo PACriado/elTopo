@@ -62,10 +62,11 @@ if(not testRestService):
         else:
             classifyMeta = False
             classifyParrafo = False
-            classifyHeader = True #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
+            classifyHeader = False #Hay que revisar porque este no funciona correctamente. hay que mirar el entrenamiento
             classifySpan = False
             classifyUrl = False
             classifyTitle = False
+            classifyAllData = True
 
             #hay que hacer un bucle leyendo los webpage info que salen del preprocesador
             #pasar al classify allUrls, allSpans etc etc
@@ -73,7 +74,7 @@ if(not testRestService):
 
             if classifyMeta == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteMetaData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                print("Cargado Classifier Meta...")
+                print("Cargando Classifier Meta...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
@@ -85,7 +86,7 @@ if(not testRestService):
                     print(estadistica.getstatistic())
             if classifyParrafo == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteParagraphData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                print("Cargado Classifier Parragraph...")
+                print("Cargando Classifier Parragraph...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
@@ -97,7 +98,7 @@ if(not testRestService):
                     print(estadistica.getstatistic())
             if classifyHeader == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                print("Cargado Classifier Headers...")
+                print("Cargando Classifier Headers...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
@@ -109,7 +110,7 @@ if(not testRestService):
                     print(estadistica.getstatistic())
             if classifySpan == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteSpanData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                print("Cargado Classifier Spans...")
+                print("Cargando Classifier Spans...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
@@ -125,7 +126,7 @@ if(not testRestService):
 
             if classifyUrl == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteUrlData(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                print("Cargado Classifier URL...")
+                print("Cargando Classifier URL...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
@@ -137,7 +138,7 @@ if(not testRestService):
                     print(estadistica.getstatistic())
             if classifyTitle == True:
                 classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
-                print("Cargado Classifier Title...")
+                print("Cargando Classifier Title...")
                 classifier = classificatorObject.getClasifier()
                 print("Classifier Cargado")
                 clasificator = dataClasificator( webPageInfoObject, classifier)
@@ -148,6 +149,14 @@ if(not testRestService):
                     print(estadistica.getcategory())
                     print(estadistica.getstatistic())
 
+            if classifyAllData == True:
+                classificatorObject = classificator(ficheroParaEntrenamiento, configuracion.getRutaFicheroEntrenamientoPersistenteTitle(), configuracion.getRutaJSONTraining(), ficheroParaEntrenamientoGeneradoParaEntrenamiento)
+                print("Cargando Classifier All...")
+                classifier = classificatorObject.getClasifier()
+                print("Classifier Cargado")
+                clasificator = dataClasificator( webPageInfoObject, classifier)
+                print(clasificator.classifyAllData())
+                print(clasificator.accuracyAll("ALLDATA", "Armas"))
 else:
     if(testListRestService):
         caller = SpyderRestCaller()

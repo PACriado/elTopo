@@ -98,6 +98,23 @@ class dataClasificator:
             all.append(self.classifier.classify(meta))
         return all
 
+    def classifyAllData(self):
+        allData = []
+        metaDataArray = self.classifyAllMeta()
+        spanDataArray = self.classifyAllSpan()
+        paragraphDataArray = self.classifyAllParrafos()
+        titleDataArray = self.classifyAllTitles()
+        headerDataArray = self.classifyAllHeaders()
+        urlDatayArray = self.classifyAllUrl()
+
+        allData.append(metaDataArray)
+        allData.append(spanDataArray)
+        allData.append(paragraphDataArray)
+        allData.append(titleDataArray)
+        allData.append(headerDataArray)
+        allData.append(urlDatayArray)
+        return allData
+
     ##Metodos
     def accuracyAll(self, classifierType, probType):
         all = []
@@ -132,6 +149,19 @@ class dataClasificator:
             for meta in lists:
 
                 prob_dist = self.classifier.prob_classify(meta)
+                all.append((prob_dist.prob(probType)))
+
+        if (classifierType == "ALLDATA"):
+            lists = self.webPageInfo.getAllMetadatas()
+            lists.append(self.webPageInfo.getAllUrls())
+            lists.append(self.webPageInfo.getAllParrafos())
+            lists.append(self.webPageInfo.getAllTitles())
+            lists.append(self.webPageInfo.getAllHeaders())
+            lists.append(self.webPageInfo.getAllSpans())
+            lists.append(self.webPageInfo.getAllTitles())
+            print(lists)
+            for data in lists:
+                prob_dist = self.classifier.prob_classify(data)
                 all.append((prob_dist.prob(probType)))
         return all
 
