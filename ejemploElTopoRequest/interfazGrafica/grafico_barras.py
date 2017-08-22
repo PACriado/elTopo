@@ -9,8 +9,8 @@ class grafico_barras():
         ventana.resizable(0,0)
         ventana.title("Grafico de barras " + estadisticasCategoria[0].geturl())
 
-        c_width = 400
-        c_height = 350
+        c_width = 450
+        c_height = 380
         c = Canvas(ventana, width=c_width, height=c_height)
 
 
@@ -45,8 +45,13 @@ class grafico_barras():
             y1 = c_height - y_gap
 
             c.create_rectangle(x0, y0, x1, y1, fill="red")
-            c.create_text(x0 - 2, 340, anchor=SW, text=texto[x])
+            c.create_text(x0 - 2, 380, anchor=SW, text=texto[x])
 
-            c.create_line(0, 330, c_width, 330)
+            c.create_line(0, 360, c_width, 360)
+
+            print(x0)
+            print(y0)
+            print(x1)
+            print(y1)
 
         #ventana.mainloop()
