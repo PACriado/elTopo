@@ -403,7 +403,7 @@ def Alldata():
     print("Classifier Cargado")
     webPageInfoObject = webPageInfo(route=ruta_fich)
     clasificator = dataClasificator(webPageInfoObject, classifier)
-    estadisticas = clasificator.accuracyAllByCategory("ALL", configuracion.getRutaFicheroCategorias())
+    estadisticas = clasificator.accuracyAllByCategory("ALLDATA", configuracion.getRutaFicheroCategorias())
     for estadistica in estadisticas:
         print(estadistica.getcategory())
         print(estadistica.getstatistic())
@@ -553,7 +553,7 @@ def AlldataDir():
         clasificator = dataClasificator(webPageInfoObject, classifier)
         # print(clasificator.classifyAllHeaders())
         # print(clasificator.accuracyAll("HEADER", "Armas"))
-        estadisticasResultado = clasificator.accuracyAllByCategory("ALL",
+        estadisticasResultado = clasificator.accuracyAllByCategory("ALLDATA",
                                                                    configuracion.getRutaFicheroCategorias(),
                                                                    URL=webPageInfoObject.getUrl())
         print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))

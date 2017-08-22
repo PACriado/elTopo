@@ -419,7 +419,7 @@ class VentanaClasificador():
             clasificator = dataClasificator(webPageInfoObject, classifier)
             # print(clasificator.classifyAllUrl())
             # print(clasificator.accuracyAll("URL", "Armas"))
-            estadisticasResultado = clasificator.accuracyAllByCategory("All data", self.configuracion.getRutaFicheroCategorias(),
+            estadisticasResultado = clasificator.accuracyAllByCategory("ALLDATA", self.configuracion.getRutaFicheroCategorias(),
                                                               URL=webPageInfoObject.getUrl())
             print("Clasificada la URL {0} ".format(webPageInfoObject.getUrl()))
             self.estadisticasResultado.append(estadisticasResultado)
