@@ -28,13 +28,6 @@ class VentanaPrincipal():
         self.menu = Menu(self.ventana)
         self.ventana.config(menu=self.menu)
 
-        #MENU ARCHIVO
-        self.MenuArchivo = Menu(self.menu)
-        self.menu.add_cascade(label="Archivo", menu=self.MenuArchivo)
-        self.MenuArchivo.add_command(label="Nuevo", command=self.NewFile)
-        self.MenuArchivo.add_command(label="Abrir...", command=self.OpenFile)
-        self.MenuArchivo.add_separator()
-        self.MenuArchivo.add_command(label="Salir", command=self.ventana.quit)
 
         #MENU CONFIGURACION
         self.MenuConfiguracion = Menu(self.menu)
@@ -67,10 +60,6 @@ class VentanaPrincipal():
         self.MenuClasificador.add_command(label="Entrenar...",command=self.AbrirVentanaEntrenamiento)
        # self.MenuClasificador.add_command(label="Prueba Dir...", command=self.OpenDirectory)
 
-        #MENU AYUDA
-        self.MenuAyuda = Menu(self.menu)
-        self.menu.add_cascade(label="Ayuda", menu=self.MenuAyuda)
-        self.MenuAyuda.add_command(label="Acerca de...", command=self.About)
 
         self.ventana.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.ventana.mainloop()
