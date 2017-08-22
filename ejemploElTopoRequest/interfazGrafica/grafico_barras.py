@@ -30,7 +30,7 @@ class grafico_barras():
 
         for estadistica in estadisticasCategoria:
             datos.append(estadistica.getstatistic()*10)
-            texto.append(estadistica.getcategory())
+            texto.append(estadistica.getcategory() + "\n" +str(round(estadistica.getstatistic()*100,2))+"%")
 
 
         for x, y in enumerate(datos):
