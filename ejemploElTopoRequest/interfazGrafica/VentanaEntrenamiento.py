@@ -8,7 +8,7 @@ from clasificador.classificator import classificator
 class VentanaEntrenamiento():
     def __init__(self):
         self.ventanaE = Tk()
-        self.ventanaE.title('Entrenamiento')
+        self.ventanaE.title('Entrenar')
         self.toolbar = Frame(self.ventanaE)
         self.toolbar.pack(side="top", fill="x")
         self.configuracion = config("./configElTopo/config.json")

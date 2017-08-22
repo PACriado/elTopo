@@ -14,7 +14,7 @@ from interfazGrafica.grafico_barras import grafico_barras
 class VentanaClasificador():
     def __init__(self):
         self.ventana = Tk()
-        self.ventana.title('Clasificador')
+        self.ventana.title('Clasificar')
         self.estadisticasResultado=[]
 
         # self.toolbar = Frame(self.ventana)
