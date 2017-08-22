@@ -28,7 +28,7 @@ class VentanaClasificador():
         self.ficheroParaEntrenamiento = self.configuracion.getFicheroParaEntrenamiento()
         self.ficheroParaEntrenamientoGeneradoParaEntrenamiento = self.configuracion.getFicheroParaEntrenamientoGeneradoParaEntrenamiento()
 
-        self.BTN_Abrirdir = ttk.Button(self.ventana, text="Abrir directorio", command=self.ruta_text)
+        self.BTN_Abrirdir = ttk.Button(self.ventana, text="Abrir directorio", command=self.ruta_text,width=30)
         self.BTN_Header = ttk.Button(self.ventana, text="Header data", command=self.classificator_header_directory)
         self.BTN_Url = ttk.Button(self.ventana, text="Url data", command=self.classificator_url_directory)
         self.BTN_Paragraph = ttk.Button(self.ventana, text="Paragraph data",
@@ -40,7 +40,7 @@ class VentanaClasificador():
         self.url = ttk.Entry(self.ventana, width=80)
         self.BTN_VerUltimosResultados = ttk.Button(self.ventana, text="Ver ultimos resultados", command=self.mostrarVentanaDatos)
 
-        self.BTN_Abrirfich = ttk.Button(self.ventana, text="Abrir fichero", command=self.ruta_textfich)
+        self.BTN_Abrirfich = ttk.Button(self.ventana, text="Abrir fichero", command=self.ruta_textfich,width=30)
         self.BTN_Headerfich = ttk.Button(self.ventana, text="Header data", command=self.classificator_header)
         self.BTN_Urlfich = ttk.Button(self.ventana, text="Url data", command=self.classificator_url)
         self.BTN_Paragraphfich = ttk.Button(self.ventana, text="Paragraph data", command=self.classificator_paragraph)
@@ -83,7 +83,7 @@ class VentanaClasificador():
 
         # Fila 10 :
 
-        self.BTN_Abrirfich.grid(row=9, column=0)
+        self.BTN_Abrirfich.grid(row=9, column=0,sticky=NW)
         self.urlfich.grid(row=9, column=1)
 
         # Filas 11-17 :
@@ -174,7 +174,7 @@ class VentanaClasificador():
         self.urlfich.delete(0, 'end')
         self.urlfich.insert(0, result)
         # self.url.pack(in_=self.marco, side="left")
-        self.urlfich.grid(row=9, column=1)
+        self.urlfich.grid(row=9, column=1,sticky=NW)
         self.BTN_Header.config(state="disabled")
         self.BTN_Url.config(state="disabled")
         self.BTN_Paragraph.config(state="disabled")
