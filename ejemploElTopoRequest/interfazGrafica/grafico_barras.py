@@ -49,9 +49,9 @@ class grafico_barras():
 
             c.create_line(0, 360, c_width, 360)
 
-            print(x0)
-            print(y0)
-            print(x1)
-            print(y1)
+            #print(x0)
+            #print(y0)
+            #print(x1)
+            #print(y1)
 
         #ventana.mainloop()

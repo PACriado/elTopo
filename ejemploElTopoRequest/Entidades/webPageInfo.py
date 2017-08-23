@@ -19,7 +19,7 @@ class webPageInfo:
                     setattr(self, e, self.__dict__[e])
         else:
             #SI NO HAY JSON, CARGAMOS LA CLASE "A MANO"
-            print("che")
+            #print("che")
             self.url = url
             self.title = title
             self.children = []

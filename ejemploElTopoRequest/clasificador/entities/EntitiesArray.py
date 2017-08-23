@@ -12,6 +12,6 @@ class EntitiesArray:
         return self.entityArray
 
     def createJsonString(self):
-        print(self.entityArray)
+        #print(self.entityArray)
         values = ','.join(str(v) for v in self.entityArray)
         return values

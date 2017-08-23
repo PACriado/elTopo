@@ -23,8 +23,8 @@ class ClassifyEntity:
         newDirty3 = newDirty2.replace('"',"")
         newDirty4 = newDirty3.replace("\\x", "")
        ##MODIFICAR, ESTÁ FALLANDO TODO
-        print(self.label)
-        print(self.text)
+        #print(self.label)
+        #print(self.text)
         obj = {"text": newDirty4, "label": self.label}
         ##print("objeto")
         ##print(obj)

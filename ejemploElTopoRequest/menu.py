@@ -329,7 +329,7 @@ def PedirFich():
     global ruta_fich
     ruta_fich = input("Introducir ruta del fichero: ")
     assert os.path.exists(ruta_fich), "No se ha encontrado el fichero en, " + str(ruta_fich)
-    print("Funcionando")
+    #print("Funcionando")
     OpcionesClasificador()
     return ruta_fich
 
@@ -339,7 +339,7 @@ def PedirDir():
     ruta_dir = input("Introducir ruta del directorio: ")
     ruta_dir = ruta_dir + "/"
     assert os.path.exists(ruta_dir), "No se ha encontrado el directorio en, " + str(ruta_dir)
-    print("Funcionando")
+    #print("Funcionando")
     OpcionesClasificadorDir()
     return ruta_dir
 

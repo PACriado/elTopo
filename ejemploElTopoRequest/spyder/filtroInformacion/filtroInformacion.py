@@ -13,13 +13,13 @@ class filtroInformacion:
         self.isOnline = True
         self.depth = depth
         self.maxDepth = maxDepth
-        print("Filtrando {}".format(self.url))
+        #print("Filtrando {}".format(self.url))
         try:
             self.page = self.conexion.getRequestAuto(self.url)
 
             if self.page.status_code != HttpCode.OK.value:
                 # AQUI DEBERIAMOS LANZAR UNA EXCEPCION
-                print("LA WEB NO RETORNA UN HTTP 200! RETORNA {0}".format(self.page.status_code))
+                #print("LA WEB NO RETORNA UN HTTP 200! RETORNA {0}".format(self.page.status_code))
                 raise HttpCodeException("NO HA SALTADO UN 200!")
 
             self.tree = html.fromstring( self.page.content.decode('utf-8','ignore'))
