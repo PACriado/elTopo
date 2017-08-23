@@ -1,10 +1,11 @@
-from spyder.spyder import spyder
 from flask import Flask
 from flask import request
+
 from EntidadesRest.SpyderRequest import SpyderRequest
 from EntidadesRest.SpyderResponse import SpyderResponse
-from preProcesador.preProcesator import Preprocesator
 from configElTopo.config import config
+from preProcesador.preProcesator import Preprocesator
+from spyder.spyder import spyder
 
 app = Flask(__name__)
 
@@ -17,11 +18,12 @@ def lanzar():
     theSpyder = spyder("./configElTopo/config.json")
     configuracion = config("./configElTopo/config.json")
     rutaFicheros = theSpyder.launch()
-    procesador = Preprocesator(rutaFicheros+"onLine/", configuracion.getRutaSalidaPreProcesador())
+    procesador = Preprocesator(rutaFicheros + "onLine/", configuracion.getRutaSalidaPreProcesador())
     procesador.process()
 
     spyderResponse = SpyderResponse(FilesPath=rutaFicheros)
     return spyderResponse.toJSON()
+
 
 if __name__ == "__main__":
     print("spyderRest.py is being run directly")

@@ -1,22 +1,22 @@
-from tkinter import ttk
 import tkinter as tk
+from tkinter import ttk
+
+
 class Application(ttk.Frame):
+    def __init__(self, main_window):
+        super().__init__(main_window)
+        main_window.title("Combobox")
 
+        self.combo = ttk.Combobox(self)
+        self.combo.place(x=50, y=50)
+        self.combo["values"] = ["True", "False"]
+        self.combo.bind("<<ComboboxSelected>>", self.selection_changed)
 
-        def __init__(self, main_window):
-            super().__init__(main_window)
-            main_window.title("Combobox")
+        main_window.configure(width=300, height=200)
+        self.place(width=300, height=200)
 
-            self.combo = ttk.Combobox(self)
-            self.combo.place(x=50, y=50)
-            self.combo["values"] = ["True", "False"]
-            self.combo.bind("<<ComboboxSelected>>", self.selection_changed)
-
-            main_window.configure(width=300, height=200)
-            self.place(width=300, height=200)
-
-        def selection_changed(self, event):
-            print("Nuevo elemento seleccionado:", self.combo.get())
+    def selection_changed(self, event):
+        print("Nuevo elemento seleccionado:", self.combo.get())
 
 
 main_window = tk.Tk()
