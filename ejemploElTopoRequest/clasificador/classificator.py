@@ -1,12 +1,12 @@
 from textblob.classifiers import NaiveBayesClassifier
+
 from clasificador.dataTrainer import dataTrainer
 
 ##cambiar de nombre a clasificator
 classifier = NaiveBayesClassifier
 
+
 class classificator:
-
-
     def __init__(self, trainingJSONPath, persistantWritepath, JsonGenericData, results):
         self.trainingJsonPath = trainingJSONPath
         self.persistantWriteFile = persistantWritepath
@@ -23,7 +23,7 @@ class classificator:
 
     def getClasifier(self):
         objecto = dataTrainer(self.trainingJsonPath)
-        #objecto.train()
+        # objecto.train()
         classifier = objecto.persistantRead(self.persistantReadFile)
         return classifier
 

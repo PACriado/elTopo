@@ -5,23 +5,22 @@ from fake_useragent import UserAgent
 from stem import Signal
 from stem.control import Controller
 
-from spyder.utils import utils as utils
 from spyder.elTopoRequest.ElTopoRequestException import ElTopoRequestException
+from spyder.utils import utils as utils
 
 
 class elTopoRequest:
     ua = UserAgent()
     header = {'User-agent': ua.firefox}
     pro = {'http': 'socks5://localhost:9050', 'https': 'socks5://localhost:9050'}
-    utilizarSiempreTor=False
-    renovarSiempreCircuitoTor=False
-    delayIntentoRenovacionCircuitoTor=5
+    utilizarSiempreTor = False
+    renovarSiempreCircuitoTor = False
+    delayIntentoRenovacionCircuitoTor = 5
 
-    def __init__(self,UtilizarSiempreTor,RenovarSiempreCircuitoTor,DelayIntentoRenovacionCircuitoTor):
+    def __init__(self, UtilizarSiempreTor, RenovarSiempreCircuitoTor, DelayIntentoRenovacionCircuitoTor):
         self.utilizarSiempreTor = UtilizarSiempreTor
         self.renovarSiempreCircuitoTor = RenovarSiempreCircuitoTor
         self.delayIntentoRenovacionCircuitoTor = DelayIntentoRenovacionCircuitoTor
-
 
     def getRequestTor(self, url):
         try:
@@ -43,14 +42,14 @@ class elTopoRequest:
             raise ElTopoRequestException(url + " EXCEPTION. Cant getRequestNoTor")
 
     def renew_connection(self):
-        with Controller.from_port(port = 9051) as controller:
-            controller.authenticate(password = 'my_password')
+        with Controller.from_port(port=9051) as controller:
+            controller.authenticate(password='my_password')
             controller.signal(Signal.NEWNYM)
 
             var = controller.is_newnym_available()
             while var == False:
-                    time.sleep(self.delayIntentoRenovacionCircuitoTor)
-                    var = controller.is_newnym_available()
+                time.sleep(self.delayIntentoRenovacionCircuitoTor)
+                var = controller.is_newnym_available()
             controller.close()
 
     def getRequestAuto(self, url):

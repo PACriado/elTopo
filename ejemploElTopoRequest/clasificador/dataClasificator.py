@@ -1,16 +1,14 @@
 from textblob.classifiers import NaiveBayesClassifier
-from Entidades.webPageInfo import webPageInfo
-from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
-import pickle
-from pprint import pprint
+
 from clasificador.entities.categoryStatistic import categoryStatistic
 
-#Class that classifies all the data depending of the tag selected.
-class dataClasificator:
 
+# Class that classifies all the data depending of the tag selected.
+class dataClasificator:
     path = ""
     classifier = NaiveBayesClassifier
     webPageInfo = ""
+
     def __init__(self, WPI, Classifier):
 
         self.webPageInfo = WPI
@@ -19,8 +17,7 @@ class dataClasificator:
         self.classifier = Classifier
         ##classifier_f.close()
 
-
-    #Classification methods
+    # Classification methods
 
     def classifyUrl(self):
         url = self.webPageInfo.getUrl()
@@ -41,28 +38,28 @@ class dataClasificator:
 
     def classifyAllUrl(self):
         all = []
-        urlList  = self.webPageInfo.getAllUrls()
+        urlList = self.webPageInfo.getAllUrls()
         ##for url in urlList:
-            ##pprint("************" + url + self.classifier.classify(url))
+        ##pprint("************" + url + self.classifier.classify(url))
         all.append(self.classifier.classify(urlList))
         return all
 
     def classifyAllHeaders(self):
         all = []
-        headerList  = self.webPageInfo.getAllHeaders()
+        headerList = self.webPageInfo.getAllHeaders()
 
         for header in headerList:
             ##for e in header:
-                ##add = self.classifier.classify(e)
-            #print(header)
+            ##add = self.classifier.classify(e)
+            # print(header)
             all.append(self.classifier.classify(header))
         return all
 
     def classifyAllTitles(self):
         all = []
-        titleList  = self.webPageInfo.getAllTitles()
+        titleList = self.webPageInfo.getAllTitles()
         for titles in titleList:
-            #print(titles)
+            # print(titles)
             ##for e in titles:
 
             all.append(self.classifier.classify(titles))
@@ -70,16 +67,16 @@ class dataClasificator:
 
     def classifyAllParrafos(self):
         all = []
-        parrafosList  = self.webPageInfo.getAllParrafos()
+        parrafosList = self.webPageInfo.getAllParrafos()
         for parrafo in parrafosList:
-            #print(parrafo)
+            # print(parrafo)
             ##for e in parrafo:
             all.append(self.classifier.classify(parrafo))
         return all
 
     def classifyAllSpan(self):
         all = []
-        spanList  = self.webPageInfo.getAllSpans()
+        spanList = self.webPageInfo.getAllSpans()
         ##print(spanList)
         for span in spanList:
             ##for e in span:
@@ -89,7 +86,7 @@ class dataClasificator:
 
     def classifyAllMeta(self):
         all = []
-        metaList  = self.webPageInfo.getAllMetadatas()
+        metaList = self.webPageInfo.getAllMetadatas()
         ##print(metaList)
         for meta in metaList:
             ##for e in meta:
@@ -126,7 +123,7 @@ class dataClasificator:
         if (classifierType == "TITLE"):
             lists = self.webPageInfo.getAllTitles()
             for title in lists:
-                #print(title)
+                # print(title)
                 prob_dist = self.classifier.prob_classify(title)
                 all.append((prob_dist.prob(probType)))
         if (classifierType == "SPAN"):
@@ -147,7 +144,6 @@ class dataClasificator:
         if (classifierType == "META"):
             lists = self.webPageInfo.getAllMetadatas()
             for meta in lists:
-
                 prob_dist = self.classifier.prob_classify(meta)
                 all.append((prob_dist.prob(probType)))
 
@@ -159,14 +155,13 @@ class dataClasificator:
             lists.append(self.webPageInfo.getAllHeaders())
             lists.append(self.webPageInfo.getAllSpans())
             lists.append(self.webPageInfo.getAllTitles())
-            #print(lists)
+            # print(lists)
             for data in lists:
                 prob_dist = self.classifier.prob_classify(data)
                 all.append((prob_dist.prob(probType)))
         return all
 
-
-    def leerCategorias(self,ruta):
+    def leerCategorias(self, ruta):
         categorias = []
         infile = open(ruta, 'r')
         for line in infile:
@@ -175,20 +170,18 @@ class dataClasificator:
         infile.close()
         return categorias
 
-    def accuracyAllByCategory(self, classifierType, categoriesPath,URL=""):
+    def accuracyAllByCategory(self, classifierType, categoriesPath, URL=""):
         estadisticaDeCategorias = []
         categorias = self.leerCategorias(categoriesPath)
-        sumatorioEstadisticaCategoria=0
+        sumatorioEstadisticaCategoria = 0
         for categoria in categorias:
             Statistics = self.accuracyAll(classifierType, categoria)
             for stadistica in Statistics:
-                sumatorioEstadisticaCategoria+=stadistica
+                sumatorioEstadisticaCategoria += stadistica
             numeroElementos = len(Statistics)
-            if numeroElementos==0:
-                numeroElementos=1
-            estadisticaCategoria = sumatorioEstadisticaCategoria/numeroElementos
-            estadisticaDeCategorias.append(categoryStatistic(categoria,estadisticaCategoria,URL=URL))
-            sumatorioEstadisticaCategoria=0
+            if numeroElementos == 0:
+                numeroElementos = 1
+            estadisticaCategoria = sumatorioEstadisticaCategoria / numeroElementos
+            estadisticaDeCategorias.append(categoryStatistic(categoria, estadisticaCategoria, URL=URL))
+            sumatorioEstadisticaCategoria = 0
         return estadisticaDeCategorias
-
-

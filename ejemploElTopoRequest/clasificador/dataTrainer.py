@@ -1,12 +1,13 @@
-from textblob.classifiers import NaiveBayesClassifier
 import pickle
+
+from textblob.classifiers import NaiveBayesClassifier
+
 from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 from clasificador.entities.ClassifyEntity import ClassifyEntity
 from clasificador.entities.EntitiesArray import EntitiesArray
 
+
 class dataTrainer:
-
-
     def __init__(self, Path):
         self.path = Path
 
@@ -19,8 +20,8 @@ class dataTrainer:
 
     def persistantWrite(self, PathToLoad):
         object = self.cl
-        file = open(PathToLoad,'wb')
-        pickle.dump(object,file)
+        file = open(PathToLoad, 'wb')
+        pickle.dump(object, file)
 
     def persistantRead(self, PathRead):
         classifier_f = open(PathRead, "rb")
@@ -68,7 +69,6 @@ class dataTrainer:
                 classifyEntity = ClassifyEntity(cadenaTitle, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
 
-
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
         outfile.close()
@@ -83,7 +83,6 @@ class dataTrainer:
             for cadenaHeader in webPageInfoObjectInArray.getHeader():
                 classifyEntity = ClassifyEntity(cadenaHeader, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
-
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
@@ -100,11 +99,9 @@ class dataTrainer:
                 classifyEntity = ClassifyEntity(cadenaMeta, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
 
-
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
         outfile.close()
-
 
     def generateFileSpan(self, finalPath):
         allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(self.path)
@@ -116,7 +113,6 @@ class dataTrainer:
             for cadenaSpan in webPageInfoObjectInArray.getSpan():
                 classifyEntity = ClassifyEntity(cadenaSpan, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
-
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
@@ -147,8 +143,6 @@ class dataTrainer:
             for cadenaTitle in webPageInfoObjectInArray.getTitle():
                 classifyEntity = ClassifyEntity(cadenaTitle, webPageInfoObjectInArray.getLabel())
                 entitiesArray.add(classifyEntity)
-
-
 
         outfile.write(entitiesArray.createJsonString().replace("'", '"'))
         outfile.write("]")
