@@ -1,16 +1,17 @@
-import sys, os, time
-from spyder.spyder import spyder
-from clasificador.classificator import classificator
-from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
-from EntidadesRest.SpyderRequest import SpyderRequest
-from preProcesador.preProcesator import Preprocesator
-from configElTopo.config import config
-from spyderRest import spyderRest
+import os
+import sys
 from random import randint
+
 from asciimatics.screen import Screen
-from clasificador.dataClasificator import dataClasificator
-from Entidades.webPageInfo import webPageInfo
+
 from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
+from Entidades.webPageInfo import webPageInfo
+from clasificador.classificator import classificator
+from clasificador.dataClasificator import dataClasificator
+from configElTopo.config import config
+from preProcesador.preProcesator import Preprocesator
+from spyder.spyder import spyder
+from spyderRestCaller.SpyderRestCaller import SpyderRestCaller
 
 acciones_menu = {}
 acciones_submenu = {}
@@ -130,6 +131,7 @@ def sub_menuOpcionesClasificadorDir():
     os.system('clear')
     print("Menu Opciones de Clasificación Dir")
 
+
 def exec_menu(eleccion):
     os.system('clear')
     ch = eleccion.lower()
@@ -224,7 +226,6 @@ def exec_submenuOpcionesClasificadorDir(eleccion):
         except KeyError:
             print("Opcion no válida.Seleccionar otra opcion.\n")
             acciones_submenuOpcionesClasificadorDir['sub_menuOpcionesClasificadorDir']()
-
 
 
 def Configuracion():
@@ -329,7 +330,7 @@ def PedirFich():
     global ruta_fich
     ruta_fich = input("Introducir ruta del fichero: ")
     assert os.path.exists(ruta_fich), "No se ha encontrado el fichero en, " + str(ruta_fich)
-    #print("Funcionando")
+    # print("Funcionando")
     OpcionesClasificador()
     return ruta_fich
 
@@ -339,7 +340,7 @@ def PedirDir():
     ruta_dir = input("Introducir ruta del directorio: ")
     ruta_dir = ruta_dir + "/"
     assert os.path.exists(ruta_dir), "No se ha encontrado el directorio en, " + str(ruta_dir)
-    #print("Funcionando")
+    # print("Funcionando")
     OpcionesClasificadorDir()
     return ruta_dir
 
@@ -415,7 +416,6 @@ def Entrenador():
 
 
 def Alldata():
-
     classificatorObject = classificator(ficheroParaEntrenamiento,
                                         configuracion.getRutaFicheroEntrenamientoPersistente(),
                                         configuracion.getRutaJSONTraining(),
@@ -433,8 +433,6 @@ def Alldata():
 
     input('Pulse Enter para volver al menu...')
     OpcionesClasificador()
-
-
 
 
 def Titledata():
@@ -536,7 +534,6 @@ def Urldata():
 
 
 def Headerdata():
-
     classificatorObject = classificator(ficheroParaEntrenamiento,
                                         configuracion.getRutaFicheroEntrenamientoPersistenteHeaderData(),
                                         configuracion.getRutaJSONTraining(),
@@ -589,8 +586,6 @@ def AlldataDir():
 
 
 def TitledataDir():
-
-
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
@@ -617,7 +612,6 @@ def TitledataDir():
 
 
 def SpandataDir():
-
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
@@ -642,8 +636,8 @@ def SpandataDir():
     input('Pulse Enter para volver al menu...')
     OpcionesClasificadorDir()
 
-def MetadataDir():
 
+def MetadataDir():
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
@@ -669,9 +663,7 @@ def MetadataDir():
     OpcionesClasificadorDir()
 
 
-
 def ParagraphdataDir():
-
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
@@ -697,10 +689,7 @@ def ParagraphdataDir():
     OpcionesClasificadorDir()
 
 
-
 def UrldataDir():
-
-
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
@@ -727,8 +716,6 @@ def UrldataDir():
 
 
 def HeaderdataDir():
-
-
     allObjects = leerFicherosWebPageInfo.readAllFilesInDirectory(ruta_dir)
     for webPageInfoObject in allObjects:
         classificatorObject = classificator(ficheroParaEntrenamiento,
@@ -827,7 +814,6 @@ acciones_submenuOpcionesClasificadorDir = {
     '9': back,
     '0': exit
 }
-
 
 if __name__ == "__main__":
     os.system('clear')

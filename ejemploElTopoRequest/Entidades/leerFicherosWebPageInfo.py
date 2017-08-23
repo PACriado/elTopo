@@ -1,8 +1,9 @@
 import glob
+
 from Entidades.webPageInfo import webPageInfo
+
+
 class leerFicherosWebPageInfo:
-
-
     def readAllFilesInDirectory(route):
         print(route)
         arrayWebPageInfos = []
