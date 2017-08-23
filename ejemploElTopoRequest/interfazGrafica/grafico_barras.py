@@ -1,18 +1,16 @@
 from tkinter import *
-from clasificador.entities.categoryStatistic import categoryStatistic
 
 
 class grafico_barras():
     def __init__(self, estadisticasCategoria):
 
         ventana = Tk()
-        ventana.resizable(0,0)
+        ventana.resizable(0, 0)
         ventana.title("Grafico de barras " + estadisticasCategoria[0].geturl())
 
         c_width = 450
         c_height = 380
         c = Canvas(ventana, width=c_width, height=c_height)
-
 
         c.pack()
 
@@ -29,18 +27,15 @@ class grafico_barras():
         texto = []
 
         for estadistica in estadisticasCategoria:
-            datos.append(estadistica.getstatistic()*10)
-            texto.append(estadistica.getcategory() + "\n" +str(round(estadistica.getstatistic()*100,2))+"%")
-
+            datos.append(estadistica.getstatistic() * 10)
+            texto.append(estadistica.getcategory() + "\n" + str(round(estadistica.getstatistic() * 100, 2)) + "%")
 
         for x, y in enumerate(datos):
             x0 = x * x_stretch + x * x_width + x_gap
 
             y0 = c_height - (y * y_stretch + y_gap)
 
-
             x1 = x * x_stretch + x * x_width + x_width + x_gap
-
 
             y1 = c_height - y_gap
 
@@ -49,9 +44,9 @@ class grafico_barras():
 
             c.create_line(0, 360, c_width, 360)
 
-            #print(x0)
-            #print(y0)
-            #print(x1)
-            #print(y1)
+            # print(x0)
+            # print(y0)
+            # print(x1)
+            # print(y1)
 
-        #ventana.mainloop()
+            # ventana.mainloop()

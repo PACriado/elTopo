@@ -1,6 +1,3 @@
-import json
-
-
 class lecturaFicheroServidores:
     def leerDireccionesDiccionario(ruta):
         direcciones = []

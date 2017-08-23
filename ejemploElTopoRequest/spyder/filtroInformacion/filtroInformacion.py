@@ -1,10 +1,11 @@
-from spyder.filtroInformacion.HttpCodeException import HttpCodeException
 from lxml import html
 
 from Entidades.webPageInfo import webPageInfo
 from spyder.elTopoRequest.elTopoRequest import ElTopoRequestException
 from spyder.filtroInformacion.HttpCode import HttpCode
+from spyder.filtroInformacion.HttpCodeException import HttpCodeException
 from spyder.utils.utils import utils
+
 
 class filtroInformacion:
     def __init__(self, conexion, url, depth=1, maxDepth=1):
@@ -13,16 +14,16 @@ class filtroInformacion:
         self.isOnline = True
         self.depth = depth
         self.maxDepth = maxDepth
-        #print("Filtrando {}".format(self.url))
+        # print("Filtrando {}".format(self.url))
         try:
             self.page = self.conexion.getRequestAuto(self.url)
 
             if self.page.status_code != HttpCode.OK.value:
                 # AQUI DEBERIAMOS LANZAR UNA EXCEPCION
-                #print("LA WEB NO RETORNA UN HTTP 200! RETORNA {0}".format(self.page.status_code))
+                # print("LA WEB NO RETORNA UN HTTP 200! RETORNA {0}".format(self.page.status_code))
                 raise HttpCodeException("NO HA SALTADO UN 200!")
 
-            self.tree = html.fromstring( self.page.content.decode('utf-8','ignore'))
+            self.tree = html.fromstring(self.page.content.decode('utf-8', 'ignore'))
         except ElTopoRequestException:
             # SI NO CONSEGUIMOS CONECTAR, PARA NOSOTROS LA WEB ESTA OFFLINE Y NO PODEMOS HACER MAS
             print("Web OffLine por no poder establecer conexion a {0}".format(self.url))
@@ -93,12 +94,11 @@ class filtroInformacion:
                                  'or (substring(@src, string-length(@src) - string-length("mpeg") +1) = "mpeg" )])')
         return videos
 
-
     def getAllDataRecursiveObject(self):
         currentWeb = ''
         if self.depth == self.maxDepth:
             title = self.getTitle()
-            if  (title == None) or (not title):
+            if (title == None) or (not title):
                 title = [""]
 
             currentWeb = webPageInfo(url=self.getUrl(), title=title)
@@ -119,14 +119,14 @@ class filtroInformacion:
                 try:
                     newFilter = filtroInformacion(self.conexion, currentChildren, depth=(self.depth + 1),
                                                   maxDepth=self.maxDepth)
-                    children =newFilter.getAllDataRecursiveObject()
+                    children = newFilter.getAllDataRecursiveObject()
                     currentWeb.getChildren().append(children)
                 except:
                     currentWeb.setIsOnline(False)
 
         return currentWeb
 
-    def getAllDataRecursiveJson(self,data):
+    def getAllDataRecursiveJson(self, data):
         # AQUI HAY QUE MIRAR PORQUE NO SERIALIZA A JSON UN OBJETO CON UNA LISTA RELLENA DE OBJETOS
         temp = data.toJSON()
         return temp
