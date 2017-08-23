@@ -831,5 +831,5 @@ acciones_submenuOpcionesClasificadorDir = {
 
 if __name__ == "__main__":
     os.system('clear')
-    #Screen.wrapper(letrasInicio)
+    Screen.wrapper(letrasInicio)
     menu_principal()
