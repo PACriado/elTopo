@@ -54,11 +54,10 @@ def letrasInicio(screen):
 def menu_principal():
     os.system('clear')
 
-    print("===============================")
-    print(" MENU PRINCIPAL: EL TOPO       ")
-    print("===============================")
-    print("Seleccione una opción del menu:")
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    print("==================================")
+    print("|    MENU PRINCIPAL: EL TOPO     |")
+    print("==================================")
+    print("Seleccione una opción:")
     print("\n")
     print("1. Configuracion")
     print("2. Crawler Local")
@@ -74,7 +73,11 @@ def menu_principal():
 
 def sub_menuConfig():
     os.system('clear')
-    print("Menu Configuracion\n")
+    print("==================================")
+    print("|      Menu Configuracion        |")
+    print("==================================")
+    print("Seleccione una opción:")
+    print("\n")
     print("1.Configurar")
     print("9. Volver al menu principal")
     print("0. Salir")
@@ -85,7 +88,11 @@ def sub_menuConfig():
 
 def sub_menuCrawler():
     os.system('clear')
-    print("Menu Crawler Local\n")
+    print("==================================")
+    print("|      Menu Crawler Local        |")
+    print("==================================")
+    print("Seleccione una opción:")
+    print("\n")
     print("1.Iniciar")
     print("9. Volver al menu principal")
     print("0. Salir")
@@ -96,8 +103,12 @@ def sub_menuCrawler():
 
 def sub_menuCrawlerR():
     os.system('clear')
-    print("Menu Crawler Remoto\n")
-    print("1.Iniciar")
+    print("==================================")
+    print("|      Menu Crawler Remoto       |")
+    print("==================================")
+    print("Seleccione una opción:")
+    print("\n")
+    print("1. Iniciar")
     print("9. Volver al menu principal")
     print("0. Salir")
     eleccion = input(" >>  ")
@@ -217,7 +228,10 @@ def exec_submenuOpcionesClasificadorDir(eleccion):
 
 
 def Configuracion():
-    print("Menu Configuracion\n")
+    print("==================================")
+    print("|      Menu Configuracion        |")
+    print("==================================")
+    print("Seleccione una opción:")
     print("1.Configurar")
     print("9. Volver")
     print("0. Salir")
@@ -227,7 +241,10 @@ def Configuracion():
 
 
 def CrawlerL():
-    print("Menu Crawler Local\n")
+    print("==================================")
+    print("|      Menu Crawler Local        |")
+    print("==================================")
+    print("Seleccione una opción:")
     print("1. Iniciar")
     print("9. Volver")
     print("0. Salir")
@@ -237,7 +254,10 @@ def CrawlerL():
 
 
 def CrawlerR():
-    print("Menu Crawler Remoto\n")
+    print("==================================")
+    print("|      Menu Crawler Remoto       |")
+    print("==================================")
+    print("Seleccione una opción:")
     print("1. Iniciar Crawler Remoto")
     print("9. Volver")
     print("0. Salir")
@@ -247,7 +267,10 @@ def CrawlerR():
 
 
 def Clasificador():
-    print("Menu Clasificador\n")
+    print("==================================")
+    print("|       Menu Clasificador        |")
+    print("==================================")
+    print("Seleccione una opción:")
     print("1. Pedir Fichero")
     print("2. Pedir Directorio ")
     print("9. Volver")
@@ -804,7 +827,9 @@ acciones_submenuOpcionesClasificadorDir = {
     '9': back,
     '0': exit
 }
+
+
 if __name__ == "__main__":
     os.system('clear')
-    # Screen.wrapper(letrasInicio)
+    #Screen.wrapper(letrasInicio)
     menu_principal()
