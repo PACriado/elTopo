@@ -1,15 +1,15 @@
 from tkinter import *
-import sys
 from tkinter.filedialog import askdirectory
-from configElTopo.config import config
+
 from clasificador.classificator import classificator
+from configElTopo.config import config
 
 
 class VentanaEntrenamiento():
     def __init__(self):
         self.ventanaE = Tk()
         self.ventanaE.title('Entrenar')
-        self.ventanaE.resizable(0,0)
+        self.ventanaE.resizable(0, 0)
         self.toolbar = Frame(self.ventanaE)
         self.toolbar.pack(side="top", fill="x")
         self.configuracion = config("./configElTopo/config.json")

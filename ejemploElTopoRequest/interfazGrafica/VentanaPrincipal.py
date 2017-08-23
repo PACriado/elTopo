@@ -1,14 +1,14 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
+
 from PIL import Image, ImageTk
+
+from interfazGrafica.VentanaClasificador import VentanaClasificador
 from interfazGrafica.VentanaConfig import VentanaConfig
 from interfazGrafica.VentanaConfigCrawler import VentanaConfigCrawler
-from interfazGrafica.VentanaTerminal import VentanaTerminal
 from interfazGrafica.VentanaCrawler import VentanaCrawler
-from interfazGrafica.VentanaClasificador import VentanaClasificador
 from interfazGrafica.VentanaEntrenamiento import VentanaEntrenamiento
-
-import sys,os
+from interfazGrafica.VentanaTerminal import VentanaTerminal
 
 
 class VentanaPrincipal():
@@ -63,7 +63,7 @@ class VentanaPrincipal():
 
 
         self.ventana.protocol("WM_DELETE_WINDOW", self.on_closing)
-        self.ventana.resizable(0,0)
+        self.ventana.resizable(0, 0)
         self.ventana.mainloop()
 
     def on_closing(self):

@@ -3,23 +3,22 @@ from urllib.parse import urlparse
 
 
 class webPageInfo:
-
-    def __init__(self, url='', title='', isOnline=True, route='', dictionary =''):
+    def __init__(self, url='', title='', isOnline=True, route='', dictionary=''):
         if dictionary != '':
             ##print(dictionary)
             self.__dict__ = dictionary
             for e in self.__dict__:
-                    setattr(self, e, self.__dict__[e])
+                setattr(self, e, self.__dict__[e])
 
         elif route != '':
-            #DE ESTA FORMA CARGAMOS UN JSON A ESTA CLASE
+            # DE ESTA FORMA CARGAMOS UN JSON A ESTA CLASE
             with open(route) as json_data:
                 self.__dict__ = json.load(json_data)
                 for e in self.__dict__:
                     setattr(self, e, self.__dict__[e])
         else:
-            #SI NO HAY JSON, CARGAMOS LA CLASE "A MANO"
-            #print("che")
+            # SI NO HAY JSON, CARGAMOS LA CLASE "A MANO"
+            # print("che")
             self.url = url
             self.title = title
             self.children = []
@@ -30,7 +29,7 @@ class webPageInfo:
             self.span = []
             self.images = 0
             self.videos = 0
-            self.label = "" #ESTE ATRIBUTO ES NECESARIO PARA EL CLASIFICADOR
+            self.label = ""  # ESTE ATRIBUTO ES NECESARIO PARA EL CLASIFICADOR
 
     def setUrl(self, url):
         self.url = url
@@ -118,7 +117,6 @@ class webPageInfo:
                 all.append(mElement.getAllUrls())
         return all
 
-
     def getAllTitles(self):
         all = []
         childrenSize = self.getChildren().__len__()
@@ -142,7 +140,6 @@ class webPageInfo:
                 all.append(mElement.getAllHeaders())
                 ##print(mElement.getHeader())
         return all
-
 
     def getAllMetadatas(self):
         all = []
@@ -178,5 +175,4 @@ class webPageInfo:
                 mElement = webPageInfo(dictionary=element)
                 all.append(mElement.getAllSpans())
         return all
-    #AÑADIR METODOS QUE DEVUELVAN TODOS LOS METAS, TODOS LOS SPAN, etc etc es decir los propios y los de los hijos.
-
+        # AÑADIR METODOS QUE DEVUELVAN TODOS LOS METAS, TODOS LOS SPAN, etc etc es decir los propios y los de los hijos.
