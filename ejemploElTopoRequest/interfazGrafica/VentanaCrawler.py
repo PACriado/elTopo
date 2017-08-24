@@ -25,6 +25,7 @@ class VentanaCrawler():
         configuracion = config("./configElTopo/config.json")
         theSpyder = spyder(rutaConfig="./configElTopo/config.json")
         rutaSalidaSpyder = theSpyder.launch()
+        print("\n\n")
         procesador = Preprocesator(rutaSalidaSpyder + "onLine/", configuracion.getRutaSalidaPreProcesador())
         procesador.process()
         # print ("this is stdout")
