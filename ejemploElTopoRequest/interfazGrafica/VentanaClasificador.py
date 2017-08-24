@@ -158,7 +158,6 @@ class VentanaClasificador():
         self.BTN_Span.config(state="normal")
         self.BTN_Title.config(state="normal")
         self.BTN_All.config(state="normal")
-        self.BTN_VerUltimosResultados.config(state="normal")
 
         self.BTN_Headerfich.config(state="disabled")
         self.BTN_Urlfich.config(state="disabled")
@@ -189,7 +188,6 @@ class VentanaClasificador():
         self.BTN_Spanfich.config(state="normal")
         self.BTN_Titlefich.config(state="normal")
         self.BTN_Allfich.config(state="normal")
-        self.BTN_VerUltimosResultados.config(state="normal")
 
     #  FICHERO
 
@@ -215,6 +213,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_url(self):
         self.estadisticasResultado = []
@@ -237,6 +236,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_alldata(self):
         self.estadisticasResultado = []
@@ -260,6 +260,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_paragraph(self):
         self.estadisticasResultado = []
@@ -283,6 +284,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_metadata(self):
         self.estadisticasResultado = []
@@ -306,6 +308,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_span(self):
         self.estadisticasResultado = []
@@ -332,6 +335,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_title(self):
         self.estadisticasResultado = []
@@ -355,6 +359,7 @@ class VentanaClasificador():
             print(estadistica.getcategory())
             print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     #  DIRECTORIO
 
@@ -382,6 +387,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_url_directory(self):
         self.estadisticasResultado = []
@@ -407,6 +413,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_alldata_directory(self):
         self.estadisticasResultado = []
@@ -432,6 +439,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_paragraph_directory(self):
         self.estadisticasResultado = []
@@ -457,6 +465,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_metadata_directory(self):
         self.estadisticasResultado = []
@@ -482,6 +491,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_span_directory(self):
         self.estadisticasResultado = []
@@ -510,6 +520,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def classificator_title_directory(self):
         self.estadisticasResultado = []
@@ -535,6 +546,7 @@ class VentanaClasificador():
                 print(estadistica.getcategory())
                 print(estadistica.getstatistic())
         self.dibujarSeparador()
+        self.BTN_VerUltimosResultados.config(state="normal")
 
     def dibujarSeparador(self):
         print("-----------------------------------\n\n")
