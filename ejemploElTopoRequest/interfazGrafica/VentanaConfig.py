@@ -35,7 +35,7 @@ class VentanaConfig():
         self.TXTRutaDiccionario.grid(row=1, column=1, sticky=W)
 
         # row 3 : Tercera fila
-        self.LBLMaxDepth = ttk.Label(self.marco, text="Maxdepth:")
+        self.LBLMaxDepth = ttk.Label(self.marco, text="Profundidad Crawler:")
         self.LBLMaxDepth.grid(row=2, column=0, sticky=W)
         maxD_str = self.configuracion.getMaxDepth()
 
