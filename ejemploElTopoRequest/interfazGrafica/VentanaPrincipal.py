@@ -89,7 +89,6 @@ class VentanaPrincipal():
 
     def AbrirVentanaCrawler(self):
         ventanaCrawler = VentanaCrawler()
-        print ("Iniciando el crawler...")
 
 
     def AbrirVentanaClasificador(self):

@@ -1,5 +1,4 @@
 from tkinter import *
-
 from configElTopo.config import config
 from preProcesador.preProcesator import Preprocesator
 from spyder.spyder import spyder
@@ -22,6 +21,7 @@ class VentanaCrawler():
         # sys.stderr = TextRedirector(self.text, "stderr")
 
     def print_stdout(self):
+        print("Iniciando el crawler...")
         configuracion = config("./configElTopo/config.json")
         theSpyder = spyder(rutaConfig="./configElTopo/config.json")
         rutaSalidaSpyder = theSpyder.launch()
