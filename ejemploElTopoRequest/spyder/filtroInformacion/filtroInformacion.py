@@ -26,12 +26,12 @@ class filtroInformacion:
             self.tree = html.fromstring(self.page.content.decode('utf-8', 'ignore'))
         except ElTopoRequestException:
             # SI NO CONSEGUIMOS CONECTAR, PARA NOSOTROS LA WEB ESTA OFFLINE Y NO PODEMOS HACER MAS
-            print("Web OffLine por no poder establecer conexion a {0}".format(self.url))
+            #print("Web OffLine por no poder establecer conexion a {0}".format(self.url))
             self.isOnline = False
         except:
             # SI NO CONSEGUIMOS CONECTAR, PARA NOSOTROS LA WEB ESTA OFFLINE Y NO PODEMOS HACER MAS
             # NOS DA IGUAL LA EXCEPTION, ESTA OFFLINE
-            print("Web {0} OffLine por error desconocido".format(self.url))
+            #print("Web {0} OffLine por error desconocido".format(self.url))
             self.isOnline = False
 
     def getUrl(self):

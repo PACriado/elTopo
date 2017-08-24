@@ -34,7 +34,7 @@ class spyder:
         else:
             self.urlsFicheros = lecturaFicherosURL.leerDireccionesJSON(self.RutaConfig)
 
-        print("Las URLS son {0}".format(self.urlsFicheros))
+        #print("Las URLS son {0}".format(self.urlsFicheros))
         self.conexion = etr.elTopoRequest(self.UtilizarSiempreTor, self.RenovarSiempreCircuitoTor,
                                           self.DelayIntentoRenovacionCircuitoTor)
 
@@ -47,13 +47,16 @@ class spyder:
                 contenido = filtro.getAllDataRecursiveJson(datos)
                 self.utilidadesJson.escribirJsonContenidoWeb(contenido, currentURL, ".json", datos.getIsOnline())
             except ElTopoRequestException as e:
-                print("ElTopoRequestException!!!!!!!!{0}".format(e.valor))
+                print("La URL {0} no esta disponible".format(currentURL))
+                #print("ElTopoRequestException!!!!!!!!{0}".format(e.valor))
                 self.utilidadesJson.escribirJsonContenidoWeb(currentURL, currentURL, ".json", False)
             except HttpCodeException as e:
-                print("HttpCodeException!!!!!!!{0}".format(e.valor))
+                print("La URL {0} no esta disponible".format(currentURL))
+                #print("HttpCodeException!!!!!!!{0}".format(e.valor))
                 self.utilidadesJson.escribirJsonContenidoWeb(currentURL, currentURL, ".json", False)
             except:
-                print("Error no contemplado: {0}".format(sys.exc_info()))
+                print("La URL {0} no esta disponible".format(currentURL))
+                #print("Error no contemplado: {0}".format(sys.exc_info()))
                 self.utilidadesJson.escribirJsonContenidoWeb(currentURL, currentURL, ".json", False)
         print(
             "Los ficheros con los datos de las URLs analizadas estan en {0}".format(self.utilidadesJson.baseDirectory))
