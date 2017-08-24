@@ -5,7 +5,7 @@ from Entidades.webPageInfo import webPageInfo
 
 class leerFicherosWebPageInfo:
     def readAllFilesInDirectory(route):
-        print(route)
+        #print(route)
         arrayWebPageInfos = []
         ficheros = glob.glob(route + "*.json")
         for webPageInfoFile in ficheros:

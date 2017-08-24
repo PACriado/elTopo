@@ -79,7 +79,7 @@ def sub_menuConfig():
     print("==================================")
     print("Seleccione una opción:")
     print("\n")
-    print("1.Configurar")
+    print("1. Configurar")
     print("9. Volver al menu principal")
     print("0. Salir")
     eleccion = input(" >>  ")
@@ -94,7 +94,7 @@ def sub_menuCrawler():
     print("==================================")
     print("Seleccione una opción:")
     print("\n")
-    print("1.Iniciar")
+    print("1. Iniciar")
     print("9. Volver al menu principal")
     print("0. Salir")
     eleccion = input(" >>  ")
@@ -233,7 +233,7 @@ def Configuracion():
     print("|      Menu Configuracion        |")
     print("==================================")
     print("Seleccione una opción:")
-    print("1.Configurar")
+    print("1. Configurar")
     print("9. Volver")
     print("0. Salir")
     eleccion = input(" >>  ")
@@ -321,7 +321,7 @@ def OpcionesClasificadorDir():
 
 
 def Configurar():
-    print("Editar el fichero.json")
+    print("Editar el fichero /configElTopo/config.json")
     input('Pulse Enter para continuar...')
     menu_principal()
 
@@ -349,6 +349,7 @@ def IniciarCrawlerL():
     print("Iniciando crawler local")
     theSpyder = spyder(rutaConfig="./configElTopo/config.json")
     rutaSalidaSpyder = theSpyder.launch()
+    print("\n\n")
     procesador = Preprocesator(rutaSalidaSpyder + "onLine/", configuracion.getRutaSalidaPreProcesador())
     procesador.process()
     input('Pulse Enter para continuar...')
