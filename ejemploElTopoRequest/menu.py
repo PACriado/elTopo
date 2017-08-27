@@ -1,8 +1,28 @@
+from __future__ import division
 import os
-import sys
 from random import randint
-
+from builtins import range
+import copy
+import math
+from asciimatics.effects import Cycle, Print, Stars
+from asciimatics.renderers import SpeechBubble, FigletText, Box
+from asciimatics.scene import Scene
 from asciimatics.screen import Screen
+from asciimatics.sprites import Arrow, Plot, Sam
+from asciimatics.paths import Path
+from asciimatics.exceptions import ResizeScreenError
+import sys
+from asciimatics.screen import Screen
+
+from pyfiglet import Figlet
+
+from asciimatics.effects import Scroll, Mirage, Wipe, Cycle, Matrix, \
+    BannerText, Stars, Print
+from asciimatics.particles import DropScreen
+from asciimatics.renderers import FigletText, SpeechBubble, Rainbow, Fire
+from asciimatics.scene import Scene
+from asciimatics.screen import Screen
+import sys
 
 from Entidades.leerFicherosWebPageInfo import leerFicherosWebPageInfo
 from Entidades.webPageInfo import webPageInfo
@@ -38,6 +58,50 @@ classifier = classificatorObject.getClasifier()
 
 
 # webPageInfoObject = webPageInfo(route='/home/usertfm/SalidaJSON/Preproc/google.es.json')
+
+
+
+def _speak(screen, text, pos, start):
+    return Print(
+        screen,
+        SpeechBubble(text, "L", uni=screen.unicode_aware),
+        x=pos[0] + 4, y=pos[1] - 4,
+        colour=Screen.COLOUR_WHITE,
+        clear=True,
+        start_frame=start,
+        stop_frame=start + 30)
+
+
+def mensaje_inicio(screen):
+
+    scenes = []
+    centre = (screen.width // 2, screen.height // 2)
+    podium = (8, 5)
+
+    path = Path()
+    path.jump_to(-20, centre[1])
+    path.move_straight_to(centre[0], centre[1], 10)
+    path.wait(30)
+    path.move_straight_to(podium[0], podium[1], 10)
+    path.wait(100)
+
+    effects = [
+        Arrow(screen, path, colour=Screen.COLOUR_BLUE),
+        _speak(screen, "Bienvenid@ a EL TOPO", centre, 30),
+        _speak(screen, "¿Desea acceder a la aplicación?", podium, 110)
+    ]
+
+
+    scenes.append(Scene(effects))
+
+    effects = [
+        Print(screen,
+              SpeechBubble("Pulse 'X' para acceder al menú principal."), screen.height // 2 - 1, attr=Screen.A_NORMAL)
+    ]
+    scenes.append(Scene(effects, -1))
+    screen.play(scenes)
+
+
 
 
 def letrasInicio(screen):
@@ -345,8 +409,73 @@ def PedirDir():
     return ruta_dir
 
 
+def efectoCL(screen):
+    scenes = []
+
+    effects = [
+        Matrix(screen, stop_frame=200),
+        Mirage(
+            screen,
+            FigletText("El topo"),
+            screen.height // 2 - 3,
+            Screen.COLOUR_WHITE,
+            start_frame=100,
+            stop_frame=200),
+        Wipe(screen, start_frame=150),
+        Cycle(
+            screen,
+            FigletText("El topo"),
+            screen.height // 2 - 3,
+            start_frame=200)
+    ]
+    scenes.append(Scene(effects))
+
+    effects = [
+        Print(screen,
+              SpeechBubble("Pulse 'X' para ver los resultados."), screen.height // 2 - 1, attr=Screen.A_BOLD)
+    ]
+    scenes.append(Scene(effects, -1))
+    screen.play(scenes)
+
+
+
+
+
+
+
+
+def efectoCR(screen):
+    scenes = []
+
+    effects = [
+        Matrix(screen, stop_frame=200),
+        Mirage(
+            screen,
+            FigletText("El topo"),
+            screen.height // 2 - 3,
+            Screen.COLOUR_MAGENTA,
+            start_frame=100,
+            stop_frame=200),
+        Wipe(screen, start_frame=150),
+        Cycle(
+            screen,
+            FigletText("El topo"),
+            screen.height // 2 - 3,
+            start_frame=200)
+    ]
+    scenes.append(Scene(effects))
+
+    effects = [
+        Print(screen,
+              SpeechBubble("Pulse 'X' para ver los resultados."), screen.height // 2 - 1, attr=Screen.A_NORMAL)
+    ]
+    scenes.append(Scene(effects, -1))
+    screen.play(scenes)
+
 def IniciarCrawlerL():
-    print("Iniciando crawler local")
+    print("Cargando resultados Crawler Local")
+    Screen.wrapper(efectoCL)
+
     theSpyder = spyder(rutaConfig="./configElTopo/config.json")
     rutaSalidaSpyder = theSpyder.launch()
     print("\n\n")
@@ -357,7 +486,8 @@ def IniciarCrawlerL():
 
 
 def IniciarCrawlerR():
-    print("Iniciando crawler remoto")
+    print("Cargando resultados Crawler Remoto")
+    Screen.wrapper(efectoCR)
     caller = SpyderRestCaller()
     paths = caller.callList()
     print(paths)
@@ -819,4 +949,5 @@ acciones_submenuOpcionesClasificadorDir = {
 if __name__ == "__main__":
     os.system('clear')
     Screen.wrapper(letrasInicio)
+    Screen.wrapper(mensaje_inicio)
     menu_principal()
